@@ -35,6 +35,7 @@ view =
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description = "A site for showcasing my projects"
+                , subdescription = "current, never finished, and finished"
                 }
             ]
         , alternatingMarkdownSections
@@ -47,7 +48,7 @@ npx elm-spa new
 ```
 No need to configure webpack, gulp, or any other NPM dev tools. This __zero-configuration__ CLI comes with a live-reloading dev server, production-ready build commands, and even a few scaffolding commands for new and existing applications.
 """
-              , [ ( "Explore the CLI", Gen.Route.Projects__Section_ { section = "01-cli" } )
+              , [ 
                 ]
               )
 

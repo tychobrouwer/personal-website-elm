@@ -1,6 +1,5 @@
 module Pages.Projects exposing (Model, Msg, page)
 
-import Gen.Params.Home_ exposing (Params)
 import Gen.Route exposing (Route)
 import Html
 import Html.Attributes as Attr
@@ -32,33 +31,54 @@ view =
     { title = "Tycho brouwer"
     , body =
         [ markdownSections
-            [ ( "laptop"
-              , """
-## Build reliable applications with Elm
-With __elm-spa__, you can create production-ready applications with one command:
+            [ { image = "food_alarm"
+              , markdown = """
+## Food Alarm App
+An app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.
 """
-              , [ ( "GitHub Repo", Gen.Route.Projects__Section_ { section = "01-cli" } )
-                  , ( "Explore the CLI", Gen.Route.Projects__Section_ { section = "01-cli" } )
+                , internal = []
+                , external = [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Food_App_React_Native" )
                 ]
-              )
+            }
+            , { image = "food_alarm"
+              , markdown = """
+## Pokémon Inspired Game
+A pokemon inspired game written using electron, typescript, and SCSS, more specifically the Pokémon Ruby version. The game is drawn onto an HTML canvas using request animation frame to invoke the repaint. The game has basic fighting mechanics following the original from Pokémon Ruby.
+"""
+                , internal = []
+                , external = [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Pokemon_Game_Electron" )
+                ]
+            }
+            , { image = "food_alarm"
+              , markdown = """
+## Food Alarm App
+An app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.
+"""
+                , internal = []
+                , external = [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Food_App_React_Native" )
+                ]
+            }
             ]
         ]
     }
-markdownSections : List ( String, String, List ( String, Route ) ) -> Html msg
+markdownSections : List { image : String, markdown : String, internal : List ( String, Route ), external : List ( String, String ) } -> Html msg
 markdownSections sections =
     let
-        viewSection i ( image, str, buttons ) =
+        viewSection i ({ image, markdown, internal, external }) =
             Html.section [ Attr.class "projects__section" ]
                 [ Html.div [ Attr.class "projects__section-row container row", Attr.classList [ ( "align-right", modBy 2 i == 1 ) ] ]
                     [ Html.div [ Attr.class "col" ]
-                        [ UI.markdown { withHeaderLinks = False } str
+                        [ UI.markdown { withHeaderLinks = False } markdown
                         , Html.div [ Attr.class "row" ]
                             (List.map
                                 (\( label, route ) -> Html.a [ Attr.class "button", Attr.href (Gen.Route.toHref route) ] [ Html.text label ])
-                                buttons
+                                internal
+                            ++ List.map
+                                (\( label, url ) -> Html.a [ Attr.class "button", Attr.href url ] [ Html.text label ])
+                                external
                             )
                         ]
-                        , Html.img [ Attr.class "projects__section-image", Attr.src ("/images/projects/" ++ image ++ ".svg") ] []
+                        , Html.img [ Attr.class "projects__section-image", Attr.src ("/images/projects/" ++ image ++ ".webp") ] []
                     ]
                 ]
     in

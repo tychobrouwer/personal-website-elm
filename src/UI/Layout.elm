@@ -151,7 +151,7 @@ navbar { onMsg, model, shared, url } =
                 , Html.nav [ Attr.class "row almost-width space" ]
                     [ navLink { text = "Home", route = Route.Home_ }
                     , navLink { text = "Projects", route = Route.Projects }
-                    , navLink { text = "Articles", route = Route.Examples }
+                    , navLink { text = "About Me", route = Route.Examples }
                     ]
                 ]
             , Html.nav [ Attr.class "row" ]

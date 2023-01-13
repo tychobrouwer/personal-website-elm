@@ -27,7 +27,7 @@ format query original =
         |> String.split (String.toLower query)
         |> List.indexedMap Tuple.pair
         |> List.foldl
-            (\( index, segment ) ( length, str ) ->
+            (\( _, segment ) ( length, str ) ->
                 let
                     nextLength =
                         length + String.length segment + String.length query
