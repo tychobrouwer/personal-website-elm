@@ -1,4 +1,4 @@
-module UI.Docs exposing (Model, Msg, page)
+module UI.Projects exposing (Model, Msg, page)
 
 import Http
 import Page

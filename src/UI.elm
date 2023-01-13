@@ -4,7 +4,7 @@ module UI exposing
     , pad, padX, padY, align
     , link
     , logo, icons, iconLink
-    , gutter, hero
+    , gutter, hero, pageTitle
     )
 
 {-|
@@ -25,7 +25,6 @@ import Markdown.Block
 import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
-import UI.Searchbar
 import Url exposing (Url)
 import Utils.String
 import View exposing (View)
@@ -321,6 +320,18 @@ hero options =
             [ h1 options.title
             , Html.div [ Attr.class "text-500" ] [ Html.h2 [ Attr.class "h5" ] [ Html.text options.description ] ]
             ]
+        ]
+
+
+
+-- PAGE TITLE
+
+
+pageTitle : { title : String } -> Html msg
+pageTitle options =
+    Html.div [ Attr.class "page-title" ]
+        [ Html.div [ Attr.class "hero__logo" ]
+            [ h1 options.title ]
         ]
 
 

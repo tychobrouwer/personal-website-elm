@@ -3,17 +3,17 @@ module Pages.Examples exposing (Model, Msg, page)
 import Page
 import Request
 import Shared
-import UI.Docs
+import UI.Projects
 
 
 page : Shared.Model -> Request.With params -> Page.With Model Msg
 page =
-    UI.Docs.page
+    UI.Projects.page
 
 
 type alias Model =
-    UI.Docs.Model
+    UI.Projects.Model
 
 
 type alias Msg =
-    UI.Docs.Msg
+    UI.Projects.Msg

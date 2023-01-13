@@ -145,7 +145,7 @@ navbar { onMsg, model, shared, url } =
                 [ Html.div [ Attr.class "link-hover" ] [ Html.text options.text ] ]
     in
     Html.header [ Attr.class "header" ]
-        [ Html.div [ Attr.class "container row spread v-margin" ]
+        [ Html.div [ Attr.class "container row spread" ]
             [ Html.div [ Attr.class "row fill-width" ]
                 [ Html.a [ Attr.class "header__logo", Attr.href "/" ] [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
