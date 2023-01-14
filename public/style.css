@@ -303,7 +303,7 @@ span.link-hover:hover {
 
 .projects__section-image {
   width: 40%;
-  max-width: fit-content;
+  max-width: 300px;
   max-height: 400px;
   margin-left: 1.5em;
 }
