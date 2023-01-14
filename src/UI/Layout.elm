@@ -166,10 +166,10 @@ navbar { onMsg, model, shared, url } =
 footer : Html msg
 footer =
     Html.div [ Attr.class "footer__zone" ]
-        [ Html.footer [ Attr.class "footer container pad-top-xl" ]
-            [ Html.div [ Attr.class "row pad-x-md pad-y-lg pad-top-xl spread faded" ]
-                [ Html.a [ Attr.href "https://github.com/TychoBrouwer?tab=repositories", Attr.target "_blank", Attr.class "link hidden-mobile" ] [ Html.text "Site source code" ]
-                , Html.span [] [ Html.text "© 2019 – 2021, Ryan Haskell-Glatz" ]
+        [ Html.footer [ Attr.class "footer container" ]
+            [ Html.div [ Attr.class "row spread" ]
+                [ Html.a [ Attr.href "https://github.com/TychoBrouwer/personal_website", Attr.target "_blank", Attr.class "link hidden-mobile" ] [ Html.text "Site source code" ]
+                , Html.p [ Attr.class "p" ] [ Html.text "Tycho Brouwer" ]
                 ]
             ]
         ]

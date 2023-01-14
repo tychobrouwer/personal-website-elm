@@ -141,6 +141,10 @@ a {
 
 /* TYPOGRAPHY */
 
+p {
+  color: var(--color--grey-200);
+}
+
 .h1 {
   font-family: var(--font--display);
   font-weight: var(--weight--bold);
@@ -446,6 +450,8 @@ span.link-hover:hover {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
+  background-color: var(--color--grey-700);
 }
 
 .footer__zone {
