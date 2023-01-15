@@ -1,13 +1,8 @@
-# my new project
-> 🌳  built with [elm-spa](https://elm-spa.dev)
+# My personal website
 
-## dependencies
+>built with [elm-spa](https://elm-spa.dev)
 
-This project requires the latest LTS version of [Node.js](https://nodejs.org/)
-
-```bash
-npm install -g elm elm-spa
-```
+This project is a website to showcase my finished and ongoing, mainly programming, projects. But it is also a way for to get more proficient at programming and learning Elm.
 
 ## running locally
 
@@ -22,7 +17,3 @@ elm-spa add    # add a new page to the application
 elm-spa build  # production build
 elm-spa watch  # runs build as you code (without the server)
 ```
-
-## learn more
-
-You can learn more at [elm-spa.dev](https://elm-spa.dev)

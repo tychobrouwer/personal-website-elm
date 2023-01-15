@@ -29,18 +29,25 @@ type alias Msg =
 
 view : View Msg
 view =
-    { title = "Tycho brouwer"
+    { title = "Projects | Tycho brouwer"
     , body =
         [ markdownSections projectData ]
     }
 
 
-markdownSections : List { image : String, markdown : String, internal : List ( String, Route ), external : List ( String, String ) } -> Html msg
+markdownSections :
+    List
+        { image : String
+        , markdown : String
+        , internal : List ( String, Route )
+        , external : List ( String, String )
+        }
+    -> Html msg
 markdownSections sections =
     let
-        viewSection i { image, markdown, internal, external } =
+        viewSection _ { image, markdown, internal, external } =
             Html.section [ Attr.class "projects__section" ]
-                [ Html.div [ Attr.class "projects__section-row container row", Attr.classList [ ( "align-right", modBy 2 i == 1 ) ] ]
+                [ Html.div [ Attr.class "projects__section-row container row" ]
                     [ Html.div [ Attr.class "col" ]
                         [ UI.markdown { withHeaderLinks = False } markdown
                         , Html.div [ Attr.class "row" ]

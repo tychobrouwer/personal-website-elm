@@ -318,7 +318,7 @@ hero options =
     Html.div [ Attr.class "hero" ]
         [ Html.div [ Attr.class "hero__logo" ]
             [ h1 options.title
-                , Html.div [ Attr.class "text-500" ] 
+            , Html.div [ Attr.class "text-500" ]
                 [ Html.h2 [ Attr.class "h5" ] [ Html.text options.description ]
                 , Html.h2 [ Attr.class "h5" ] [ Html.text options.subdescription ]
                 ]
@@ -373,6 +373,5 @@ iconLink options =
         (Icon class) =
             options.icon
     in
-    Html.a [ Attr.class "table icon-container", Attr.href options.url, Attr.target "_blank", Attr.attribute "aria-label" options.text ]
-        [ Html.span [ Attr.class ("v-table-cell link-hover link__icon " ++ class) ] []
-        ]
+    Html.a [ Attr.href options.url, Attr.class "link__icon-container", Attr.target "_blank", Attr.attribute "aria-label" options.text ]
+        [ Html.span [ Attr.class ("link-hover link__icon " ++ class) ] [] ]

@@ -11,10 +11,20 @@ projectData :
         , external : List ( String, String )
         }
 projectData =
-    [ { image = "food_alarm"
+    [ { image = "mail_app"
+      , markdown = """
+## Mail Client App
+A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by dissabling features you do not need. In the current state the client can read the mail from one or multiple IMAP servers. The app does not work for platorms other than Windows.
+"""
+      , internal = []
+      , external =
+            [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Mail_App" )
+            ]
+      }
+    , { image = "food_alarm"
       , markdown = """
 ## Food Alarm App
-An app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.
+An mobile app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.
 """
       , internal = []
       , external =

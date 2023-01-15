@@ -222,7 +222,8 @@ a {
 }
 
 .header .container {
-  padding-top: 10px;
+  margin-top: 10px;
+  height: 40px;
 }
 
 .header {
@@ -257,9 +258,12 @@ a {
 }
 
 .link__icon {
-  margin: 0.5em 0;
-  vertical-align: middle;
   font-size: 2em;
+}
+
+.link__icon-container {
+  height: fit-content;
+  margin: auto 0 auto 0.5em;
 }
 
 .link-hover {
@@ -362,8 +366,6 @@ span.link-hover:hover {
 
 .hero {
   padding: 5em 0;
-  width: 90%;
-  margin: 0 auto;
 }
 
 .hero__logo {
