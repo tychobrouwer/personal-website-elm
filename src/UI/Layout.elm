@@ -1,7 +1,6 @@
 module UI.Layout exposing
     ( Model, init
     , Msg, update
-    , viewDefault, viewDocumentation
     , page, pageFullWidth
     )
 
@@ -77,42 +76,6 @@ viewFullWidth options view =
     ]
 
 
-viewDocumentation :
-    { model : Model
-    , onMsg : Msg -> msg
-    , shared : Shared.Model
-    , url : Url
-    }
-    -> String
-    -> List (Html msg)
-    -> List (Html msg)
-viewDocumentation options markdownContent view =
-    [ navbar options
-    , Html.div [ Attr.class "page container pad-md" ]
-        [ UI.row.xl [ UI.align.top, UI.padY.lg ]
-            [ Html.aside [ Attr.class "only-desktop sticky pad-y-lg aside" ]
-                [ UI.Sidebar.viewSidebar
-                    { index = options.shared.index
-                    , url = options.url
-                    }
-                ]
-            , Html.main_ [ Attr.class "flex" ]
-                [ UI.row.lg [ UI.align.top ]
-                    [ Html.div [ Attr.class "col flex margin-override" ] view
-                    , Html.div [ Attr.class "hidden-mobile sticky pad-y-lg table-of-contents" ]
-                        [ UI.Sidebar.viewTableOfContents
-                            { content = markdownContent
-                            , url = options.url
-                            }
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    , footer
-    ]
-
-
 navbar :
     { model : Model
     , onMsg : Msg -> msg
@@ -149,8 +112,7 @@ navbar { onMsg, model, shared, url } =
             [ Html.div [ Attr.class "row fill-width" ]
                 [ Html.a [ Attr.class "header__logo", Attr.href "/" ] [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
-                    [ navLink { text = "Home", route = Route.Home_ }
-                    , navLink { text = "Projects", route = Route.Projects }
+                    [ navLink { text = "Projects", route = Route.Projects }
                     , navLink { text = "About Me", route = Route.AboutMe }
                     ]
                 ]

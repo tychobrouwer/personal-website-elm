@@ -57,7 +57,7 @@ body {
   max-width: 1920px;
   margin: auto;
   background: var(--color--grey-700);
-  color: var(--color--grey-700);
+  color: var(--color--grey-200);
   font-family: var(--font--body);
   font-weight: var(--weight--light);
   overflow-y: scroll;
@@ -88,17 +88,16 @@ a {
   margin: auto 0;
 }
 
-.fab {
-  color: var(--color--grey-200);
-}
-
 .fill-width {
   width: 100%;
 }
 
 .text-accent {
   color: var(--color--accent);
-  border-bottom: 1px solid var(--color--accent);
+}
+
+.text-secondary {
+  color: var(--color--grey-500);
 }
 
 .spread {
@@ -140,10 +139,6 @@ a {
 }
 
 /* TYPOGRAPHY */
-
-p {
-  color: var(--color--grey-200);
-}
 
 .h1 {
   font-family: var(--font--display);
@@ -273,12 +268,8 @@ a {
 
 div.link-hover:hover,
 span.link-hover:hover {
-  opacity: 0.8;
+  opacity: 0.6;
   transform: translateY(-0.1em);
-}
-
-.text-accent.link-hover:hover {
-  border-bottom: 2px solid var(--color--accent) !important;
 }
 
 /* PROJECTS PAGE */
@@ -352,14 +343,15 @@ span.link-hover:hover {
   border: 1px solid var(--color--grey-300);
   color: var(--color--accent);
   border-radius: 0.25em;
+  transform-origin: center center;
   transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
   transform-origin: center;
   font-weight: var(--weight--bold);
 }
 
 .button:hover {
-  opacity: 0.8;
-  transform: translateY(-2px);
+  opacity: 0.6;
+  transform: translateY(-0.1em);
 }
 
 /* HOMEPAGE */
@@ -486,8 +478,33 @@ span.link-hover:hover {
   z-index: 1;
 }
 
+/* HOMEPAGE */
 
+.about__section {
+  padding: 5em 0;
+  max-width: 500px;
+}
 
+.about__title,
+.about__section p {
+  padding-bottom: 1em;
+}
+
+.about__section p {
+  line-height: 1.4;
+}
+
+.about__section span {
+  margin-right: 1rem;
+}
+
+.about__title {
+  align-items: baseline;
+}
+
+.about__title h2 {
+  padding-right: 0.3rem;
+}
 
 
 
