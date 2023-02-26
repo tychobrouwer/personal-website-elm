@@ -1,0 +1,23 @@
+{
+  "name": "personal-website-elm",
+  "version": "1.0.0",
+  "description": ">built with [elm-spa](https://elm-spa.dev)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx elm-spa server",
+    "build": "npx elm-spa build",
+    "format": "npx elm-format src --yes"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TychoBrouwer/personal-website-elm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "elm-format": "^0.8.5",
+    "elm-spa": "^6.0.4",
+    "elm-test": "^0.19.1-revision12"
+  }
+}

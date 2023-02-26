@@ -35,7 +35,7 @@ view =
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description = "A site for showcasing my projects"
-                , subdescription = "current, never finished, and finished"
+                , subdescription = "current, finished, and never finished"
                 }
             , Html.div [ Attr.class "introduction" ]
                 [ Html.p [ Attr.class "p" ]

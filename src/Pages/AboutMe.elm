@@ -28,7 +28,7 @@ type alias Msg =
 
 view : View Msg
 view =
-    { title = "Tycho brouwer"
+    { title = "About Me | Tycho brouwer"
     , body =
         [ Html.div [ Attr.class "container" ]
             [ Html.div [ Attr.class "about__section" ]
@@ -38,18 +38,22 @@ view =
                     ]
                 , Html.div []
                     [ Html.p []
-                        [ Html.text "I'm a currently a Mechanical Engineering student at the Techinische Universiteit Eindhoven in the Netherlands and interested in everything from software to control engineering."
+                        [ Html.text "I'm currently a mechanical engineering student at the Technische Universiteit Eindhoven in the Netherlands and interested in everything from software to control engineering."
                         ]
                     , Html.p []
-                        [ Html.text "My journey into technology begun at a young age when my grand father dug up one of his first personal computers, a TRS-80 Color Computer. On this I wrote my first code in BASIC."
+                        [ Html.text "My journey into technology begun at a young age when my grandfather dug up one of his first personal computers, a TRS-80 Color Computer, on which I wrote my first code in BASIC."
                         ]
                     , Html.p []
-                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Hardware" ]
-                        , Html.text "I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my dad got me programming LEDs, displays, and motors. And a few years later I got my first big computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard."
+                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Technology" ]
+                        , Html.text "I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my dad got me programming LEDs, displays, and motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard."
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Programming" ]
-                        , Html.text "Since then I been learning and playing around  with a wide range of programming languages. Starting with C++ on various microcontrollers and web development using HTML, JavaScript, and CSS. I quickly moved on to Python, PHP, SQL, TypeScript, SASS, and more recently Dart and Elm."
+                        , Html.text "Since my first taste with programming, I been learning and playing around with a wide range of programming languages. Starting with C++ on various microcontrollers and web development using HTML, JavaScript, and CSS. I quickly moved on to Python, PHP, SQL, TypeScript, SASS, and more recently Dart and Elm."
+                        ]
+                    , Html.p []
+                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Education" ]
+                        , Html.text "I'm currently in my second year of my bachelor degree in mechanical engineering at the Technische Universiteit Eindhoven in the Netherlands. Here subjects from thermodynamics, dynamics, mechanics, material properties, and control theory are taught. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning. This has learned me how to tackle real-life problems in addition to skills such as presenting, reflecting, and collaborating."
                         ]
                     ]
                 ]
