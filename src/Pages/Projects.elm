@@ -59,7 +59,7 @@ markdownSections sections =
                                     external
                             )
                         ]
-                    , Html.img [ Attr.class "projects__section-image", Attr.src ("/images/projects/" ++ image ++ ".webp") ] []
+                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ image ++ ".webp") ] []
                     ]
                 ]
     in
