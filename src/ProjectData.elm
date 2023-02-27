@@ -14,7 +14,7 @@ projectData =
     [ { image = "mail_app"
       , markdown = """
 ## Mail Client App
-A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read the mail from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.
+A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.
 """
       , internal = []
       , external =

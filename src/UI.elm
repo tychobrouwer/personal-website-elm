@@ -315,15 +315,13 @@ align =
 -- HERO
 
 
-hero : { title : String, description : String, sub_description : String } -> Html msg
+hero : { title : String, description : List String } -> Html msg
 hero options =
     Html.div [ Attr.class "hero" ]
         [ Html.div [ Attr.class "hero__logo" ]
             [ h1 options.title
             , Html.div [ Attr.class "text-500" ]
-                [ Html.h2 [ Attr.class "h5" ] [ Html.text options.description ]
-                , Html.h2 [ Attr.class "h5" ] [ Html.text options.sub_description ]
-                ]
+                (List.map (\text -> Html.h2 [ Attr.class "h5" ] [ Html.text text ]) options.description)
             ]
         ]
 
