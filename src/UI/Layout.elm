@@ -111,7 +111,20 @@ navbar { onMsg, model, shared, url } =
     Html.header [ Attr.class "header" ]
         [ Html.div [ Attr.class "container row spread" ]
             [ Html.div [ Attr.class "row fill-width" ]
-                [ Html.a [ Attr.class "header__logo", Attr.href "/" ] [ UI.logo ]
+                [ Html.a
+                    [ Attr.class "header__logo"
+                    , Attr.classList
+                        [ ( "text-accent"
+                          , if url.path == "/" then
+                                True
+
+                            else
+                                False
+                          )
+                        ]
+                    , Attr.href "/"
+                    ]
+                    [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
                     [ navLink { text = "Projects", route = Route.Projects }
                     , navLink { text = "About Me", route = Route.AboutMe }
@@ -119,8 +132,8 @@ navbar { onMsg, model, shared, url } =
                 ]
             , Html.nav [ Attr.class "row" ]
                 [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
+                , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
 
-                -- , UI.iconLink { text = "Reddit", icon = UI.icons.reddit, url = "https://www.reddit.com/user/DS-Cloav" }
                 -- , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
                 ]
             ]

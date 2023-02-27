@@ -361,11 +361,13 @@ icons :
     { github : Icon
     , reddit : Icon
     , mastodon : Icon
+    , email : Icon
     }
 icons =
     { github = Icon "fa-brands fa-github"
     , reddit = Icon "fa-brands fa-reddit"
     , mastodon = Icon "fa-brands fa-mastodon"
+    , email = Icon "fa-solid fa-paper-plane"
     }
 
 
@@ -376,4 +378,4 @@ iconLink options =
             options.icon
     in
     Html.a [ Attr.href options.url, Attr.class "link__icon-container", Attr.target "_blank", Attr.attribute "aria-label" options.text ]
-        [ Html.span [ Attr.class ("link-hover link__icon " ++ class) ] [] ]
+        [ Html.span [ Attr.class (String.toLower options.text ++ " link-hover link__icon " ++ class) ] [] ]

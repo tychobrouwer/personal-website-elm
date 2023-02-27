@@ -11514,6 +11514,7 @@ var $elm$html$Html$Attributes$classList = function (classes) {
 };
 var $elm$html$Html$header = _VirtualDom_node('header');
 var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm$core$String$toLower = _String_toLower;
 var $author$project$UI$iconLink = function (options) {
 	var _v0 = options.icon;
 	var _class = _v0.a;
@@ -11532,7 +11533,8 @@ var $author$project$UI$iconLink = function (options) {
 				$elm$html$Html$span,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('link-hover link__icon ' + _class)
+						$elm$html$Html$Attributes$class(
+						$elm$core$String$toLower(options.text) + (' link-hover link__icon ' + _class))
 					]),
 				_List_Nil)
 			]));
@@ -11541,6 +11543,7 @@ var $author$project$UI$Icon = function (a) {
 	return {$: 'Icon', a: a};
 };
 var $author$project$UI$icons = {
+	email: $author$project$UI$Icon('fa-solid fa-paper-plane'),
 	github: $author$project$UI$Icon('fa-brands fa-github'),
 	mastodon: $author$project$UI$Icon('fa-brands fa-mastodon'),
 	reddit: $author$project$UI$Icon('fa-brands fa-reddit')
@@ -11617,6 +11620,13 @@ var $author$project$UI$Layout$navbar = function (_v0) {
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('header__logo'),
+										$elm$html$Html$Attributes$classList(
+										_List_fromArray(
+											[
+												_Utils_Tuple2(
+												'text-accent',
+												(url.path === '/') ? true : false)
+											])),
 										$elm$html$Html$Attributes$href('/')
 									]),
 								_List_fromArray(
@@ -11644,7 +11654,9 @@ var $author$project$UI$Layout$navbar = function (_v0) {
 						_List_fromArray(
 							[
 								$author$project$UI$iconLink(
-								{icon: $author$project$UI$icons.github, text: 'GitHub', url: 'https://github.com/TychoBrouwer?tab=repositories'})
+								{icon: $author$project$UI$icons.github, text: 'GitHub', url: 'https://github.com/TychoBrouwer?tab=repositories'}),
+								$author$project$UI$iconLink(
+								{icon: $author$project$UI$icons.email, text: 'Email', url: 'mailto:tycho.tbrouwer@gmail.com'})
 							]))
 					]))
 			]));
@@ -13054,7 +13066,6 @@ var $dillonkearns$elm_markdown$HtmlParser$tagNameCharacter = function (c) {
 			return true;
 	}
 };
-var $elm$core$String$toLower = _String_toLower;
 var $dillonkearns$elm_markdown$HtmlParser$tagName = A2(
 	$elm$parser$Parser$Advanced$mapChompedString,
 	F2(
