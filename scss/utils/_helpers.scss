@@ -1,0 +1,62 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.fill-width {
+  width: 100%;
+}
+
+.text-accent {
+  color: var(--color--accent);
+}
+
+.text-secondary {
+  color: var(--color--grey-500);
+}
+
+.spread {
+  justify-content: space-between;
+}
+
+.space {
+  justify-content: space-around;
+}
+
+.almost-width {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.text-medium {
+  font-size: 1.2em;
+}
+
+.table {
+  display: table;
+}
+
+.row {
+  display: flex;
+}
+
+.bold {
+  font-weight: var(--weight--bold);
+}
+
+@media screen and (max-width: 720px) {
+  .margin-override {
+    margin-right: 0 !important;
+  }
+
+  .text-medium {
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .almost-width {
+    width: 70%;
+    margin: 0 15%;
+  }
+}

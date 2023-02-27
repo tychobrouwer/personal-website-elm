@@ -12,6 +12,8 @@ module UI.Layout exposing
 
 -}
 
+-- import UI.Sidebar
+
 import Gen.Route as Route exposing (Route)
 import Html exposing (Html)
 import Html.Attributes as Attr
@@ -19,7 +21,6 @@ import Page exposing (Page)
 import Request exposing (Request)
 import Shared
 import UI
-import UI.Sidebar
 import Url exposing (Url)
 import View exposing (View)
 
@@ -93,7 +94,7 @@ navbar { onMsg, model, shared, url } =
                     Route.toHref options.route
             in
             Html.a
-                [ Attr.class "bold v-margin text-medium link-hover"
+                [ Attr.class "bold link-hover"
                 , Attr.href href
                 , Attr.classList
                     [ ( "text-accent"
@@ -105,7 +106,7 @@ navbar { onMsg, model, shared, url } =
                       )
                     ]
                 ]
-                [ Html.div [ Attr.class "link-hover" ] [ Html.text options.text ] ]
+                [ Html.div [] [ Html.text options.text ] ]
     in
     Html.header [ Attr.class "header" ]
         [ Html.div [ Attr.class "container row spread" ]
@@ -118,8 +119,9 @@ navbar { onMsg, model, shared, url } =
                 ]
             , Html.nav [ Attr.class "row" ]
                 [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
-                , UI.iconLink { text = "Reddit", icon = UI.icons.reddit, url = "https://www.reddit.com/user/DS-Cloav" }
-                , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
+
+                -- , UI.iconLink { text = "Reddit", icon = UI.icons.reddit, url = "https://www.reddit.com/user/DS-Cloav" }
+                -- , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
                 ]
             ]
         ]

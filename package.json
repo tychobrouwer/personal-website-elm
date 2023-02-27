@@ -4,9 +4,11 @@
   "description": ">built with [elm-spa](https://elm-spa.dev)",
   "main": "index.js",
   "scripts": {
-    "dev": "npx elm-spa server",
-    "build": "npx elm-spa build",
-    "format": "npx elm-format src --yes",
+    "elm-dev": "npx elm-spa server",
+    "elm-prod": "npx elm-spa build",
+    "elm-format": "npx elm-format src --yes",
+    "sass-dev": "sass --watch --update --style=expanded scss:public",
+    "sass-prod": "sass --no-source-map --style=compressed scss:public",
     "publish": "ssh root@192.168.178.106 \"cd /var/www/html/personal-website-elm && git pull origin main\""
   },
   "repository": {
@@ -19,6 +21,7 @@
     "elm": "^0.19.1-5",
     "elm-format": "^0.8.5",
     "elm-spa": "^6.0.4",
-    "elm-test": "^0.19.1-revision12"
+    "elm-test": "^0.19.1-revision12",
+    "sass": "^1.58.3"
   }
 }

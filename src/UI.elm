@@ -17,17 +17,18 @@ module UI exposing
 
 -}
 
+-- import Markdown.Html
+-- import Url exposing (Url)
+-- import View exposing (View)
+
 import Html
 import Html.Attributes as Attr
 import Html.Keyed
 import Json.Encode as Json
 import Markdown.Block
-import Markdown.Html
 import Markdown.Parser
 import Markdown.Renderer
-import Url exposing (Url)
 import Utils.String
-import View exposing (View)
 
 
 type alias Html msg =
@@ -97,11 +98,12 @@ h6 str =
     Html.h6 [ Attr.class "h6" ] [ Html.text str ]
 
 
-paragraphs : List String -> Html msg
-paragraphs strs =
-    strs
-        |> List.map (Html.text >> List.singleton >> Html.p [ Attr.class "p" ])
-        |> Html.div [ Attr.class "col gap-md" ]
+
+-- paragraphs : List String -> Html msg
+-- paragraphs strs =
+--     strs
+--         |> List.map (Html.text >> List.singleton >> Html.p [ Attr.class "p" ])
+--         |> Html.div [ Attr.class "col gap-md" ]
 
 
 gutter : Html msg
@@ -313,14 +315,14 @@ align =
 -- HERO
 
 
-hero : { title : String, description : String, subdescription : String } -> Html msg
+hero : { title : String, description : String, sub_description : String } -> Html msg
 hero options =
     Html.div [ Attr.class "hero" ]
         [ Html.div [ Attr.class "hero__logo" ]
             [ h1 options.title
             , Html.div [ Attr.class "text-500" ]
                 [ Html.h2 [ Attr.class "h5" ] [ Html.text options.description ]
-                , Html.h2 [ Attr.class "h5" ] [ Html.text options.subdescription ]
+                , Html.h2 [ Attr.class "h5" ] [ Html.text options.sub_description ]
                 ]
             ]
         ]

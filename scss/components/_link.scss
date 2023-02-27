@@ -1,0 +1,10 @@
+.link-hover {
+  transform-origin: center center;
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+  margin: auto 0;
+
+  &:hover {
+    opacity: 0.6;
+    transform: translateY(-0.1em);
+  }
+}

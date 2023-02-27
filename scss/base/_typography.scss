@@ -1,0 +1,59 @@
+.h1 {
+  font-family: var(--font--display);
+  font-weight: var(--weight--bold);
+  font-size: var(--size--h1);
+  color: var(--color--grey-200);
+  line-height: 1;
+  margin: 0.5em 0;
+}
+
+.h2 {
+  font-family: var(--font--display);
+  font-weight: var(--weight--bold);
+  font-size: var(--size--h2);
+  color: var(--color--grey-200);
+  line-height: 1.2;
+  margin: 0.5em 0;
+}
+
+.h3 {
+  font-family: var(--font--display);
+  font-weight: var(--weight--bold);
+  font-size: var(--size--h3);
+  color: var(--color--grey-200);
+  line-height: 1.2;
+}
+
+.h4 {
+  font-family: var(--font--body);
+  font-weight: var(--weight--bold);
+  font-size: var(--size--h4);
+  color: var(--color--grey-200);
+  line-height: 1.2;
+}
+
+.h5 {
+  font-family: var(--font--body);
+  font-weight: var(--weight--light);
+  font-size: var(--size--h5);
+  color: var(--color--grey-200);
+  line-height: 1.2;
+}
+
+.h6 {
+  font-family: var(--font--body);
+  font-weight: var(--weight--light);
+  font-size: var(--size--h6);
+  color: var(--color--grey-200);
+  line-height: 1.2;
+}
+
+.p,
+li,
+a {
+  font-family: var(--font--body);
+  font-weight: var(--weight--light);
+  font-size: var(--size--paragraph);
+  color: var(--color--grey-200);
+  line-height: 1.4;
+}

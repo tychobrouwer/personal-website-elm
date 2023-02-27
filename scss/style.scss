@@ -1,0 +1,69 @@
+:root {
+  --font--display: 'Nunito Sans', sans-serif;
+  --font--body: 'Nunito', sans-serif;
+  --font--monospace: 'Fira Code', monospace;
+
+  --weight--light: 300;
+  --weight--semibold: 600;
+  --weight--bold: 800;
+
+  --color--white: #ffffff;
+  --color--grey-100: #f0f0f0;
+  --color--grey-200: #cccccc;
+  --color--grey-300: #aaaaaa;
+  --color--grey-500: #696969;
+  --color--grey-700: #1c1c1c;
+  --color--grey-800: #111111;
+  --color--green: #407742;
+  --color--green-dark: #264727;
+  --color--green-light: #d7ead8;
+
+  --color--accent: #DB4105;
+
+  --color--github: #4078c0;
+  --color--reddit: #ff4500;
+  --color--mastodon: #6364ff;
+
+  --size--h1: 3em;
+  --size--h2: 2em;
+  --size--h3: 1.5em;
+  --size--h4: 1.2em;
+  --size--h5: 1.2em;
+  --size--h6: 0.75em;
+  --size--paragraph: 1.2em;
+
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  --shadow-dark: 0 0.5em 2em rgb(0, 0, 0, 0.2);
+
+  --height--header: 60px;
+}
+
+body {
+  max-width: 1600px;
+  margin: auto;
+  background: var(--color--grey-700);
+  color: var(--color--grey-200);
+  font-family: var(--font--body);
+  font-weight: var(--weight--light);
+  overflow-y: scroll;
+  padding-top: var(--height--header);
+}
+
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@import "base/_reset";
+@import "base/_typography";
+@import "components/_button";
+@import "components/_link__icon";
+@import "components/_link";
+@import "layout/_footer";
+@import "layout/_header";
+@import "layout/_markdown";
+@import "pages/_about__me";
+@import "pages/_home";
+@import "pages/_projects";
+@import "utils/_helpers";

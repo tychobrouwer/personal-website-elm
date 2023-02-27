@@ -1,0 +1,21 @@
+.link__icon-container {
+  height: fit-content;
+  margin: auto 0 auto 0.5em;
+  line-height: normal;
+
+  .link__icon {
+    font-size: 1.6em;
+
+    &.fa-mastodon:hover {
+      color: var(--color--mastodon);
+    }
+
+    &.fa-reddit:hover {
+      color: var(--color--reddit);
+    }
+
+    &.fa-github:hover {
+      color: var(--color--github);
+    }
+  }
+}

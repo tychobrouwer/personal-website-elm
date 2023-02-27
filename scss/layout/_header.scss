@@ -1,0 +1,37 @@
+.header {
+  width: 100%;
+  margin: 0 auto;
+  height: var(--height--header);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background: var(--color--grey-700);
+  max-width: 1920px;
+
+  .container {
+    margin-top: 10px;
+    height: 40px;
+  }
+
+  .header__logo {
+    font-size: 1.5em;
+  }
+
+  .logo__text {
+    white-space: nowrap;
+    font-weight: var(--weight--bold);
+    font-family: var(--font--display);
+    font-size: 1.13em;
+    line-height: 40px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .header {
+    .header__logo {
+      font-size: 1.25em
+    }
+  }
+}

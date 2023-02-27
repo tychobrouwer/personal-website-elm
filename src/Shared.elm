@@ -7,12 +7,13 @@ module Shared exposing
     , update
     )
 
-import Browser.Navigation exposing (Key)
-import Dict exposing (Dict)
+-- import Browser.Navigation exposing (Key)
+-- import Dict exposing (Dict)
+-- import Url exposing (Url)
+
 import Domain.Index exposing (Index)
 import Json.Decode as Json
 import Request exposing (Request)
-import Url exposing (Url)
 
 
 type alias Flags =
@@ -24,8 +25,9 @@ type alias Model =
     }
 
 
-type alias Token =
-    ()
+
+-- type alias Token =
+--     ()
 
 
 type Msg

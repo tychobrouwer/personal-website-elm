@@ -1,7 +1,8 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
+-- import Gen.Route exposing (Route)
+
 import Gen.Params.Home_ exposing (Params)
-import Gen.Route exposing (Route)
 import Html
 import Html.Attributes as Attr
 import Page
@@ -35,7 +36,7 @@ view =
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description = "A site for showcasing my projects"
-                , subdescription = "current, finished, and never finished"
+                , sub_description = "current, finished, and never finished"
                 }
             , Html.div [ Attr.class "introduction" ]
                 [ Html.p [ Attr.class "p" ]

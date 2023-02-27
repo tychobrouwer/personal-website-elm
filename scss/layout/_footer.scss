@@ -1,0 +1,13 @@
+.footer__zone {
+  padding: 4em 0;
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: var(--color--grey-700);
+    padding: 0.2em 0;
+  }
+}
