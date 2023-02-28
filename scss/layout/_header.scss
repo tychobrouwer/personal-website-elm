@@ -35,3 +35,16 @@
     }
   }
 }
+
+@media screen and (max-width: 480px) {
+  .header {
+    .icon-nav {
+      display: none;
+    }
+
+    .almost-width {
+      width: 95%;
+      margin-right: 0;
+    }
+  }
+}

@@ -1,34 +1,43 @@
-.hero {
-  padding: 5em 0;
-}
-
-.hero__logo {
-  font-size: 1.75em;
-}
-
-@media screen and (max-width: 720px) {
+.home__page {
   .hero {
-    padding: 5em 0
+    padding: 5em 0;
   }
 
   .hero__logo {
-    font-size: 1em
+    font-size: 1.75em;
+  }
+}
+
+
+@media screen and (max-width: 720px) {
+  .home__page {
+    .hero {
+      padding: 5em 0
+    }
+
+    .hero__logo {
+      font-size: 1em
+    }
   }
 }
 
 @media screen and (max-width: 800px) {
-  .home__section-icon {
-    display: none;
-  }
+  .home__page {
+    .home__section-icon {
+      display: none;
+    }
 
-  .home__section-row {
-    padding: 4em 1em;
+    .home__section-row {
+      padding: 4em 1em;
+    }
   }
 }
 
 @media screen and (max-width: 720px) {
-  .home__section {
-    font-size: 1em
+  .home__page {
+    .home__section {
+      font-size: 1em
+    }
   }
 }
 

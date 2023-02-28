@@ -130,7 +130,7 @@ navbar { onMsg, model, shared, url } =
                     , navLink { text = "About Me", route = Route.AboutMe }
                     ]
                 ]
-            , Html.nav [ Attr.class "row" ]
+            , Html.nav [ Attr.class "row icon-nav" ]
                 [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
                 , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
 
