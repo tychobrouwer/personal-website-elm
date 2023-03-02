@@ -11717,16 +11717,68 @@ var $author$project$Pages$AboutMe$view = {
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$class('row about__title')
+									$elm$html$Html$Attributes$class('about__title')
 								]),
 							_List_fromArray(
 								[
 									A2(
-									$elm$html$Html$h2,
-									_List_Nil,
+									$elm$html$Html$div,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('Skills')
+											$elm$html$Html$Attributes$class('about-category')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$p,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('category-title text-secondary')
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Email')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('tycho.tbrouwer@gmail.com')
+												]))
+										])),
+									A2(
+									$elm$html$Html$div,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('about-category')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$p,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('category-title text-secondary')
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Education')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Atheneum - Fortes Lyceum')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Mechanical Engineering - Eindhoven University of Technology')
+												]))
 										]))
 								])),
 							A2(
@@ -11799,7 +11851,7 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-accent')
+													$elm$html$Html$Attributes$class('text-secondary')
 												]),
 											_List_fromArray(
 												[
@@ -11816,7 +11868,7 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-accent')
+													$elm$html$Html$Attributes$class('text-secondary')
 												]),
 											_List_fromArray(
 												[
@@ -11833,7 +11885,7 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-accent')
+													$elm$html$Html$Attributes$class('text-secondary')
 												]),
 											_List_fromArray(
 												[

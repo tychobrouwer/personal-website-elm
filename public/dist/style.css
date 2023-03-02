@@ -33,6 +33,10 @@
   --height--header: 60px;
 }
 
+a:hover {
+  color: var(--color--accent);
+}
+
 body {
   max-width: 1600px;
   margin: auto;
@@ -142,6 +146,9 @@ a {
   height: fit-content;
   margin: auto 0.5em;
   line-height: normal;
+}
+.link__icon-container:hover {
+  color: var(--color--grey-200);
 }
 .link__icon-container .link__icon {
   font-size: 1.4em;
@@ -395,7 +402,14 @@ a {
   margin-right: 1rem;
 }
 .about__page .about__section .about-category {
-  padding-bottom: 0;
+  margin-left: 28px;
+}
+.about__page .about__section .about-category p {
+  padding-bottom: 0.2em;
+  text-indent: -28px;
+}
+.about__page .about__section .about-category p:last-child {
+  padding-bottom: 1em;
 }
 .about__page .about__section .about__title {
   padding-bottom: 1em;
