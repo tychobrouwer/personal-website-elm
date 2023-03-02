@@ -382,16 +382,20 @@ a {
 
 .about__page {
   display: flex;
+  flex-direction: row-reverse;
 }
 .about__page .about__section {
   padding-top: 5em;
-}
-.about__page .about__section.about__me {
-  width: 55%;
+  width: 50%;
 }
 .about__page .about__section.about__details {
   padding-left: 5%;
-  width: 40%;
+}
+.about__page .about__section.about__me span {
+  margin-right: 1rem;
+}
+.about__page .about__section .about-category {
+  padding-bottom: 0;
 }
 .about__page .about__section .about__title {
   padding-bottom: 1em;
@@ -404,21 +408,23 @@ a {
   line-height: 1.4;
   padding-bottom: 1em;
 }
-.about__page .about__section span {
-  margin-right: 1rem;
-}
 
 @media screen and (max-width: 720px) {
   .about__page {
     display: block;
   }
-  .about__page .about__section.about__details {
+  .about__page .about__section.about__me {
     padding-top: 2em;
     width: 100%;
   }
   .about__page .about__section.about__details {
     padding-left: 0;
     width: 100%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about__page .about__section.about__details {
+    padding-left: 15%;
   }
 }
 .home__page .hero {

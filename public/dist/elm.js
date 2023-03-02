@@ -11709,6 +11709,38 @@ var $author$project$Pages$AboutMe$view = {
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
+							$elm$html$Html$Attributes$class('about__section about__details')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('row about__title')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h2,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Skills')
+										]))
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('about-category')
+								]),
+							_List_Nil)
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
 							$elm$html$Html$Attributes$class('about__section about__me')
 						]),
 					_List_fromArray(
@@ -11808,31 +11840,6 @@ var $author$project$Pages$AboutMe$view = {
 													$elm$html$Html$text('Education')
 												])),
 											$elm$html$Html$text('I\'m currently in my second year of my bachelor degree in mechanical engineering at the Technische Universiteit Eindhoven in the Netherlands. Here subjects from thermodynamics, dynamics, mechanics, material properties, and control theory are taught. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning. This has learned me how to tackle real-life problems in addition to skills such as presenting, reflecting, and collaborating.')
-										]))
-								]))
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('about__section about__details')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('row about__title')
-								]),
-							_List_fromArray(
-								[
-									A2(
-									$elm$html$Html$h2,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text('Skills')
 										]))
 								]))
 						]))

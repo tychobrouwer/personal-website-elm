@@ -32,7 +32,15 @@ view =
     { title = "About Me | Tycho brouwer"
     , body =
         [ Html.div [ Attr.class "container about__page" ]
-            [ Html.div [ Attr.class "about__section about__me" ]
+            [ Html.div [ Attr.class "about__section about__details" ]
+                [ Html.div [ Attr.class "row about__title" ]
+                    [ Html.h2
+                        []
+                        [ Html.text "Skills" ]
+                    ]
+                , Html.div [ Attr.class "about-category" ] []
+                ]
+            , Html.div [ Attr.class "about__section about__me" ]
                 [ Html.div [ Attr.class "row about__title" ]
                     [ Html.h2 [] [ Html.text "Hello, I'm" ]
                     , Html.h2 [ Attr.class "text-accent" ] [ Html.text "Tycho Brouwer" ]
@@ -56,13 +64,6 @@ view =
                         [ Html.span [ Attr.class "text-accent" ] [ Html.text "Education" ]
                         , Html.text "I'm currently in my second year of my bachelor degree in mechanical engineering at the Technische Universiteit Eindhoven in the Netherlands. Here subjects from thermodynamics, dynamics, mechanics, material properties, and control theory are taught. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning. This has learned me how to tackle real-life problems in addition to skills such as presenting, reflecting, and collaborating."
                         ]
-                    ]
-                ]
-            , Html.div [ Attr.class "about__section about__details" ]
-                [ Html.div [ Attr.class "row about__title" ]
-                    [ Html.h2
-                        []
-                        [ Html.text "Skills" ]
                     ]
                 ]
             ]

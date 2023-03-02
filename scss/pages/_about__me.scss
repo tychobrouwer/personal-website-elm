@@ -1,18 +1,24 @@
 .about__page {
   display: flex;
+  flex-direction: row-reverse;
 
   .about__section {
     padding-top: 5em;
-
-    &.about__me {
-      width: 55%;
-    }
+    width: 50%;
 
     &.about__details {
       padding-left: 5%;
-      width: 40%;
     }
 
+    &.about__me {
+      span {
+        margin-right: 1rem;
+      }
+    }
+
+    .about-category {
+      padding-bottom: 0;
+    }
 
     .about__title {
       padding-bottom: 1em;
@@ -28,9 +34,6 @@
       padding-bottom: 1em;
     }
 
-    span {
-      margin-right: 1rem;
-    }
   }
 }
 
@@ -39,7 +42,7 @@
     display: block;
 
     .about__section {
-      &.about__details {
+      &.about__me {
         padding-top: 2em;
         width: 100%;
       }
@@ -47,6 +50,16 @@
       &.about__details {
         padding-left: 0;
         width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .about__page {
+    .about__section {
+      &.about__details {
+        padding-left: 15%;
       }
     }
   }
