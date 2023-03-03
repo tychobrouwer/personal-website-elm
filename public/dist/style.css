@@ -402,7 +402,7 @@ a {
   margin-right: 1rem;
 }
 .about__page .about__section.about__me .about__title h2:first-child {
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 .about__page .about__section .about__image {
   border-radius: 10%;
@@ -417,14 +417,20 @@ a {
 .about__page .about__section .about-category {
   margin-left: 28px;
 }
-.about__page .about__section .about-category p {
+.about__page .about__section .about-category p,
+.about__page .about__section .about-category a {
   padding-bottom: 0.2em;
   text-indent: -28px;
+  font-size: inherit;
+}
+.about__page .about__section .about-category a {
+  cursor: pointer;
 }
 .about__page .about__section .about-category p:last-child {
   padding-bottom: 1em;
 }
-.about__page .about__section p {
+.about__page .about__section p,
+.about__page .about__section a {
   line-height: 1.4;
   padding-bottom: 1em;
 }
@@ -497,6 +503,7 @@ a {
 }
 .projects__section .projects__section-image {
   max-height: 400px;
+  max-width: 300px;
   margin-left: 1.5em;
 }
 

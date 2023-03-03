@@ -11751,14 +11751,41 @@ var $author$project$Pages$AboutMe$view = {
 												]),
 											_List_fromArray(
 												[
-													$elm$html$Html$text('Email')
+													$elm$html$Html$text('Contact')
 												])),
 											A2(
 											$elm$html$Html$p,
 											_List_Nil,
 											_List_fromArray(
 												[
-													$elm$html$Html$text('tycho.tbrouwer@gmail.com')
+													A2(
+													$elm$html$Html$a,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$href('mailto:tycho.tbrouwer@gmail.com'),
+															$elm$html$Html$Attributes$target('_blank')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('tycho.tbrouwer@gmail.com')
+														]))
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$a,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$href('https://github.com/TychoBrouwer?tab=repositories'),
+															$elm$html$Html$Attributes$target('_blank')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('github.com/TychoBrouwer')
+														]))
 												]))
 										])),
 									A2(
@@ -11791,7 +11818,7 @@ var $author$project$Pages$AboutMe$view = {
 											_List_Nil,
 											_List_fromArray(
 												[
-													$elm$html$Html$text('Mechanical Engineering - Eindhoven University of Technology')
+													$elm$html$Html$text('BSc Mechanical Engineering - Eindhoven University of Technology')
 												]))
 										]))
 								]))

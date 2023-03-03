@@ -16,7 +16,7 @@
       }
 
       .about__title h2:first-child {
-        margin-right: 1em;
+        margin-right: .5em;
       }
     }
 
@@ -34,9 +34,15 @@
     .about-category {
       margin-left: 28px;
 
-      p {
+      p,
+      a {
         padding-bottom: 0.2em;
         text-indent: -28px;
+        font-size: inherit;
+      }
+
+      a {
+        cursor: pointer;
       }
 
       p:last-child {
@@ -44,7 +50,8 @@
       }
     }
 
-    p {
+    p,
+    a {
       line-height: 1.4;
       padding-bottom: 1em;
     }
