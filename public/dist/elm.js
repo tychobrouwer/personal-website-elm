@@ -11998,6 +11998,7 @@ var $author$project$Pages$Home_$view = {
 };
 var $author$project$Pages$Home_$page = $author$project$UI$Layout$pageFullWidth(
 	{view: $author$project$Pages$Home_$view});
+var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$core$Result$andThen = F2(
@@ -12011,7 +12012,6 @@ var $elm$core$Result$andThen = F2(
 		}
 	});
 var $elm$html$Html$Attributes$align = $elm$html$Html$Attributes$stringProperty('align');
-var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$blockquote = _VirtualDom_node('blockquote');
 var $elm$html$Html$br = _VirtualDom_node('br');
 var $elm$json$Json$Encode$bool = _Json_wrap;
@@ -21096,6 +21096,13 @@ var $author$project$UI$markdown = F2(
 						},
 						$dillonkearns$elm_markdown$Markdown$Parser$parse(str)))));
 	});
+var $elm$core$String$replace = F3(
+	function (before, after, string) {
+		return A2(
+			$elm$core$String$join,
+			after,
+			A2($elm$core$String$split, before, string));
+	});
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $author$project$Pages$Projects$markdownSections = function (sections) {
 	var viewSection = F2(
@@ -21182,7 +21189,9 @@ var $author$project$Pages$Projects$markdownSections = function (sections) {
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('projects__section-image'),
-										$elm$html$Html$Attributes$src('images/projects/' + (image + '.webp'))
+										$elm$html$Html$Attributes$src('images/projects/' + (image + '.webp')),
+										$elm$html$Html$Attributes$alt(
+										A3($elm$core$String$replace, '_', ' ', image))
 									]),
 								_List_Nil)
 							]))
