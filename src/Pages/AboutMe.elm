@@ -33,7 +33,8 @@ view =
     , body =
         [ Html.div [ Attr.class "container about__page" ]
             [ Html.div [ Attr.class "about__section about__details" ]
-                [ Html.div [ Attr.class "about__title" ]
+                [ Html.img [ Attr.class "about__image", Attr.src "/images/tycho.webp", Attr.alt "Tycho Brouwer" ] []
+                , Html.div []
                     [ Html.div [ Attr.class "about-category" ]
                         [ Html.p [ Attr.class "category-title text-secondary" ] [ Html.text "Email" ]
                         , Html.p [] [ Html.text "tycho.tbrouwer@gmail.com" ]
@@ -44,7 +45,6 @@ view =
                         , Html.p [] [ Html.text "Mechanical Engineering - Eindhoven University of Technology" ]
                         ]
                     ]
-                , Html.div [ Attr.class "about-category" ] []
                 ]
             , Html.div [ Attr.class "about__section about__me" ]
                 [ Html.div [ Attr.class "row about__title" ]

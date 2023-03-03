@@ -185,7 +185,7 @@ a {
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: var(--color--grey-700);
+  background-color: var(--color--grey-800);
   padding: 0.2em 0;
 }
 
@@ -198,7 +198,7 @@ a {
   left: 0;
   right: 0;
   z-index: 2;
-  background: var(--color--grey-700);
+  background: var(--color--grey-800);
   max-width: 1920px;
 }
 .header .container {
@@ -401,6 +401,19 @@ a {
 .about__page .about__section.about__me span {
   margin-right: 1rem;
 }
+.about__page .about__section.about__me .about__title h2:first-child {
+  margin-right: 1em;
+}
+.about__page .about__section .about__image {
+  border-radius: 10%;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+  background-color: var(--color--grey-800);
+}
 .about__page .about__section .about-category {
   margin-left: 28px;
 }
@@ -410,13 +423,6 @@ a {
 }
 .about__page .about__section .about-category p:last-child {
   padding-bottom: 1em;
-}
-.about__page .about__section .about__title {
-  padding-bottom: 1em;
-  align-items: baseline;
-}
-.about__page .about__section .about__title h2 {
-  padding-right: 0.3rem;
 }
 .about__page .about__section p {
   line-height: 1.4;

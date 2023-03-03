@@ -11693,7 +11693,15 @@ var $author$project$UI$Layout$pageFullWidth = F3(
 				}
 			});
 	});
+var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$html$Html$img = _VirtualDom_node('img');
+var $elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
 var $author$project$Pages$AboutMe$view = {
 	body: _List_fromArray(
 		[
@@ -11714,11 +11722,17 @@ var $author$project$Pages$AboutMe$view = {
 					_List_fromArray(
 						[
 							A2(
-							$elm$html$Html$div,
+							$elm$html$Html$img,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$class('about__title')
+									$elm$html$Html$Attributes$class('about__image'),
+									$elm$html$Html$Attributes$src('/images/tycho.webp'),
+									$elm$html$Html$Attributes$alt('Tycho Brouwer')
 								]),
+							_List_Nil),
+							A2(
+							$elm$html$Html$div,
+							_List_Nil,
 							_List_fromArray(
 								[
 									A2(
@@ -11780,14 +11794,7 @@ var $author$project$Pages$AboutMe$view = {
 													$elm$html$Html$text('Mechanical Engineering - Eindhoven University of Technology')
 												]))
 										]))
-								])),
-							A2(
-							$elm$html$Html$div,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('about-category')
-								]),
-							_List_Nil)
+								]))
 						])),
 					A2(
 					$elm$html$Html$div,
@@ -11970,7 +11977,7 @@ var $author$project$Pages$Home_$view = {
 					$author$project$UI$hero(
 					{
 						description: _List_fromArray(
-							['A site for showcasing my projects', 'current, finished, and never finished']),
+							['A site for showcasing my projects', 'current, finished, and never finished.']),
 						title: 'Tycho Brouwer'
 					}),
 					A2(
@@ -11998,8 +12005,6 @@ var $author$project$Pages$Home_$view = {
 };
 var $author$project$Pages$Home_$page = $author$project$UI$Layout$pageFullWidth(
 	{view: $author$project$Pages$Home_$view});
-var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
-var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$core$Result$andThen = F2(
 	function (callback, result) {
@@ -12140,12 +12145,6 @@ var $elm$html$Html$pre = _VirtualDom_node('pre');
 var $elm$core$List$singleton = function (value) {
 	return _List_fromArray(
 		[value]);
-};
-var $elm$html$Html$Attributes$src = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'src',
-		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
 var $elm$html$Html$Attributes$start = function (n) {
 	return A2(
