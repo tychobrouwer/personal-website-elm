@@ -65,7 +65,7 @@ view =
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Technology" ]
-                        , Html.text "I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my dad got me programming LEDs, displays, and motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard."
+                        , Html.text "I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my parents got me, programming LEDs, displays, and small motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard."
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Programming" ]
