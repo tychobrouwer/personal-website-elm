@@ -9,5 +9,9 @@
     z-index: 2;
     background-color: var(--color--grey-800);
     padding: 0.2em 0;
+
+    .container {
+      max-width: 1920px;
+    }
   }
 }

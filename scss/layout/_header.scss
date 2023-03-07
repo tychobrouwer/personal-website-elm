@@ -7,12 +7,12 @@
   left: 0;
   right: 0;
   z-index: 2;
-  background: var(--color--grey-700);
-  max-width: 1920px;
+  background: var(--color--grey-800);
 
   .container {
     margin-top: 10px;
     height: 40px;
+    max-width: 1920px;
   }
 
   .header__logo {

@@ -11454,7 +11454,7 @@ var $author$project$UI$Layout$footer = A2(
 			$elm$html$Html$footer,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$class('footer container')
+					$elm$html$Html$Attributes$class('footer')
 				]),
 			_List_fromArray(
 				[
@@ -11462,7 +11462,7 @@ var $author$project$UI$Layout$footer = A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('row spread')
+							$elm$html$Html$Attributes$class('row spread container')
 						]),
 					_List_fromArray(
 						[
@@ -11649,11 +11649,7 @@ var $author$project$UI$Layout$navbar = function (_v0) {
 						$elm$html$Html$nav,
 						_List_fromArray(
 							[
-<<<<<<< HEAD
-								$elm$html$Html$Attributes$class('row')
-=======
 								$elm$html$Html$Attributes$class('row icon-nav')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 							]),
 						_List_fromArray(
 							[
@@ -11697,10 +11693,6 @@ var $author$project$UI$Layout$pageFullWidth = F3(
 				}
 			});
 	});
-<<<<<<< HEAD
-var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
-=======
 var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$img = _VirtualDom_node('img');
@@ -11710,7 +11702,6 @@ var $elm$html$Html$Attributes$src = function (url) {
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $author$project$Pages$AboutMe$view = {
 	body: _List_fromArray(
 		[
@@ -11718,11 +11709,7 @@ var $author$project$Pages$AboutMe$view = {
 			$elm$html$Html$div,
 			_List_fromArray(
 				[
-<<<<<<< HEAD
-					$elm$html$Html$Attributes$class('container')
-=======
 					$elm$html$Html$Attributes$class('container about__page')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 				]),
 			_List_fromArray(
 				[
@@ -11730,9 +11717,6 @@ var $author$project$Pages$AboutMe$view = {
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-<<<<<<< HEAD
-							$elm$html$Html$Attributes$class('about__section')
-=======
 							$elm$html$Html$Attributes$class('about__section about__details')
 						]),
 					_List_fromArray(
@@ -11844,7 +11828,6 @@ var $author$project$Pages$AboutMe$view = {
 					_List_fromArray(
 						[
 							$elm$html$Html$Attributes$class('about__section about__me')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 						]),
 					_List_fromArray(
 						[
@@ -11864,16 +11847,11 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$text('Hello, I\'m')
 										])),
 									A2(
-<<<<<<< HEAD
-									$elm$html$Html$h1,
-									_List_Nil,
-=======
 									$elm$html$Html$h2,
 									_List_fromArray(
 										[
 											$elm$html$Html$Attributes$class('text-accent')
 										]),
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 									_List_fromArray(
 										[
 											$elm$html$Html$text('Tycho Brouwer')
@@ -11907,21 +11885,13 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-<<<<<<< HEAD
-													$elm$html$Html$Attributes$class('text-accent')
-=======
 													$elm$html$Html$Attributes$class('text-secondary')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 												]),
 											_List_fromArray(
 												[
 													$elm$html$Html$text('Technology')
 												])),
-<<<<<<< HEAD
-											$elm$html$Html$text('I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my dad got me programming LEDs, displays, and motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard.')
-=======
 											$elm$html$Html$text('I was hooked on technology from that moment on. I started playing around with a Raspberry Pi my parents got me, programming LEDs, displays, and small motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard.')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 										])),
 									A2(
 									$elm$html$Html$p,
@@ -11932,11 +11902,7 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-<<<<<<< HEAD
-													$elm$html$Html$Attributes$class('text-accent')
-=======
 													$elm$html$Html$Attributes$class('text-secondary')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 												]),
 											_List_fromArray(
 												[
@@ -11953,11 +11919,7 @@ var $author$project$Pages$AboutMe$view = {
 											$elm$html$Html$span,
 											_List_fromArray(
 												[
-<<<<<<< HEAD
-													$elm$html$Html$Attributes$class('text-accent')
-=======
 													$elm$html$Html$Attributes$class('text-secondary')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 												]),
 											_List_fromArray(
 												[
@@ -11973,10 +11935,7 @@ var $author$project$Pages$AboutMe$view = {
 };
 var $author$project$Pages$AboutMe$page = $author$project$UI$Layout$pageFullWidth(
 	{view: $author$project$Pages$AboutMe$view});
-<<<<<<< HEAD
-=======
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $author$project$UI$h1 = function (str) {
 	return A2(
 		$elm$html$Html$h1,
@@ -12038,22 +11997,14 @@ var $author$project$Pages$Home_$view = {
 			$elm$html$Html$div,
 			_List_fromArray(
 				[
-<<<<<<< HEAD
-					$elm$html$Html$Attributes$class('container')
-=======
 					$elm$html$Html$Attributes$class('container home__page')
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 				]),
 			_List_fromArray(
 				[
 					$author$project$UI$hero(
 					{
 						description: _List_fromArray(
-<<<<<<< HEAD
-							['A site for showcasing my projects', 'current, finished, and never finished']),
-=======
 							['A site for showcasing my projects', 'current, finished, and never finished.']),
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 						title: 'Tycho Brouwer'
 					}),
 					A2(
@@ -12081,10 +12032,6 @@ var $author$project$Pages$Home_$view = {
 };
 var $author$project$Pages$Home_$page = $author$project$UI$Layout$pageFullWidth(
 	{view: $author$project$Pages$Home_$view});
-<<<<<<< HEAD
-var $elm$html$Html$img = _VirtualDom_node('img');
-=======
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$core$Result$andThen = F2(
 	function (callback, result) {
@@ -12097,10 +12044,6 @@ var $elm$core$Result$andThen = F2(
 		}
 	});
 var $elm$html$Html$Attributes$align = $elm$html$Html$Attributes$stringProperty('align');
-<<<<<<< HEAD
-var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
-=======
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $elm$html$Html$blockquote = _VirtualDom_node('blockquote');
 var $elm$html$Html$br = _VirtualDom_node('br');
 var $elm$json$Json$Encode$bool = _Json_wrap;
@@ -12230,15 +12173,6 @@ var $elm$core$List$singleton = function (value) {
 	return _List_fromArray(
 		[value]);
 };
-<<<<<<< HEAD
-var $elm$html$Html$Attributes$src = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'src',
-		_VirtualDom_noJavaScriptOrHtmlUri(url));
-};
-=======
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $elm$html$Html$Attributes$start = function (n) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
@@ -21188,8 +21122,6 @@ var $author$project$UI$markdown = F2(
 						},
 						$dillonkearns$elm_markdown$Markdown$Parser$parse(str)))));
 	});
-<<<<<<< HEAD
-=======
 var $elm$core$String$replace = F3(
 	function (before, after, string) {
 		return A2(
@@ -21197,7 +21129,6 @@ var $elm$core$String$replace = F3(
 			after,
 			A2($elm$core$String$split, before, string));
 	});
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $author$project$Pages$Projects$markdownSections = function (sections) {
 	var viewSection = F2(
@@ -21284,13 +21215,9 @@ var $author$project$Pages$Projects$markdownSections = function (sections) {
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('projects__section-image'),
-<<<<<<< HEAD
-										$elm$html$Html$Attributes$src('images/projects/' + (image + '.webp'))
-=======
 										$elm$html$Html$Attributes$src('images/projects/' + (image + '.webp')),
 										$elm$html$Html$Attributes$alt(
 										A3($elm$core$String$replace, '_', ' ', image))
->>>>>>> 195fa28790116daa219c5e3de86064188423de12
 									]),
 								_List_Nil)
 							]))
