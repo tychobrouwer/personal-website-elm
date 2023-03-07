@@ -39,6 +39,10 @@
   --height--header: 60px;
 }
 
+a:hover {
+  color: var(--color--accent)
+}
+
 body {
   max-width: 1600px;
   margin: auto;

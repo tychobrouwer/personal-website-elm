@@ -3,6 +3,10 @@
   margin: auto 0.5em;
   line-height: normal;
 
+  &:hover {
+    color: var(--color--grey-200);
+  }
+
   .link__icon {
     font-size: 1.4em;
 

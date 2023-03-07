@@ -23,9 +23,8 @@
   }
 
   .projects__section-image {
-    width: 40%;
-    max-width: 300px;
     max-height: 400px;
+    max-width: 300px;
     margin-left: 1.5em;
   }
 }
@@ -43,9 +42,10 @@
     }
 
     .projects__section-image {
-      max-width: fit-content;
       margin: 1em auto 0;
       width: 90%;
+      max-width: 300px;
+      max-height: none;
     }
 
   }

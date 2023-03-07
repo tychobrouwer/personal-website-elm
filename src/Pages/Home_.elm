@@ -32,12 +32,12 @@ view : View Msg
 view =
     { title = "Tycho brouwer"
     , body =
-        [ Html.div [ Attr.class "container" ]
+        [ Html.div [ Attr.class "container home__page" ]
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description =
                     [ "A site for showcasing my projects"
-                    , "current, finished, and never finished"
+                    , "current, finished, and never finished."
                     ]
                 }
             , Html.div [ Attr.class "introduction" ]
