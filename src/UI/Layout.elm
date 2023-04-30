@@ -1,7 +1,7 @@
 module UI.Layout exposing
     ( Model, init
     , Msg, update
-    , page, pageFullWidth
+    , footer, navbar, pageFullWidth
     )
 
 {-|
@@ -26,65 +26,29 @@ import View exposing (View)
 
 
 type alias Model =
-    { query : String
-    }
+    { query : String }
 
 
-init : Model
+init : ( Model, Cmd Msg )
 init =
-    { query = ""
-    }
+    ( { query = "" }
+    , Cmd.none
+    )
 
 
 type Msg
     = OnQueryChange String
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         OnQueryChange query ->
-            { model | query = query }
+            ( { model | query = query }, Cmd.none )
 
 
-viewDefault :
-    { model : Model
-    , onMsg : Msg -> msg
-    , shared : Shared.Model
-    , url : Url
-    }
-    -> List (Html msg)
-    -> List (Html msg)
-viewDefault options view =
-    [ navbar options
-    , Html.main_ [ Attr.class "page container pad-x-md" ] view
-    , footer
-    ]
-
-
-viewFullWidth :
-    { model : Model
-    , onMsg : Msg -> msg
-    , shared : Shared.Model
-    , url : Url
-    }
-    -> List (Html msg)
-    -> List (Html msg)
-viewFullWidth options view =
-    [ navbar options
-    , Html.div [ Attr.class "page" ] view
-    , footer
-    ]
-
-
-navbar :
-    { model : Model
-    , onMsg : Msg -> msg
-    , shared : Shared.Model
-    , url : Url
-    }
-    -> Html msg
-navbar { url } =
+navbar : Url -> Html msg
+navbar url =
     let
         navLink : { text : String, route : Route } -> Html msg
         navLink options =
@@ -157,41 +121,24 @@ footer =
 -- PAGE
 
 
-page : { view : View Msg } -> Shared.Model -> Request.With params -> Page.With Model Msg
-page options shared req =
-    Page.sandbox
-        { init = init
-        , update = update
-        , view =
-            \model ->
-                { title = options.view.title
-                , body =
-                    viewDefault
-                        { shared = shared
-                        , url = req.url
-                        , model = model
-                        , onMsg = identity
-                        }
-                        options.view.body
-                }
-        }
-
-
 pageFullWidth : { view : View Msg } -> Shared.Model -> Request.With params -> Page.With Model Msg
-pageFullWidth options shared req =
-    Page.sandbox
+pageFullWidth options _ req =
+    Page.element
         { init = init
         , update = update
+        , subscriptions = subscriptions
         , view =
-            \model ->
+            \_ ->
                 { title = options.view.title
                 , body =
-                    viewFullWidth
-                        { shared = shared
-                        , url = req.url
-                        , model = model
-                        , onMsg = identity
-                        }
-                        options.view.body
+                    [ navbar req.url
+                    , Html.div [ Attr.class "page" ] options.view.body
+                    , footer
+                    ]
                 }
         }
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none

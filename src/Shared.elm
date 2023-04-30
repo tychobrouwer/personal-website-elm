@@ -11,7 +11,6 @@ module Shared exposing
 -- import Dict exposing (Dict)
 -- import Url exposing (Url)
 
-import Domain.Index exposing (Index)
 import Json.Decode as Json
 import Request exposing (Request)
 
@@ -21,8 +20,7 @@ type alias Flags =
 
 
 type alias Model =
-    { index : Index
-    }
+    {}
 
 
 
@@ -40,11 +38,7 @@ type Msg
 
 init : Request -> Flags -> ( Model, Cmd Msg )
 init _ flags =
-    ( Model
-        (flags
-            |> Json.decodeValue Domain.Index.decoder
-            |> Result.withDefault []
-        )
+    ( {}
     , Cmd.none
     )
 

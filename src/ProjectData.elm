@@ -19,7 +19,8 @@ A mail client for desktop made using flutter. The goal of this project is to mak
 """
       , internal = []
       , external =
-            [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Mail_App" )
+            [ ( "Read More", "/projects/mail_app" )
+            , ( "GitHub Repo", "https://github.com/TychoBrouwer/Mail_App" )
             ]
       }
     , { image = "food_alarm"
@@ -29,7 +30,8 @@ An mobile app made for a school project using React Native and Expo Go. The app'
 """
       , internal = []
       , external =
-            [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Food_App_React_Native" )
+            [ ( "Read More", "/projects/food_alarm" )
+            , ( "GitHub Repo", "https://github.com/TychoBrouwer/Food_App_React_Native" )
             ]
       }
     , { image = "pokemon_like_game"
@@ -39,7 +41,8 @@ A Pokémon inspired game written using Electron, TypeScript, and SCSS, more spec
 """
       , internal = []
       , external =
-            [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Pokemon_Game_Electron" )
+            [ ( "Read More", "/projects/pokemon_like_game" )
+            , ( "GitHub Repo", "https://github.com/TychoBrouwer/Pokemon_Game_Electron" )
             ]
       }
     , { image = "snake_game"
@@ -49,7 +52,8 @@ A snake game made using Electron, TypeScript, and SCSS. The game counts the curr
 """
       , internal = []
       , external =
-            [ ( "GitHub Repo", "https://github.com/TychoBrouwer/Snake_Game_Electron" )
+            [ ( "Read More", "/projects/snake_game" )
+            , ( "GitHub Repo", "https://github.com/TychoBrouwer/Snake_Game_Electron" )
             ]
       }
     ]
