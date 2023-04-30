@@ -21891,7 +21891,7 @@ var $author$project$Api$Project$get = function (options) {
 				$author$project$Api$Data$expectJson,
 				options.onResponse,
 				A2($elm$json$Json$Decode$field, 'project', $author$project$Api$Project$decoder)),
-			url: 'http://localhost:1234/api/projects/' + (options.projectName + '.json')
+			url: 'https://www.tbrouwer.com/api/projects/' + (options.projectName + '.json')
 		});
 };
 var $author$project$Pages$Projects$Project_$init = F2(

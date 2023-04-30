@@ -75,7 +75,7 @@ linkListDecoder =
 --     -> Cmd msg
 -- list options =
 --     Api.Token.get
---         { url = "http://localhost:1234/api/projects/" ++ String.fromInt options.page ++ ".json"
+--         { url = "https://www.tbrouwer.com/api/projects/" ++ String.fromInt options.page ++ ".json"
 --         , expect =
 --             Api.Data.expectJson options.onResponse
 --                 (paginatedDecoder options.page)
@@ -89,7 +89,7 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = "http://localhost:1234/api/projects/" ++ options.projectName ++ ".json"
+        { url = "https://www.tbrouwer.com/api/projects/" ++ options.projectName ++ ".json"
         , expect =
             Api.Data.expectJson options.onResponse
                 (Json.field "project" decoder)
