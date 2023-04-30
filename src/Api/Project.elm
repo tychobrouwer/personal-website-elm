@@ -61,27 +61,6 @@ linkListDecoder =
         )
 
 
-
--- type alias Listing =
---     { projects : List Project
---     , page : Int
---     , totalPages : Int
---     }
--- -- ENDPOINTS
--- list :
---     { page : Int
---     , onResponse : Data Listing -> msg
---     }
---     -> Cmd msg
--- list options =
---     Api.Token.get
---         { url = "https://www.tbrouwer.com/api/projects/" ++ String.fromInt options.page ++ ".json"
---         , expect =
---             Api.Data.expectJson options.onResponse
---                 (paginatedDecoder options.page)
---         }
-
-
 get :
     { projectName : String
     , onResponse : Data Project -> msg
@@ -89,25 +68,8 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = "https://www.tbrouwer.com/api/projects/" ++ options.projectName ++ ".json"
+        { url = "http://localhost:1234/api/projects/" ++ options.projectName ++ ".json"
         , expect =
             Api.Data.expectJson options.onResponse
                 (Json.field "project" decoder)
         }
-
-
-
--- INTERNALS
--- paginatedDecoder : Int -> Json.Decoder Listing
--- paginatedDecoder page =
---     let
---         multipleArticles : List Project -> Int -> Listing
---         multipleArticles projects count =
---             { projects = projects
---             , page = page
---             , totalPages = count
---             }
---     in
---     Json.map2 multipleArticles
---         (Json.field "projects" (Json.list decoder))
---         (Json.field "projectsCount" Json.int)

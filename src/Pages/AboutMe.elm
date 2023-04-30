@@ -1,37 +1,69 @@
 module Pages.AboutMe exposing (Model, Msg, page)
 
--- import Gen.Route exposing (Route)
--- import UI exposing (Html)
-
+import Gen.Params.Home_ exposing (Params)
 import Html
 import Html.Attributes as Attr
 import Page
 import Request
 import Shared
-import UI.Layout
+import UI.Layout exposing (footer, navbar)
+import Url exposing (Url)
 import View exposing (View)
 
 
-page : Shared.Model -> Request.With params -> Page.With Model Msg
-page =
-    UI.Layout.pageFullWidth
-        { view = view
+page : Shared.Model -> Request.With Params -> Page.With Model Msg
+page shared req =
+    Page.element
+        { init = init shared req
+        , update = update req
+        , subscriptions = subscriptions
+        , view = view req.url
         }
 
 
+
+-- INIT
+
+
 type alias Model =
-    UI.Layout.Model
+    {}
 
 
-type alias Msg =
-    UI.Layout.Msg
+init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
+init shared { params } =
+    ( {}, Cmd.none )
 
 
-view : View Msg
-view =
+type Msg
+    = NoOp
+
+
+
+-- UPDATE
+
+
+update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
+update req msg model =
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+
+-- VIEW
+
+
+view : Url -> Model -> View Msg
+view url model =
     { title = "About Me | Tycho brouwer"
     , body =
-        [ Html.div [ Attr.class "container about__page" ]
+        [ navbar url
+        , Html.div [ Attr.class "container about__page" ]
             [ Html.div [ Attr.class "about__section about__details" ]
                 [ Html.img [ Attr.class "about__image", Attr.src "/images/tycho.webp", Attr.alt "Tycho Brouwer" ] []
                 , Html.div []
@@ -78,5 +110,6 @@ view =
                     ]
                 ]
             ]
+        , footer
         ]
     }

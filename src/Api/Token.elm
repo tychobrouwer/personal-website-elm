@@ -56,7 +56,10 @@ request :
 request method body options =
     Http.request
         { method = method
-        , headers = []
+        , headers =
+            [ Http.header "Accept" ""
+            , Http.header "Content-Type" ""
+            ]
         , url = options.url
         , body = body
         , expect = options.expect

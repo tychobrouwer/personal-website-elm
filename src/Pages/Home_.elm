@@ -9,30 +9,64 @@ import Page
 import Request
 import Shared
 import UI exposing (Html)
-import UI.Layout
+import UI.Layout exposing (footer, navbar)
+import Url exposing (Url)
 import View exposing (View)
 
 
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page =
-    UI.Layout.pageFullWidth
-        { view = view
+page shared req =
+    Page.element
+        { init = init shared req
+        , update = update req
+        , subscriptions = subscriptions
+        , view = view req.url
         }
 
 
+
+-- INIT
+
+
 type alias Model =
-    UI.Layout.Model
+    {}
 
 
-type alias Msg =
-    UI.Layout.Msg
+init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
+init shared { params } =
+    ( {}, Cmd.none )
 
 
-view : View Msg
-view =
+type Msg
+    = NoOp
+
+
+
+-- UPDATE
+
+
+update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
+update req msg model =
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+
+-- VIEW
+
+
+view : Url -> Model -> View Msg
+view url model =
     { title = "Tycho brouwer"
     , body =
-        [ Html.div [ Attr.class "container home__page" ]
+        [ navbar url
+        , Html.div [ Attr.class "container home__page" ]
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description =
@@ -47,5 +81,6 @@ view =
                     [ Html.text "interested in everything software and technology related" ]
                 ]
             ]
+        , footer
         ]
     }

@@ -89,7 +89,7 @@ subscriptions _ =
 
 view : Url -> Model -> View Msg
 view url model =
-    { title = model.projectName
+    { title = (model.projectComponent |> Maybe.map .title |> Maybe.withDefault "Loading") ++ " | Tycho Brouwer"
     , body =
         case model.projectComponent of
             Just projectComponent ->

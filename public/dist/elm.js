@@ -11678,6 +11678,21 @@ var $ryannhg$elm_spa$ElmSpa$Page$element = F2(
 				}));
 	});
 var $author$project$Page$element = $ryannhg$elm_spa$ElmSpa$Page$element($author$project$Effect$fromCmd);
+var $author$project$Pages$AboutMe$init = F2(
+	function (shared, _v0) {
+		var params = _v0.params;
+		return _Utils_Tuple2(
+			{},
+			$elm$core$Platform$Cmd$none);
+	});
+var $author$project$Pages$AboutMe$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
+};
+var $author$project$Pages$AboutMe$update = F3(
+	function (req, msg, model) {
+		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+	});
+var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$footer = _VirtualDom_node('footer');
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
 var $author$project$UI$Layout$footer = A2(
@@ -11729,9 +11744,8 @@ var $author$project$UI$Layout$footer = A2(
 						]))
 				]))
 		]));
-var $author$project$UI$Layout$init = _Utils_Tuple2(
-	{query: ''},
-	$elm$core$Platform$Cmd$none);
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -11901,179 +11915,23 @@ var $author$project$UI$Layout$navbar = function (url) {
 					]))
 			]));
 };
-var $author$project$UI$Layout$subscriptions = function (model) {
-	return $elm$core$Platform$Sub$none;
-};
-var $author$project$UI$Layout$update = F2(
-	function (msg, model) {
-		var query = msg.a;
-		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{query: query}),
-			$elm$core$Platform$Cmd$none);
-	});
-var $author$project$UI$Layout$pageFullWidth = F3(
-	function (options, _v0, req) {
-		return $author$project$Page$element(
-			{
-				init: $author$project$UI$Layout$init,
-				subscriptions: $author$project$UI$Layout$subscriptions,
-				update: $author$project$UI$Layout$update,
-				view: function (_v1) {
-					return {
-						body: _List_fromArray(
-							[
-								$author$project$UI$Layout$navbar(req.url),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('page')
-									]),
-								options.view.body),
-								$author$project$UI$Layout$footer
-							]),
-						title: options.view.title
-					};
-				}
-			});
-	});
-var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
-var $elm$html$Html$h2 = _VirtualDom_node('h2');
-var $elm$html$Html$img = _VirtualDom_node('img');
 var $elm$html$Html$Attributes$src = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'src',
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
-var $author$project$Pages$AboutMe$view = {
-	body: _List_fromArray(
-		[
-			A2(
-			$elm$html$Html$div,
-			_List_fromArray(
+var $author$project$Pages$AboutMe$view = F2(
+	function (url, model) {
+		return {
+			body: _List_fromArray(
 				[
-					$elm$html$Html$Attributes$class('container about__page')
-				]),
-			_List_fromArray(
-				[
+					$author$project$UI$Layout$navbar(url),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('about__section about__details')
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$img,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('about__image'),
-									$elm$html$Html$Attributes$src('/images/tycho.webp'),
-									$elm$html$Html$Attributes$alt('Tycho Brouwer')
-								]),
-							_List_Nil),
-							A2(
-							$elm$html$Html$div,
-							_List_Nil,
-							_List_fromArray(
-								[
-									A2(
-									$elm$html$Html$div,
-									_List_fromArray(
-										[
-											$elm$html$Html$Attributes$class('about-category')
-										]),
-									_List_fromArray(
-										[
-											A2(
-											$elm$html$Html$p,
-											_List_fromArray(
-												[
-													$elm$html$Html$Attributes$class('category-title text-secondary')
-												]),
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Contact')
-												])),
-											A2(
-											$elm$html$Html$p,
-											_List_Nil,
-											_List_fromArray(
-												[
-													A2(
-													$elm$html$Html$a,
-													_List_fromArray(
-														[
-															$elm$html$Html$Attributes$href('mailto:tycho.tbrouwer@gmail.com'),
-															$elm$html$Html$Attributes$target('_blank')
-														]),
-													_List_fromArray(
-														[
-															$elm$html$Html$text('tycho.tbrouwer@gmail.com')
-														]))
-												])),
-											A2(
-											$elm$html$Html$p,
-											_List_Nil,
-											_List_fromArray(
-												[
-													A2(
-													$elm$html$Html$a,
-													_List_fromArray(
-														[
-															$elm$html$Html$Attributes$href('https://github.com/TychoBrouwer?tab=repositories'),
-															$elm$html$Html$Attributes$target('_blank')
-														]),
-													_List_fromArray(
-														[
-															$elm$html$Html$text('github.com/TychoBrouwer')
-														]))
-												]))
-										])),
-									A2(
-									$elm$html$Html$div,
-									_List_fromArray(
-										[
-											$elm$html$Html$Attributes$class('about-category')
-										]),
-									_List_fromArray(
-										[
-											A2(
-											$elm$html$Html$p,
-											_List_fromArray(
-												[
-													$elm$html$Html$Attributes$class('category-title text-secondary')
-												]),
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Education')
-												])),
-											A2(
-											$elm$html$Html$p,
-											_List_Nil,
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Atheneum - Fortes Lyceum')
-												])),
-											A2(
-											$elm$html$Html$p,
-											_List_Nil,
-											_List_fromArray(
-												[
-													$elm$html$Html$text('BSc Mechanical Engineering - Eindhoven University of Technology')
-												]))
-										]))
-								]))
-						])),
-					A2(
-					$elm$html$Html$div,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('about__section about__me')
+							$elm$html$Html$Attributes$class('container about__page')
 						]),
 					_List_fromArray(
 						[
@@ -12081,106 +11939,248 @@ var $author$project$Pages$AboutMe$view = {
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$class('row about__title')
+									$elm$html$Html$Attributes$class('about__section about__details')
 								]),
 							_List_fromArray(
 								[
 									A2(
-									$elm$html$Html$h2,
+									$elm$html$Html$img,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('about__image'),
+											$elm$html$Html$Attributes$src('/images/tycho.webp'),
+											$elm$html$Html$Attributes$alt('Tycho Brouwer')
+										]),
+									_List_Nil),
+									A2(
+									$elm$html$Html$div,
 									_List_Nil,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('Hello, I\'m')
-										])),
-									A2(
-									$elm$html$Html$h2,
-									_List_fromArray(
-										[
-											$elm$html$Html$Attributes$class('text-accent')
-										]),
-									_List_fromArray(
-										[
-											$elm$html$Html$text('Tycho Brouwer')
+											A2(
+											$elm$html$Html$div,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('about-category')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$p,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('category-title text-secondary')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Contact')
+														])),
+													A2(
+													$elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															$elm$html$Html$a,
+															_List_fromArray(
+																[
+																	$elm$html$Html$Attributes$href('mailto:tycho.tbrouwer@gmail.com'),
+																	$elm$html$Html$Attributes$target('_blank')
+																]),
+															_List_fromArray(
+																[
+																	$elm$html$Html$text('tycho.tbrouwer@gmail.com')
+																]))
+														])),
+													A2(
+													$elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															A2(
+															$elm$html$Html$a,
+															_List_fromArray(
+																[
+																	$elm$html$Html$Attributes$href('https://github.com/TychoBrouwer?tab=repositories'),
+																	$elm$html$Html$Attributes$target('_blank')
+																]),
+															_List_fromArray(
+																[
+																	$elm$html$Html$text('github.com/TychoBrouwer')
+																]))
+														]))
+												])),
+											A2(
+											$elm$html$Html$div,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('about-category')
+												]),
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$p,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('category-title text-secondary')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Education')
+														])),
+													A2(
+													$elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Atheneum - Fortes Lyceum')
+														])),
+													A2(
+													$elm$html$Html$p,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text('BSc Mechanical Engineering - Eindhoven University of Technology')
+														]))
+												]))
 										]))
 								])),
 							A2(
 							$elm$html$Html$div,
-							_List_Nil,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('about__section about__me')
+								]),
 							_List_fromArray(
 								[
 									A2(
-									$elm$html$Html$p,
-									_List_Nil,
+									$elm$html$Html$div,
 									_List_fromArray(
 										[
-											$elm$html$Html$text('I\'m currently a mechanical engineering student at the Eindhoven University of Technology and I am interested in everything software and technology.')
-										])),
-									A2(
-									$elm$html$Html$p,
-									_List_Nil,
+											$elm$html$Html$Attributes$class('row about__title')
+										]),
 									_List_fromArray(
 										[
-											$elm$html$Html$text('My journey into technology begun when my grandfather dug up one of his first personal computers, a TRS-80 Color Computer, on which I wrote my first code in BASIC.')
+											A2(
+											$elm$html$Html$h2,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Hello, I\'m')
+												])),
+											A2(
+											$elm$html$Html$h2,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$class('text-accent')
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text('Tycho Brouwer')
+												]))
 										])),
 									A2(
-									$elm$html$Html$p,
+									$elm$html$Html$div,
 									_List_Nil,
 									_List_fromArray(
 										[
 											A2(
-											$elm$html$Html$span,
+											$elm$html$Html$p,
+											_List_Nil,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-secondary')
-												]),
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Technology')
+													$elm$html$Html$text('I\'m currently a mechanical engineering student at the Eindhoven University of Technology and I am interested in everything software and technology.')
 												])),
-											$elm$html$Html$text('I was hooked on technology from that moment on. I started playing around with a Raspberry Pi, programming simple LEDs, displays, and small motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard.')
-										])),
-									A2(
-									$elm$html$Html$p,
-									_List_Nil,
-									_List_fromArray(
-										[
 											A2(
-											$elm$html$Html$span,
+											$elm$html$Html$p,
+											_List_Nil,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-secondary')
-												]),
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Programming')
+													$elm$html$Html$text('My journey into technology begun when my grandfather dug up one of his first personal computers, a TRS-80 Color Computer, on which I wrote my first code in BASIC.')
 												])),
-											$elm$html$Html$text('Since my first taste with programming, I been learning and playing around with a wide range of programming languages. Starting with C++ on various microcontrollers and web development using HTML, JavaScript, and CSS. I moved to Python, PHP, SQL, TypeScript, and more recently Dart and Elm.')
-										])),
-									A2(
-									$elm$html$Html$p,
-									_List_Nil,
-									_List_fromArray(
-										[
 											A2(
-											$elm$html$Html$span,
+											$elm$html$Html$p,
+											_List_Nil,
 											_List_fromArray(
 												[
-													$elm$html$Html$Attributes$class('text-secondary')
-												]),
-											_List_fromArray(
-												[
-													$elm$html$Html$text('Education')
+													A2(
+													$elm$html$Html$span,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('text-secondary')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Technology')
+														])),
+													$elm$html$Html$text('I was hooked on technology from that moment on. I started playing around with a Raspberry Pi, programming simple LEDs, displays, and small motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard.')
 												])),
-											$elm$html$Html$text('I\'m currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning.')
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$span,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('text-secondary')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Programming')
+														])),
+													$elm$html$Html$text('Since my first taste with programming, I been learning and playing around with a wide range of programming languages. Starting with C++ on various microcontrollers and web development using HTML, JavaScript, and CSS. I moved to Python, PHP, SQL, TypeScript, and more recently Dart and Elm.')
+												])),
+											A2(
+											$elm$html$Html$p,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2(
+													$elm$html$Html$span,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('text-secondary')
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text('Education')
+														])),
+													$elm$html$Html$text('I\'m currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning.')
+												]))
 										]))
 								]))
-						]))
-				]))
-		]),
-	title: 'About Me | Tycho brouwer'
+						])),
+					$author$project$UI$Layout$footer
+				]),
+			title: 'About Me | Tycho brouwer'
+		};
+	});
+var $author$project$Pages$AboutMe$page = F2(
+	function (shared, req) {
+		return $author$project$Page$element(
+			{
+				init: A2($author$project$Pages$AboutMe$init, shared, req),
+				subscriptions: $author$project$Pages$AboutMe$subscriptions,
+				update: $author$project$Pages$AboutMe$update(req),
+				view: $author$project$Pages$AboutMe$view(req.url)
+			});
+	});
+var $author$project$Pages$Home_$init = F2(
+	function (shared, _v0) {
+		var params = _v0.params;
+		return _Utils_Tuple2(
+			{},
+			$elm$core$Platform$Cmd$none);
+	});
+var $author$project$Pages$Home_$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Pages$AboutMe$page = $author$project$UI$Layout$pageFullWidth(
-	{view: $author$project$Pages$AboutMe$view});
+var $author$project$Pages$Home_$update = F3(
+	function (req, msg, model) {
+		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+	});
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
 var $author$project$UI$h1 = function (str) {
 	return A2(
@@ -12236,58 +12236,112 @@ var $author$project$UI$hero = function (options) {
 					]))
 			]));
 };
-var $author$project$Pages$Home_$view = {
-	body: _List_fromArray(
-		[
-			A2(
-			$elm$html$Html$div,
-			_List_fromArray(
+var $author$project$Pages$Home_$view = F2(
+	function (url, model) {
+		return {
+			body: _List_fromArray(
 				[
-					$elm$html$Html$Attributes$class('container home__page')
-				]),
-			_List_fromArray(
-				[
-					$author$project$UI$hero(
-					{
-						description: _List_fromArray(
-							['A site for showcasing my projects', 'current, finished, and never finished.']),
-						title: 'Tycho Brouwer'
-					}),
+					$author$project$UI$Layout$navbar(url),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class('introduction')
+							$elm$html$Html$Attributes$class('container home__page')
 						]),
 					_List_fromArray(
 						[
+							$author$project$UI$hero(
+							{
+								description: _List_fromArray(
+									['A site for showcasing my projects', 'current, finished, and never finished.']),
+								title: 'Tycho Brouwer'
+							}),
 							A2(
-							$elm$html$Html$p,
+							$elm$html$Html$div,
 							_List_fromArray(
 								[
-									$elm$html$Html$Attributes$class('p')
+									$elm$html$Html$Attributes$class('introduction')
 								]),
 							_List_fromArray(
 								[
-									$elm$html$Html$text('A mechanical engineering student at the Eindhoven University of Technology,')
-								])),
-							A2(
-							$elm$html$Html$p,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$class('p')
-								]),
-							_List_fromArray(
-								[
-									$elm$html$Html$text('interested in everything software and technology related')
+									A2(
+									$elm$html$Html$p,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('p')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('A mechanical engineering student at the Eindhoven University of Technology,')
+										])),
+									A2(
+									$elm$html$Html$p,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('p')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('interested in everything software and technology related')
+										]))
 								]))
-						]))
-				]))
-		]),
-	title: 'Tycho brouwer'
+						])),
+					$author$project$UI$Layout$footer
+				]),
+			title: 'Tycho brouwer'
+		};
+	});
+var $author$project$Pages$Home_$page = F2(
+	function (shared, req) {
+		return $author$project$Page$element(
+			{
+				init: A2($author$project$Pages$Home_$init, shared, req),
+				subscriptions: $author$project$Pages$Home_$subscriptions,
+				update: $author$project$Pages$Home_$update(req),
+				view: $author$project$Pages$Home_$view(req.url)
+			});
+	});
+var $author$project$UI$Layout$init = _Utils_Tuple2(
+	{query: ''},
+	$elm$core$Platform$Cmd$none);
+var $author$project$UI$Layout$subscriptions = function (model) {
+	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Pages$Home_$page = $author$project$UI$Layout$pageFullWidth(
-	{view: $author$project$Pages$Home_$view});
+var $author$project$UI$Layout$update = F2(
+	function (msg, model) {
+		var query = msg.a;
+		return _Utils_Tuple2(
+			_Utils_update(
+				model,
+				{query: query}),
+			$elm$core$Platform$Cmd$none);
+	});
+var $author$project$UI$Layout$pageFullWidth = F3(
+	function (options, _v0, req) {
+		return $author$project$Page$element(
+			{
+				init: $author$project$UI$Layout$init,
+				subscriptions: $author$project$UI$Layout$subscriptions,
+				update: $author$project$UI$Layout$update,
+				view: function (_v1) {
+					return {
+						body: _List_fromArray(
+							[
+								$author$project$UI$Layout$navbar(req.url),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('page')
+									]),
+								options.view.body),
+								$author$project$UI$Layout$footer
+							]),
+						title: options.view.title
+					};
+				}
+			});
+	});
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$core$Result$andThen = F2(
 	function (callback, result) {
@@ -21720,6 +21774,11 @@ var $author$project$Api$Data$expectJson = F2(
 			});
 	});
 var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$Header = F2(
+	function (a, b) {
+		return {$: 'Header', a: a, b: b};
+	});
+var $elm$http$Http$header = $elm$http$Http$Header;
 var $elm$http$Http$Request = function (a) {
 	return {$: 'Request', a: a};
 };
@@ -21876,7 +21935,11 @@ var $author$project$Api$Token$request = F3(
 			{
 				body: body,
 				expect: options.expect,
-				headers: _List_Nil,
+				headers: _List_fromArray(
+					[
+						A2($elm$http$Http$header, 'Accept', ''),
+						A2($elm$http$Http$header, 'Content-Type', '')
+					]),
 				method: method,
 				timeout: $elm$core$Maybe$Just(1000 * 60),
 				tracker: $elm$core$Maybe$Nothing,
@@ -21891,7 +21954,7 @@ var $author$project$Api$Project$get = function (options) {
 				$author$project$Api$Data$expectJson,
 				options.onResponse,
 				A2($elm$json$Json$Decode$field, 'project', $author$project$Api$Project$decoder)),
-			url: 'https://www.tbrouwer.com/api/projects/' + (options.projectName + '.json')
+			url: 'http://localhost:1234/api/projects/' + (options.projectName + '.json')
 		});
 };
 var $author$project$Pages$Projects$Project_$init = F2(
@@ -21973,7 +22036,15 @@ var $author$project$Pages$Projects$Project_$view = F2(
 						]);
 				}
 			}(),
-			title: model.projectName
+			title: A2(
+				$elm$core$Maybe$withDefault,
+				'Loading',
+				A2(
+					$elm$core$Maybe$map,
+					function ($) {
+						return $.title;
+					},
+					model.projectComponent)) + ' | Tycho Brouwer'
 		};
 	});
 var $author$project$Pages$Projects$Project_$page = F2(
@@ -22391,4 +22462,4 @@ var $author$project$Main$view = function (model) {
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Main$ChangedUrl, onUrlRequest: $author$project$Main$ClickedLink, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
-_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Pages.AboutMe.Msg":{"args":[],"type":"UI.Layout.Msg"},"Pages.Home_.Msg":{"args":[],"type":"UI.Layout.Msg"},"Pages.Projects.Msg":{"args":[],"type":"UI.Layout.Msg"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedInitialProject":["Api.Data.Data Api.Project.Project"]}},"UI.Layout.Msg":{"args":[],"tags":{"OnQueryChange":["String.String"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Pages.Projects.Msg":{"args":[],"type":"UI.Layout.Msg"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.AboutMe.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedInitialProject":["Api.Data.Data Api.Project.Project"]}},"UI.Layout.Msg":{"args":[],"tags":{"OnQueryChange":["String.String"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));
