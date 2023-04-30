@@ -1,0 +1,19 @@
+{
+  "project": {
+    "image": "food_alarm",
+    "name": "food_alarm",
+    "title": "Food Alarm App",
+    "markdown": "An mobile app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.",
+    "internal": [],
+    "external": [
+      {
+        "name": "Read More",
+        "route": "/projects/food_alarm"
+      },
+      {
+        "name": "GitHub Repo",
+        "route": "https: //github.com/TychoBrouwer/Food_App_React_Native"
+      }
+    ]
+  }
+}
