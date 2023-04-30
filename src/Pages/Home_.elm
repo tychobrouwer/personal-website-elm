@@ -42,7 +42,9 @@ view =
                 }
             , Html.div [ Attr.class "introduction" ]
                 [ Html.p [ Attr.class "p" ]
-                    [ Html.text "hello" ]
+                    [ Html.text "A mechanical engineering student at the Eindhoven University of Technology," ]
+                , Html.p [ Attr.class "p" ]
+                    [ Html.text "interested in everything software and technology related" ]
                 ]
             ]
         ]

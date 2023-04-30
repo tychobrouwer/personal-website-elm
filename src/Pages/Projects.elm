@@ -38,6 +38,7 @@ view =
 markdownSections :
     List
         { image : String
+        , title : String
         , markdown : String
         , internal : List ( String, Route )
         , external : List ( String, String )
@@ -45,11 +46,12 @@ markdownSections :
     -> Html msg
 markdownSections sections =
     let
-        viewSection _ { image, markdown, internal, external } =
+        viewSection _ { image, title, markdown, internal, external } =
             Html.section [ Attr.class "projects__section" ]
                 [ Html.div [ Attr.class "projects__section-row container row" ]
                     [ Html.div [ Attr.class "col" ]
-                        [ UI.markdown { withHeaderLinks = False } markdown
+                        [ Html.h2 [ Attr.class "projects__section-title" ] [ Html.text title ]
+                        , UI.markdown { withHeaderLinks = False } markdown
                         , Html.div [ Attr.class "row" ]
                             (List.map
                                 (\( label, route ) -> Html.a [ Attr.class "button", Attr.href (Gen.Route.toHref route) ] [ Html.text label ])

@@ -360,12 +360,14 @@ icons :
     , reddit : Icon
     , mastodon : Icon
     , email : Icon
+    , linkedin : Icon
     }
 icons =
     { github = Icon "fa-brands fa-github"
     , reddit = Icon "fa-brands fa-reddit"
     , mastodon = Icon "fa-brands fa-mastodon"
     , email = Icon "fa-solid fa-paper-plane"
+    , linkedin = Icon "fa-brands fa-linkedin"
     }
 
 

@@ -84,7 +84,7 @@ navbar :
     , url : Url
     }
     -> Html msg
-navbar { onMsg, model, shared, url } =
+navbar { url } =
     let
         navLink : { text : String, route : Route } -> Html msg
         navLink options =
@@ -133,6 +133,7 @@ navbar { onMsg, model, shared, url } =
             , Html.nav [ Attr.class "row icon-nav" ]
                 [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
                 , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
+                , UI.iconLink { text = "Linkedin", icon = UI.icons.linkedin, url = "https://www.linkedin.com/in/tycho-brouwer-6306ba274/" }
 
                 -- , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
                 ]
