@@ -14,7 +14,7 @@ import View exposing (View)
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.element
-        { init = init shared req
+        { init = init shared
         , update = update req
         , subscriptions = subscriptions
         , view = view req.url
@@ -29,8 +29,8 @@ type alias Model =
     {}
 
 
-init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
-init shared { params } =
+init : Shared.Model -> ( Model, Cmd Msg )
+init _ =
     ( {}, Cmd.none )
 
 
@@ -43,7 +43,7 @@ type Msg
 
 
 update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
-update req msg model =
+update _ msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
@@ -59,7 +59,7 @@ subscriptions _ =
 
 
 view : Url -> Model -> View Msg
-view url model =
+view url _ =
     { title = "About Me | Tycho brouwer"
     , body =
         [ navbar url

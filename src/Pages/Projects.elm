@@ -4,12 +4,9 @@ import Api.Data exposing (Data)
 import Api.Project exposing (Project)
 import Api.Projects
 import Gen.Params.Projects exposing (Params)
-import Gen.Route exposing (Route)
 import Html
 import Html.Attributes as Attr
 import Page
-import Platform exposing (Task)
-import ProjectData exposing (projectData)
 import Request
 import Shared
 import UI exposing (Html)
@@ -21,7 +18,7 @@ import View exposing (View)
 page : Shared.Model -> Request.With Params -> Page.With Model Msg
 page shared req =
     Page.element
-        { init = init shared req
+        { init = init shared
         , update = update req
         , subscriptions = subscriptions
         , view = view req.url
@@ -38,8 +35,8 @@ type alias Model =
     }
 
 
-init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
-init shared { params } =
+init : Shared.Model -> ( Model, Cmd Msg )
+init _ =
     ( { project = Api.Data.Loading, projectsData = [] }
     , Api.Projects.get
         { onResponse = LoadedProjects }
@@ -55,7 +52,7 @@ type Msg
 
 
 update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
-update req msg model =
+update _ msg model =
     case msg of
         LoadedProjects projects ->
             case projects of

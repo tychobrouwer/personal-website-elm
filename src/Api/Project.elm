@@ -1,7 +1,7 @@
 module Api.Project exposing
     ( Project
     , get
-    , Link, projectDecoder
+    , projectDecoder
     )
 
 {-|

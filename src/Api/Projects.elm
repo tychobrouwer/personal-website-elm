@@ -1,10 +1,9 @@
 module Api.Projects exposing (get)
 
 import Api.Data exposing (Data)
-import Api.Project exposing (Link, Project, projectDecoder)
+import Api.Project exposing (Project, projectDecoder)
 import Api.Token
 import Json.Decode as Json
-import Utils.Json exposing (withField)
 
 
 {-|
@@ -16,15 +15,6 @@ import Utils.Json exposing (withField)
 @docs favorite, unfavorite
 
 -}
-linkListDecoder : Json.Decoder (List Link)
-linkListDecoder =
-    Json.list
-        (Json.map2 Link
-            (Json.field "name" Json.string)
-            (Json.field "route" Json.string)
-        )
-
-
 get :
     { onResponse : Data (List Project) -> msg
     }

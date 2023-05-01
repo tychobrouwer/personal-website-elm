@@ -4,8 +4,6 @@ import Api.Data exposing (Data)
 import Api.Project exposing (Project)
 import Components.Project exposing (..)
 import Gen.Params.Projects.Project_ exposing (Params)
-import Html
-import Html.Attributes as Attr
 import Page
 import Request
 import Shared
@@ -36,7 +34,7 @@ type alias Model =
 
 
 init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
-init shared { params } =
+init _ { params } =
     ( { projectName = params.project, projectComponent = Nothing, project = Api.Data.Loading }
     , Api.Project.get
         { projectName = params.project
@@ -54,7 +52,7 @@ type Msg
 
 
 update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
-update req msg model =
+update _ msg model =
     case msg of
         LoadedProject projects ->
             case projects of

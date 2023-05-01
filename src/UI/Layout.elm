@@ -16,12 +16,8 @@ module UI.Layout exposing
 import Gen.Route as Route exposing (Route)
 import Html exposing (Html)
 import Html.Attributes as Attr
-import Page exposing (Page)
-import Request exposing (Request)
-import Shared
 import UI
 import Url exposing (Url)
-import View exposing (View)
 
 
 navbar : Url -> Html msg

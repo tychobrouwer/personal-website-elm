@@ -11678,18 +11678,16 @@ var $ryannhg$elm_spa$ElmSpa$Page$element = F2(
 				}));
 	});
 var $author$project$Page$element = $ryannhg$elm_spa$ElmSpa$Page$element($author$project$Effect$fromCmd);
-var $author$project$Pages$AboutMe$init = F2(
-	function (shared, _v0) {
-		var params = _v0.params;
-		return _Utils_Tuple2(
-			{},
-			$elm$core$Platform$Cmd$none);
-	});
+var $author$project$Pages$AboutMe$init = function (_v0) {
+	return _Utils_Tuple2(
+		{},
+		$elm$core$Platform$Cmd$none);
+};
 var $author$project$Pages$AboutMe$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$AboutMe$update = F3(
-	function (req, msg, model) {
+	function (_v0, msg, model) {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	});
 var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
@@ -11922,7 +11920,7 @@ var $elm$html$Html$Attributes$src = function (url) {
 		_VirtualDom_noJavaScriptOrHtmlUri(url));
 };
 var $author$project$Pages$AboutMe$view = F2(
-	function (url, model) {
+	function (url, _v0) {
 		return {
 			body: _List_fromArray(
 				[
@@ -12161,24 +12159,22 @@ var $author$project$Pages$AboutMe$page = F2(
 	function (shared, req) {
 		return $author$project$Page$element(
 			{
-				init: A2($author$project$Pages$AboutMe$init, shared, req),
+				init: $author$project$Pages$AboutMe$init(shared),
 				subscriptions: $author$project$Pages$AboutMe$subscriptions,
 				update: $author$project$Pages$AboutMe$update(req),
 				view: $author$project$Pages$AboutMe$view(req.url)
 			});
 	});
-var $author$project$Pages$Home_$init = F2(
-	function (shared, _v0) {
-		var params = _v0.params;
-		return _Utils_Tuple2(
-			{},
-			$elm$core$Platform$Cmd$none);
-	});
+var $author$project$Pages$Home_$init = function (_v0) {
+	return _Utils_Tuple2(
+		{},
+		$elm$core$Platform$Cmd$none);
+};
 var $author$project$Pages$Home_$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$Home_$update = F3(
-	function (req, msg, model) {
+	function (_v0, msg, model) {
 		return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 	});
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
@@ -12237,7 +12233,7 @@ var $author$project$UI$hero = function (options) {
 			]));
 };
 var $author$project$Pages$Home_$view = F2(
-	function (url, model) {
+	function (url, _v0) {
 		return {
 			body: _List_fromArray(
 				[
@@ -12295,7 +12291,7 @@ var $author$project$Pages$Home_$page = F2(
 	function (shared, req) {
 		return $author$project$Page$element(
 			{
-				init: A2($author$project$Pages$Home_$init, shared, req),
+				init: $author$project$Pages$Home_$init(shared),
 				subscriptions: $author$project$Pages$Home_$subscriptions,
 				update: $author$project$Pages$Home_$update(req),
 				view: $author$project$Pages$Home_$view(req.url)
@@ -12653,19 +12649,17 @@ var $author$project$Api$Projects$get = function (options) {
 			url: 'http://localhost:1234/api/projects.json'
 		});
 };
-var $author$project$Pages$Projects$init = F2(
-	function (shared, _v0) {
-		var params = _v0.params;
-		return _Utils_Tuple2(
-			{project: $author$project$Api$Data$Loading, projectsData: _List_Nil},
-			$author$project$Api$Projects$get(
-				{onResponse: $author$project$Pages$Projects$LoadedProjects}));
-	});
+var $author$project$Pages$Projects$init = function (_v0) {
+	return _Utils_Tuple2(
+		{project: $author$project$Api$Data$Loading, projectsData: _List_Nil},
+		$author$project$Api$Projects$get(
+			{onResponse: $author$project$Pages$Projects$LoadedProjects}));
+};
 var $author$project$Pages$Projects$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$Projects$update = F3(
-	function (req, msg, model) {
+	function (_v0, msg, model) {
 		var projects = msg.a;
 		if (projects.$ === 'Success') {
 			var a = projects.a;
@@ -21893,7 +21887,7 @@ var $author$project$Pages$Projects$page = F2(
 	function (shared, req) {
 		return $author$project$Page$element(
 			{
-				init: A2($author$project$Pages$Projects$init, shared, req),
+				init: $author$project$Pages$Projects$init(shared),
 				subscriptions: $author$project$Pages$Projects$subscriptions,
 				update: $author$project$Pages$Projects$update(req),
 				view: $author$project$Pages$Projects$view(req.url)
@@ -21932,8 +21926,8 @@ var $author$project$Api$Project$get = function (options) {
 		});
 };
 var $author$project$Pages$Projects$Project_$init = F2(
-	function (shared, _v0) {
-		var params = _v0.params;
+	function (_v0, _v1) {
+		var params = _v1.params;
 		return _Utils_Tuple2(
 			{project: $author$project$Api$Data$Loading, projectComponent: $elm$core$Maybe$Nothing, projectName: params.project},
 			$author$project$Api$Project$get(
@@ -21943,7 +21937,7 @@ var $author$project$Pages$Projects$Project_$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$Projects$Project_$update = F3(
-	function (req, msg, model) {
+	function (_v0, msg, model) {
 		var projects = msg.a;
 		if (projects.$ === 'Success') {
 			var a = projects.a;
