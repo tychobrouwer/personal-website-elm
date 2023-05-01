@@ -16,6 +16,7 @@ module Api.Project exposing
 
 import Api.Data exposing (Data)
 import Api.Token
+import Env exposing (domain)
 import Json.Decode as Json
 import Utils.Json exposing (withField)
 
@@ -61,7 +62,7 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = "https://www.tbrouwer.com/api/projects.json"
+        { url = domain ++ "/api/projects.json"
         , expect =
             Api.Data.expectJson options.onResponse
                 (Json.field "projects" (Json.list projectDecoder)
