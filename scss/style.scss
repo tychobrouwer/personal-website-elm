@@ -53,6 +53,13 @@ body {
   font-weight: var(--weight--light);
   overflow-y: scroll;
   padding-top: var(--height--header);
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1920px) {

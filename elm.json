@@ -17,7 +17,8 @@
             "elm/time": "1.0.0",
             "elm/url": "1.0.0",
             "rtfeldman/elm-iso8601-date-strings": "1.1.4",
-            "ryannhg/elm-spa": "6.0.0"
+            "ryannhg/elm-spa": "6.0.0",
+            "tad-lispy/springs": "1.0.5"
         },
         "indirect": {
             "elm/bytes": "1.0.8",

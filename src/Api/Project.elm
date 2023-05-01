@@ -1,7 +1,7 @@
 module Api.Project exposing
     ( Project
     , get
-    , projectDecoder
+    , emptyProject, getProjectName, projectDecoder
     )
 
 {-|
@@ -16,6 +16,7 @@ module Api.Project exposing
 
 import Api.Data exposing (Data)
 import Api.Token
+import Array
 import Env exposing (domain)
 import Json.Decode as Json
 import Utils.Json exposing (withField)
@@ -23,11 +24,24 @@ import Utils.Json exposing (withField)
 
 type alias Project =
     { image : String
+    , imageSecondary : String
     , name : String
     , title : String
     , markdown : String
     , internal : List { name : String, route : String }
     , external : List { name : String, route : String }
+    }
+
+
+emptyProject : Project
+emptyProject =
+    { image = ""
+    , imageSecondary = ""
+    , name = ""
+    , title = ""
+    , markdown = ""
+    , internal = []
+    , external = []
     }
 
 
@@ -39,6 +53,7 @@ projectDecoder : Json.Decoder Project
 projectDecoder =
     Utils.Json.record Project
         |> withField "image" Json.string
+        |> withField "imageSecondary" Json.string
         |> withField "name" Json.string
         |> withField "title" Json.string
         |> withField "markdown" Json.string
@@ -76,10 +91,19 @@ findProject name projects =
     List.filter (\project -> project.name == name) projects
         |> List.head
         |> Maybe.withDefault
-            { image = ""
-            , name = ""
-            , title = ""
-            , markdown = ""
-            , internal = []
-            , external = []
-            }
+            emptyProject
+
+
+getProjectName : Int -> List Project -> String
+getProjectName idx projects =
+    Array.fromList projects
+        |> Array.get idx
+        |> Maybe.withDefault emptyProject
+        |> .name
+
+
+getProject : Int -> List Project -> Project
+getProject idx projects =
+    Array.fromList projects
+        |> Array.get idx
+        |> Maybe.withDefault emptyProject

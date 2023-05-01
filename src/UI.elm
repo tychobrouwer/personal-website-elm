@@ -351,31 +351,27 @@ logo =
 -- ICONS
 
 
-type Icon
-    = Icon String
-
-
 icons :
-    { github : Icon
-    , reddit : Icon
-    , mastodon : Icon
-    , email : Icon
-    , linkedin : Icon
+    { github : String
+    , reddit : String
+    , mastodon : String
+    , email : String
+    , linkedin : String
+    , left : String
+    , right : String
     }
 icons =
-    { github = Icon "fa-brands fa-github"
-    , reddit = Icon "fa-brands fa-reddit"
-    , mastodon = Icon "fa-brands fa-mastodon"
-    , email = Icon "fa-solid fa-paper-plane"
-    , linkedin = Icon "fa-brands fa-linkedin"
+    { github = "fa-brands fa-github"
+    , reddit = "fa-brands fa-reddit"
+    , mastodon = "fa-brands fa-mastodon"
+    , email = "fa-solid fa-paper-plane"
+    , linkedin = "fa-brands fa-linkedin"
+    , left = "fa-solid fa-chevron-left"
+    , right = "fa-solid fa-chevron-right"
     }
 
 
-iconLink : { text : String, icon : Icon, url : String } -> Html msg
+iconLink : { text : String, icon : String, url : String } -> Html msg
 iconLink options =
-    let
-        (Icon class) =
-            options.icon
-    in
     Html.a [ Attr.href options.url, Attr.class "link__icon-container", Attr.target "_blank", Attr.attribute "aria-label" options.text ]
-        [ Html.span [ Attr.class (String.toLower options.text ++ " link-hover link__icon " ++ class) ] [] ]
+        [ Html.span [ Attr.class (String.toLower options.text ++ " link-hover link__icon " ++ options.icon) ] [] ]

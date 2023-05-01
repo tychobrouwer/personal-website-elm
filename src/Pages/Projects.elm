@@ -108,7 +108,7 @@ markdownSections sections =
                                     project.external
                             )
                         ]
-                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ project.image ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ] []
+                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ project.imageSecondary ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ] []
                     ]
                 ]
     in
