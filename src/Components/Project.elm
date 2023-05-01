@@ -2,8 +2,8 @@ module Components.Project exposing (ProjectComponent, view)
 
 import Api.Data exposing (Data)
 import Api.Project exposing (Project)
-import Html exposing (..)
-import Html.Attributes exposing (src)
+import Html exposing (Html)
+import Html.Attributes as Attr
 
 
 type alias ProjectComponent =
@@ -23,8 +23,8 @@ view :
     }
     -> Html msg
 view options =
-    div []
-        [ h1 [] [ text options.projectComponent.title ]
-        , p [] [ text options.projectComponent.markdown ]
-        , img [ src options.projectComponent.image ] []
+    Html.div []
+        [ Html.h1 [] [ Html.text options.projectComponent.title ]
+        , Html.p [] [ Html.text options.projectComponent.markdown ]
+        , Html.img [ Attr.src options.projectComponent.image ] []
         ]

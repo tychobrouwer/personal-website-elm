@@ -1,12 +1,13 @@
 module Pages.AboutMe exposing (Model, Msg, page)
 
+import Components.Footer exposing (footer)
+import Components.Navbar exposing (navbar)
 import Gen.Params.AboutMe exposing (Params)
 import Html
 import Html.Attributes as Attr
 import Page
 import Request
 import Shared
-import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)
 

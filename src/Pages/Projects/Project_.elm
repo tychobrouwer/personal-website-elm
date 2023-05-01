@@ -2,12 +2,13 @@ module Pages.Projects.Project_ exposing (Model, Msg, page)
 
 import Api.Data exposing (Data)
 import Api.Project exposing (Project)
+import Components.Footer exposing (footer)
+import Components.Navbar exposing (navbar)
 import Components.Project exposing (..)
 import Gen.Params.Projects.Project_ exposing (Params)
 import Page
 import Request
 import Shared
-import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)
 
@@ -34,7 +35,7 @@ type alias Model =
 
 
 init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
-init _ { params } =
+init shared { params } =
     ( { projectName = params.project, projectComponent = Nothing, project = Api.Data.Loading }
     , Api.Project.get
         { projectName = params.project
@@ -52,7 +53,7 @@ type Msg
 
 
 update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
-update _ msg model =
+update req msg model =
     case msg of
         LoadedProject projects ->
             case projects of

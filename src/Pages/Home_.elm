@@ -2,6 +2,8 @@ module Pages.Home_ exposing (Model, Msg, page)
 
 -- import Gen.Route exposing (Route)
 
+import Components.Footer exposing (footer)
+import Components.Navbar exposing (navbar)
 import Gen.Params.Home_ exposing (Params)
 import Html
 import Html.Attributes as Attr
@@ -9,7 +11,6 @@ import Page
 import Request
 import Shared
 import UI
-import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)
 

@@ -11693,7 +11693,7 @@ var $author$project$Pages$AboutMe$update = F3(
 var $elm$html$Html$Attributes$alt = $elm$html$Html$Attributes$stringProperty('alt');
 var $elm$html$Html$footer = _VirtualDom_node('footer');
 var $elm$html$Html$Attributes$target = $elm$html$Html$Attributes$stringProperty('target');
-var $author$project$UI$Layout$footer = A2(
+var $author$project$Components$Footer$footer = A2(
 	$elm$html$Html$div,
 	_List_fromArray(
 		[
@@ -11813,7 +11813,7 @@ var $author$project$UI$logo = A2(
 			$elm$html$Html$text('Tycho')
 		]));
 var $elm$html$Html$nav = _VirtualDom_node('nav');
-var $author$project$UI$Layout$navbar = function (url) {
+var $author$project$Components$Navbar$navbar = function (url) {
 	var navLink = function (options) {
 		var href = $author$project$Gen$Route$toHref(options.route);
 		return A2(
@@ -11924,7 +11924,7 @@ var $author$project$Pages$AboutMe$view = F2(
 		return {
 			body: _List_fromArray(
 				[
-					$author$project$UI$Layout$navbar(url),
+					$author$project$Components$Navbar$navbar(url),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -12150,7 +12150,7 @@ var $author$project$Pages$AboutMe$view = F2(
 										]))
 								]))
 						])),
-					$author$project$UI$Layout$footer
+					$author$project$Components$Footer$footer
 				]),
 			title: 'About Me | Tycho brouwer'
 		};
@@ -12237,7 +12237,7 @@ var $author$project$Pages$Home_$view = F2(
 		return {
 			body: _List_fromArray(
 				[
-					$author$project$UI$Layout$navbar(url),
+					$author$project$Components$Navbar$navbar(url),
 					A2(
 					$elm$html$Html$div,
 					_List_fromArray(
@@ -12282,7 +12282,7 @@ var $author$project$Pages$Home_$view = F2(
 										]))
 								]))
 						])),
-					$author$project$UI$Layout$footer
+					$author$project$Components$Footer$footer
 				]),
 			title: 'Tycho brouwer'
 		};
@@ -21876,9 +21876,9 @@ var $author$project$Pages$Projects$view = F2(
 		return {
 			body: _List_fromArray(
 				[
-					$author$project$UI$Layout$navbar(url),
+					$author$project$Components$Navbar$navbar(url),
 					$author$project$Pages$Projects$markdownSections(model.projectsData),
-					$author$project$UI$Layout$footer
+					$author$project$Components$Footer$footer
 				]),
 			title: 'Projects | Tycho brouwer'
 		};
@@ -21926,8 +21926,8 @@ var $author$project$Api$Project$get = function (options) {
 		});
 };
 var $author$project$Pages$Projects$Project_$init = F2(
-	function (_v0, _v1) {
-		var params = _v1.params;
+	function (shared, _v0) {
+		var params = _v0.params;
 		return _Utils_Tuple2(
 			{project: $author$project$Api$Data$Loading, projectComponent: $elm$core$Maybe$Nothing, projectName: params.project},
 			$author$project$Api$Project$get(
@@ -21937,7 +21937,7 @@ var $author$project$Pages$Projects$Project_$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$Projects$Project_$update = F3(
-	function (_v0, msg, model) {
+	function (req, msg, model) {
 		var projects = msg.a;
 		if (projects.$ === 'Success') {
 			var a = projects.a;
@@ -21991,16 +21991,16 @@ var $author$project$Pages$Projects$Project_$view = F2(
 					var projectComponent = _v0.a;
 					return _List_fromArray(
 						[
-							$author$project$UI$Layout$navbar(url),
+							$author$project$Components$Navbar$navbar(url),
 							$author$project$Components$Project$view(
 							{project: model.project, projectComponent: projectComponent, title: projectComponent.title}),
-							$author$project$UI$Layout$footer
+							$author$project$Components$Footer$footer
 						]);
 				} else {
 					return _List_fromArray(
 						[
-							$author$project$UI$Layout$navbar(url),
-							$author$project$UI$Layout$footer
+							$author$project$Components$Navbar$navbar(url),
+							$author$project$Components$Footer$footer
 						]);
 				}
 			}(),

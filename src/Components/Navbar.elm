@@ -1,17 +1,4 @@
-module UI.Layout exposing
-    ( footer
-    , navbar
-    )
-
-{-|
-
-@docs Model, init
-@docs Msg, update
-@docs viewDefault, viewDocumentation
-
--}
-
--- import UI.Sidebar
+module Components.Navbar exposing (navbar)
 
 import Gen.Route as Route exposing (Route)
 import Html exposing (Html)
@@ -73,18 +60,6 @@ navbar url =
                 , UI.iconLink { text = "Linkedin", icon = UI.icons.linkedin, url = "https://www.linkedin.com/in/tycho-brouwer-6306ba274/" }
 
                 -- , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
-                ]
-            ]
-        ]
-
-
-footer : Html msg
-footer =
-    Html.div [ Attr.class "footer__zone" ]
-        [ Html.footer [ Attr.class "footer" ]
-            [ Html.div [ Attr.class "row spread container" ]
-                [ Html.a [ Attr.href "https://github.com/TychoBrouwer/personal_website", Attr.target "_blank", Attr.class "link hidden-mobile" ] [ Html.text "Site source code" ]
-                , Html.p [ Attr.class "p" ] [ Html.text "Tycho Brouwer" ]
                 ]
             ]
         ]

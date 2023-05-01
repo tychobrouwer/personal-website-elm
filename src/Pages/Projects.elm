@@ -3,6 +3,8 @@ module Pages.Projects exposing (Model, Msg, page)
 import Api.Data exposing (Data)
 import Api.Project exposing (Project)
 import Api.Projects
+import Components.Footer exposing (footer)
+import Components.Navbar exposing (navbar)
 import Gen.Params.Projects exposing (Params)
 import Html
 import Html.Attributes as Attr
@@ -10,7 +12,6 @@ import Page
 import Request
 import Shared
 import UI exposing (Html)
-import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)
 
@@ -113,13 +114,3 @@ markdownSections sections =
     in
     Html.main_ [ Attr.class "col" ]
         (List.map viewSection sections)
-
-
-
--- { image : String
--- , name : String
--- , title : String
--- , markdown : String
--- , internal : List { name : String, route : String }
--- , external : List { name : String, route : String }
--- }
