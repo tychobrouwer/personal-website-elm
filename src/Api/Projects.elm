@@ -21,7 +21,7 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = "http://localhost:1234/api/projects.json"
+        { url = "http://www.tbrouwer.com/api/projects.json"
         , expect =
             Api.Data.expectJson options.onResponse
                 (Json.field "projects" (Json.list projectDecoder))
