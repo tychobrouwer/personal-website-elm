@@ -1,8 +1,7 @@
 module Api.Project exposing
-    ( Project, decoder
+    ( Project
     , get
-    -- , Listing
-    -- , list
+    , Link, projectDecoder
     )
 
 {-|
@@ -15,15 +14,9 @@ module Api.Project exposing
 
 -}
 
--- import Api.Project.Filters as Filters exposing (Filters)
-
 import Api.Data exposing (Data)
-import Api.Token exposing (Token)
-import Http
-import Iso8601
+import Api.Token
 import Json.Decode as Json
-import Json.Encode as Encode
-import Time
 import Utils.Json exposing (withField)
 
 
@@ -41,8 +34,8 @@ type alias Link =
     { name : String, route : String }
 
 
-decoder : Json.Decoder Project
-decoder =
+projectDecoder : Json.Decoder Project
+projectDecoder =
     Utils.Json.record Project
         |> withField "image" Json.string
         |> withField "name" Json.string
@@ -68,8 +61,24 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = "http://localhost:1234/api/projects/" ++ options.projectName ++ ".json"
+        { url = "http://localhost:1234/api/projects.json"
         , expect =
             Api.Data.expectJson options.onResponse
-                (Json.field "project" decoder)
+                (Json.field "projects" (Json.list projectDecoder)
+                    |> Json.map (findProject options.projectName)
+                )
         }
+
+
+findProject : String -> List Project -> Project
+findProject name projects =
+    List.filter (\project -> project.name == name) projects
+        |> List.head
+        |> Maybe.withDefault
+            { image = ""
+            , name = ""
+            , title = ""
+            , markdown = ""
+            , internal = []
+            , external = []
+            }

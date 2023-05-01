@@ -8,7 +8,7 @@ import Html.Attributes as Attr
 import Page
 import Request
 import Shared
-import UI exposing (Html)
+import UI
 import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)

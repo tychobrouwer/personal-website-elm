@@ -4958,6 +4958,181 @@ function _Url_percentDecode(string)
 }
 
 
+// SEND REQUEST
+
+var _Http_toTask = F3(function(router, toTask, request)
+{
+	return _Scheduler_binding(function(callback)
+	{
+		function done(response) {
+			callback(toTask(request.expect.a(response)));
+		}
+
+		var xhr = new XMLHttpRequest();
+		xhr.addEventListener('error', function() { done($elm$http$Http$NetworkError_); });
+		xhr.addEventListener('timeout', function() { done($elm$http$Http$Timeout_); });
+		xhr.addEventListener('load', function() { done(_Http_toResponse(request.expect.b, xhr)); });
+		$elm$core$Maybe$isJust(request.tracker) && _Http_track(router, xhr, request.tracker.a);
+
+		try {
+			xhr.open(request.method, request.url, true);
+		} catch (e) {
+			return done($elm$http$Http$BadUrl_(request.url));
+		}
+
+		_Http_configureRequest(xhr, request);
+
+		request.body.a && xhr.setRequestHeader('Content-Type', request.body.a);
+		xhr.send(request.body.b);
+
+		return function() { xhr.c = true; xhr.abort(); };
+	});
+});
+
+
+// CONFIGURE
+
+function _Http_configureRequest(xhr, request)
+{
+	for (var headers = request.headers; headers.b; headers = headers.b) // WHILE_CONS
+	{
+		xhr.setRequestHeader(headers.a.a, headers.a.b);
+	}
+	xhr.timeout = request.timeout.a || 0;
+	xhr.responseType = request.expect.d;
+	xhr.withCredentials = request.allowCookiesFromOtherDomains;
+}
+
+
+// RESPONSES
+
+function _Http_toResponse(toBody, xhr)
+{
+	return A2(
+		200 <= xhr.status && xhr.status < 300 ? $elm$http$Http$GoodStatus_ : $elm$http$Http$BadStatus_,
+		_Http_toMetadata(xhr),
+		toBody(xhr.response)
+	);
+}
+
+
+// METADATA
+
+function _Http_toMetadata(xhr)
+{
+	return {
+		url: xhr.responseURL,
+		statusCode: xhr.status,
+		statusText: xhr.statusText,
+		headers: _Http_parseHeaders(xhr.getAllResponseHeaders())
+	};
+}
+
+
+// HEADERS
+
+function _Http_parseHeaders(rawHeaders)
+{
+	if (!rawHeaders)
+	{
+		return $elm$core$Dict$empty;
+	}
+
+	var headers = $elm$core$Dict$empty;
+	var headerPairs = rawHeaders.split('\r\n');
+	for (var i = headerPairs.length; i--; )
+	{
+		var headerPair = headerPairs[i];
+		var index = headerPair.indexOf(': ');
+		if (index > 0)
+		{
+			var key = headerPair.substring(0, index);
+			var value = headerPair.substring(index + 2);
+
+			headers = A3($elm$core$Dict$update, key, function(oldValue) {
+				return $elm$core$Maybe$Just($elm$core$Maybe$isJust(oldValue)
+					? value + ', ' + oldValue.a
+					: value
+				);
+			}, headers);
+		}
+	}
+	return headers;
+}
+
+
+// EXPECT
+
+var _Http_expect = F3(function(type, toBody, toValue)
+{
+	return {
+		$: 0,
+		d: type,
+		b: toBody,
+		a: toValue
+	};
+});
+
+var _Http_mapExpect = F2(function(func, expect)
+{
+	return {
+		$: 0,
+		d: expect.d,
+		b: expect.b,
+		a: function(x) { return func(expect.a(x)); }
+	};
+});
+
+function _Http_toDataView(arrayBuffer)
+{
+	return new DataView(arrayBuffer);
+}
+
+
+// BODY and PARTS
+
+var _Http_emptyBody = { $: 0 };
+var _Http_pair = F2(function(a, b) { return { $: 0, a: a, b: b }; });
+
+function _Http_toFormData(parts)
+{
+	for (var formData = new FormData(); parts.b; parts = parts.b) // WHILE_CONS
+	{
+		var part = parts.a;
+		formData.append(part.a, part.b);
+	}
+	return formData;
+}
+
+var _Http_bytesToBlob = F2(function(mime, bytes)
+{
+	return new Blob([bytes], { type: mime });
+});
+
+
+// PROGRESS
+
+function _Http_track(router, xhr, tracker)
+{
+	// TODO check out lengthComputable on loadstart event
+
+	xhr.upload.addEventListener('progress', function(event) {
+		if (xhr.c) { return; }
+		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Sending({
+			sent: event.loaded,
+			size: event.total
+		}))));
+	});
+	xhr.addEventListener('progress', function(event) {
+		if (xhr.c) { return; }
+		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Receiving({
+			received: event.loaded,
+			size: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
+		}))));
+	});
+}
+
+
 
 // STRINGS
 
@@ -5186,182 +5361,7 @@ var _Regex_splitAtMost = F3(function(n, re, str)
 });
 
 var _Regex_infinity = Infinity;
-
-
-
-// SEND REQUEST
-
-var _Http_toTask = F3(function(router, toTask, request)
-{
-	return _Scheduler_binding(function(callback)
-	{
-		function done(response) {
-			callback(toTask(request.expect.a(response)));
-		}
-
-		var xhr = new XMLHttpRequest();
-		xhr.addEventListener('error', function() { done($elm$http$Http$NetworkError_); });
-		xhr.addEventListener('timeout', function() { done($elm$http$Http$Timeout_); });
-		xhr.addEventListener('load', function() { done(_Http_toResponse(request.expect.b, xhr)); });
-		$elm$core$Maybe$isJust(request.tracker) && _Http_track(router, xhr, request.tracker.a);
-
-		try {
-			xhr.open(request.method, request.url, true);
-		} catch (e) {
-			return done($elm$http$Http$BadUrl_(request.url));
-		}
-
-		_Http_configureRequest(xhr, request);
-
-		request.body.a && xhr.setRequestHeader('Content-Type', request.body.a);
-		xhr.send(request.body.b);
-
-		return function() { xhr.c = true; xhr.abort(); };
-	});
-});
-
-
-// CONFIGURE
-
-function _Http_configureRequest(xhr, request)
-{
-	for (var headers = request.headers; headers.b; headers = headers.b) // WHILE_CONS
-	{
-		xhr.setRequestHeader(headers.a.a, headers.a.b);
-	}
-	xhr.timeout = request.timeout.a || 0;
-	xhr.responseType = request.expect.d;
-	xhr.withCredentials = request.allowCookiesFromOtherDomains;
-}
-
-
-// RESPONSES
-
-function _Http_toResponse(toBody, xhr)
-{
-	return A2(
-		200 <= xhr.status && xhr.status < 300 ? $elm$http$Http$GoodStatus_ : $elm$http$Http$BadStatus_,
-		_Http_toMetadata(xhr),
-		toBody(xhr.response)
-	);
-}
-
-
-// METADATA
-
-function _Http_toMetadata(xhr)
-{
-	return {
-		url: xhr.responseURL,
-		statusCode: xhr.status,
-		statusText: xhr.statusText,
-		headers: _Http_parseHeaders(xhr.getAllResponseHeaders())
-	};
-}
-
-
-// HEADERS
-
-function _Http_parseHeaders(rawHeaders)
-{
-	if (!rawHeaders)
-	{
-		return $elm$core$Dict$empty;
-	}
-
-	var headers = $elm$core$Dict$empty;
-	var headerPairs = rawHeaders.split('\r\n');
-	for (var i = headerPairs.length; i--; )
-	{
-		var headerPair = headerPairs[i];
-		var index = headerPair.indexOf(': ');
-		if (index > 0)
-		{
-			var key = headerPair.substring(0, index);
-			var value = headerPair.substring(index + 2);
-
-			headers = A3($elm$core$Dict$update, key, function(oldValue) {
-				return $elm$core$Maybe$Just($elm$core$Maybe$isJust(oldValue)
-					? value + ', ' + oldValue.a
-					: value
-				);
-			}, headers);
-		}
-	}
-	return headers;
-}
-
-
-// EXPECT
-
-var _Http_expect = F3(function(type, toBody, toValue)
-{
-	return {
-		$: 0,
-		d: type,
-		b: toBody,
-		a: toValue
-	};
-});
-
-var _Http_mapExpect = F2(function(func, expect)
-{
-	return {
-		$: 0,
-		d: expect.d,
-		b: expect.b,
-		a: function(x) { return func(expect.a(x)); }
-	};
-});
-
-function _Http_toDataView(arrayBuffer)
-{
-	return new DataView(arrayBuffer);
-}
-
-
-// BODY and PARTS
-
-var _Http_emptyBody = { $: 0 };
-var _Http_pair = F2(function(a, b) { return { $: 0, a: a, b: b }; });
-
-function _Http_toFormData(parts)
-{
-	for (var formData = new FormData(); parts.b; parts = parts.b) // WHILE_CONS
-	{
-		var part = parts.a;
-		formData.append(part.a, part.b);
-	}
-	return formData;
-}
-
-var _Http_bytesToBlob = F2(function(mime, bytes)
-{
-	return new Blob([bytes], { type: mime });
-});
-
-
-// PROGRESS
-
-function _Http_track(router, xhr, tracker)
-{
-	// TODO check out lengthComputable on loadstart event
-
-	xhr.upload.addEventListener('progress', function(event) {
-		if (xhr.c) { return; }
-		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Sending({
-			sent: event.loaded,
-			size: event.total
-		}))));
-	});
-	xhr.addEventListener('progress', function(event) {
-		if (xhr.c) { return; }
-		_Scheduler_rawSpawn(A2($elm$core$Platform$sendToSelf, router, _Utils_Tuple2(tracker, $elm$http$Http$Receiving({
-			received: event.loaded,
-			size: event.lengthComputable ? $elm$core$Maybe$Just(event.total) : $elm$core$Maybe$Nothing
-		}))));
-	});
-}var $author$project$Main$ChangedUrl = function (a) {
+var $author$project$Main$ChangedUrl = function (a) {
 	return {$: 'ChangedUrl', a: a};
 };
 var $author$project$Main$ClickedLink = function (a) {
@@ -12301,46 +12301,382 @@ var $author$project$Pages$Home_$page = F2(
 				view: $author$project$Pages$Home_$view(req.url)
 			});
 	});
-var $author$project$UI$Layout$init = _Utils_Tuple2(
-	{query: ''},
-	$elm$core$Platform$Cmd$none);
-var $author$project$UI$Layout$subscriptions = function (model) {
-	return $elm$core$Platform$Sub$none;
+var $author$project$Pages$Projects$LoadedProjects = function (a) {
+	return {$: 'LoadedProjects', a: a};
 };
-var $author$project$UI$Layout$update = F2(
-	function (msg, model) {
-		var query = msg.a;
-		return _Utils_Tuple2(
-			_Utils_update(
-				model,
-				{query: query}),
-			$elm$core$Platform$Cmd$none);
+var $author$project$Api$Data$Loading = {$: 'Loading'};
+var $author$project$Api$Data$errorDecoder = A2(
+	$elm$json$Json$Decode$map,
+	$elm$core$List$concatMap(
+		function (_v0) {
+			var key = _v0.a;
+			var values = _v0.b;
+			return A2(
+				$elm$core$List$map,
+				function (value) {
+					return key + (' ' + value);
+				},
+				values);
+		}),
+	A2(
+		$elm$json$Json$Decode$field,
+		'errors',
+		$elm$json$Json$Decode$keyValuePairs(
+			$elm$json$Json$Decode$list($elm$json$Json$Decode$string))));
+var $elm$http$Http$BadStatus_ = F2(
+	function (a, b) {
+		return {$: 'BadStatus_', a: a, b: b};
 	});
-var $author$project$UI$Layout$pageFullWidth = F3(
-	function (options, _v0, req) {
-		return $author$project$Page$element(
-			{
-				init: $author$project$UI$Layout$init,
-				subscriptions: $author$project$UI$Layout$subscriptions,
-				update: $author$project$UI$Layout$update,
-				view: function (_v1) {
-					return {
-						body: _List_fromArray(
-							[
-								$author$project$UI$Layout$navbar(req.url),
-								A2(
-								$elm$html$Html$div,
+var $elm$http$Http$BadUrl_ = function (a) {
+	return {$: 'BadUrl_', a: a};
+};
+var $elm$http$Http$GoodStatus_ = F2(
+	function (a, b) {
+		return {$: 'GoodStatus_', a: a, b: b};
+	});
+var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
+var $elm$http$Http$Receiving = function (a) {
+	return {$: 'Receiving', a: a};
+};
+var $elm$http$Http$Sending = function (a) {
+	return {$: 'Sending', a: a};
+};
+var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
+var $elm$core$Maybe$isJust = function (maybe) {
+	if (maybe.$ === 'Just') {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$http$Http$expectStringResponse = F2(
+	function (toMsg, toResult) {
+		return A3(
+			_Http_expect,
+			'',
+			$elm$core$Basics$identity,
+			A2($elm$core$Basics$composeR, toResult, toMsg));
+	});
+var $author$project$Api$Data$Failure = function (a) {
+	return {$: 'Failure', a: a};
+};
+var $author$project$Api$Data$Success = function (a) {
+	return {$: 'Success', a: a};
+};
+var $author$project$Api$Data$fromResult = function (result) {
+	if (result.$ === 'Ok') {
+		var value = result.a;
+		return $author$project$Api$Data$Success(value);
+	} else {
+		var reasons = result.a;
+		return $author$project$Api$Data$Failure(reasons);
+	}
+};
+var $author$project$Api$Data$expectJson = F2(
+	function (toMsg, decoder) {
+		return A2(
+			$elm$http$Http$expectStringResponse,
+			A2($elm$core$Basics$composeR, $author$project$Api$Data$fromResult, toMsg),
+			function (response) {
+				switch (response.$) {
+					case 'BadUrl_':
+						return $elm$core$Result$Err(
+							_List_fromArray(
+								['Bad URL']));
+					case 'Timeout_':
+						return $elm$core$Result$Err(
+							_List_fromArray(
+								['Request timeout']));
+					case 'NetworkError_':
+						return $elm$core$Result$Err(
+							_List_fromArray(
+								['Connection issues']));
+					case 'BadStatus_':
+						var body = response.b;
+						var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Api$Data$errorDecoder, body);
+						if (_v1.$ === 'Ok') {
+							var errors = _v1.a;
+							return $elm$core$Result$Err(errors);
+						} else {
+							return $elm$core$Result$Err(
+								_List_fromArray(
+									['Bad status code']));
+						}
+					default:
+						var body = response.b;
+						var _v2 = A2($elm$json$Json$Decode$decodeString, decoder, body);
+						if (_v2.$ === 'Ok') {
+							var value = _v2.a;
+							return $elm$core$Result$Ok(value);
+						} else {
+							var err = _v2.a;
+							return $elm$core$Result$Err(
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('page')
-									]),
-								options.view.body),
-								$author$project$UI$Layout$footer
-							]),
-						title: options.view.title
-					};
+										$elm$json$Json$Decode$errorToString(err)
+									]));
+						}
 				}
 			});
+	});
+var $elm$http$Http$emptyBody = _Http_emptyBody;
+var $elm$http$Http$Header = F2(
+	function (a, b) {
+		return {$: 'Header', a: a, b: b};
+	});
+var $elm$http$Http$header = $elm$http$Http$Header;
+var $elm$http$Http$Request = function (a) {
+	return {$: 'Request', a: a};
+};
+var $elm$http$Http$State = F2(
+	function (reqs, subs) {
+		return {reqs: reqs, subs: subs};
+	});
+var $elm$http$Http$init = $elm$core$Task$succeed(
+	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
+var $elm$core$Process$kill = _Scheduler_kill;
+var $elm$core$Process$spawn = _Scheduler_spawn;
+var $elm$http$Http$updateReqs = F3(
+	function (router, cmds, reqs) {
+		updateReqs:
+		while (true) {
+			if (!cmds.b) {
+				return $elm$core$Task$succeed(reqs);
+			} else {
+				var cmd = cmds.a;
+				var otherCmds = cmds.b;
+				if (cmd.$ === 'Cancel') {
+					var tracker = cmd.a;
+					var _v2 = A2($elm$core$Dict$get, tracker, reqs);
+					if (_v2.$ === 'Nothing') {
+						var $temp$router = router,
+							$temp$cmds = otherCmds,
+							$temp$reqs = reqs;
+						router = $temp$router;
+						cmds = $temp$cmds;
+						reqs = $temp$reqs;
+						continue updateReqs;
+					} else {
+						var pid = _v2.a;
+						return A2(
+							$elm$core$Task$andThen,
+							function (_v3) {
+								return A3(
+									$elm$http$Http$updateReqs,
+									router,
+									otherCmds,
+									A2($elm$core$Dict$remove, tracker, reqs));
+							},
+							$elm$core$Process$kill(pid));
+					}
+				} else {
+					var req = cmd.a;
+					return A2(
+						$elm$core$Task$andThen,
+						function (pid) {
+							var _v4 = req.tracker;
+							if (_v4.$ === 'Nothing') {
+								return A3($elm$http$Http$updateReqs, router, otherCmds, reqs);
+							} else {
+								var tracker = _v4.a;
+								return A3(
+									$elm$http$Http$updateReqs,
+									router,
+									otherCmds,
+									A3($elm$core$Dict$insert, tracker, pid, reqs));
+							}
+						},
+						$elm$core$Process$spawn(
+							A3(
+								_Http_toTask,
+								router,
+								$elm$core$Platform$sendToApp(router),
+								req)));
+				}
+			}
+		}
+	});
+var $elm$http$Http$onEffects = F4(
+	function (router, cmds, subs, state) {
+		return A2(
+			$elm$core$Task$andThen,
+			function (reqs) {
+				return $elm$core$Task$succeed(
+					A2($elm$http$Http$State, reqs, subs));
+			},
+			A3($elm$http$Http$updateReqs, router, cmds, state.reqs));
+	});
+var $elm$http$Http$maybeSend = F4(
+	function (router, desiredTracker, progress, _v0) {
+		var actualTracker = _v0.a;
+		var toMsg = _v0.b;
+		return _Utils_eq(desiredTracker, actualTracker) ? $elm$core$Maybe$Just(
+			A2(
+				$elm$core$Platform$sendToApp,
+				router,
+				toMsg(progress))) : $elm$core$Maybe$Nothing;
+	});
+var $elm$http$Http$onSelfMsg = F3(
+	function (router, _v0, state) {
+		var tracker = _v0.a;
+		var progress = _v0.b;
+		return A2(
+			$elm$core$Task$andThen,
+			function (_v1) {
+				return $elm$core$Task$succeed(state);
+			},
+			$elm$core$Task$sequence(
+				A2(
+					$elm$core$List$filterMap,
+					A3($elm$http$Http$maybeSend, router, tracker, progress),
+					state.subs)));
+	});
+var $elm$http$Http$Cancel = function (a) {
+	return {$: 'Cancel', a: a};
+};
+var $elm$http$Http$cmdMap = F2(
+	function (func, cmd) {
+		if (cmd.$ === 'Cancel') {
+			var tracker = cmd.a;
+			return $elm$http$Http$Cancel(tracker);
+		} else {
+			var r = cmd.a;
+			return $elm$http$Http$Request(
+				{
+					allowCookiesFromOtherDomains: r.allowCookiesFromOtherDomains,
+					body: r.body,
+					expect: A2(_Http_mapExpect, func, r.expect),
+					headers: r.headers,
+					method: r.method,
+					timeout: r.timeout,
+					tracker: r.tracker,
+					url: r.url
+				});
+		}
+	});
+var $elm$http$Http$MySub = F2(
+	function (a, b) {
+		return {$: 'MySub', a: a, b: b};
+	});
+var $elm$http$Http$subMap = F2(
+	function (func, _v0) {
+		var tracker = _v0.a;
+		var toMsg = _v0.b;
+		return A2(
+			$elm$http$Http$MySub,
+			tracker,
+			A2($elm$core$Basics$composeR, toMsg, func));
+	});
+_Platform_effectManagers['Http'] = _Platform_createManager($elm$http$Http$init, $elm$http$Http$onEffects, $elm$http$Http$onSelfMsg, $elm$http$Http$cmdMap, $elm$http$Http$subMap);
+var $elm$http$Http$command = _Platform_leaf('Http');
+var $elm$http$Http$subscription = _Platform_leaf('Http');
+var $elm$http$Http$request = function (r) {
+	return $elm$http$Http$command(
+		$elm$http$Http$Request(
+			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
+};
+var $author$project$Api$Token$request = F3(
+	function (method, body, options) {
+		return $elm$http$Http$request(
+			{
+				body: body,
+				expect: options.expect,
+				headers: _List_fromArray(
+					[
+						A2($elm$http$Http$header, 'Accept', ''),
+						A2($elm$http$Http$header, 'Content-Type', '')
+					]),
+				method: method,
+				timeout: $elm$core$Maybe$Just(1000 * 60),
+				tracker: $elm$core$Maybe$Nothing,
+				url: options.url
+			});
+	});
+var $author$project$Api$Token$get = A2($author$project$Api$Token$request, 'GET', $elm$http$Http$emptyBody);
+var $author$project$Api$Project$Project = F6(
+	function (image, name, title, markdown, internal, external) {
+		return {external: external, image: image, internal: internal, markdown: markdown, name: name, title: title};
+	});
+var $author$project$Api$Project$Link = F2(
+	function (name, route) {
+		return {name: name, route: route};
+	});
+var $author$project$Api$Project$linkListDecoder = $elm$json$Json$Decode$list(
+	A3(
+		$elm$json$Json$Decode$map2,
+		$author$project$Api$Project$Link,
+		A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
+		A2($elm$json$Json$Decode$field, 'route', $elm$json$Json$Decode$string)));
+var $author$project$Utils$Json$record = $elm$json$Json$Decode$succeed;
+var $author$project$Utils$Json$apply = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
+var $author$project$Utils$Json$withField = F2(
+	function (str, decoder) {
+		return $author$project$Utils$Json$apply(
+			A2($elm$json$Json$Decode$field, str, decoder));
+	});
+var $author$project$Api$Project$projectDecoder = A3(
+	$author$project$Utils$Json$withField,
+	'internal',
+	$author$project$Api$Project$linkListDecoder,
+	A3(
+		$author$project$Utils$Json$withField,
+		'external',
+		$author$project$Api$Project$linkListDecoder,
+		A3(
+			$author$project$Utils$Json$withField,
+			'markdown',
+			$elm$json$Json$Decode$string,
+			A3(
+				$author$project$Utils$Json$withField,
+				'title',
+				$elm$json$Json$Decode$string,
+				A3(
+					$author$project$Utils$Json$withField,
+					'name',
+					$elm$json$Json$Decode$string,
+					A3(
+						$author$project$Utils$Json$withField,
+						'image',
+						$elm$json$Json$Decode$string,
+						$author$project$Utils$Json$record($author$project$Api$Project$Project)))))));
+var $author$project$Api$Projects$get = function (options) {
+	return $author$project$Api$Token$get(
+		{
+			expect: A2(
+				$author$project$Api$Data$expectJson,
+				options.onResponse,
+				A2(
+					$elm$json$Json$Decode$field,
+					'projects',
+					$elm$json$Json$Decode$list($author$project$Api$Project$projectDecoder))),
+			url: 'http://localhost:1234/api/projects.json'
+		});
+};
+var $author$project$Pages$Projects$init = F2(
+	function (shared, _v0) {
+		var params = _v0.params;
+		return _Utils_Tuple2(
+			{project: $author$project$Api$Data$Loading, projectsData: _List_Nil},
+			$author$project$Api$Projects$get(
+				{onResponse: $author$project$Pages$Projects$LoadedProjects}));
+	});
+var $author$project$Pages$Projects$subscriptions = function (_v0) {
+	return $elm$core$Platform$Sub$none;
+};
+var $author$project$Pages$Projects$update = F3(
+	function (req, msg, model) {
+		var projects = msg.a;
+		if (projects.$ === 'Success') {
+			var a = projects.a;
+			return _Utils_Tuple2(
+				_Utils_update(
+					model,
+					{projectsData: a}),
+				$elm$core$Platform$Cmd$none);
+		} else {
+			return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
+		}
 	});
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$core$Result$andThen = F2(
@@ -21441,520 +21777,158 @@ var $elm$core$String$replace = F3(
 	});
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $author$project$Pages$Projects$markdownSections = function (sections) {
-	var viewSection = F2(
-		function (_v2, _v3) {
-			var image = _v3.image;
-			var title = _v3.title;
-			var markdown = _v3.markdown;
-			var internal = _v3.internal;
-			var external = _v3.external;
-			return A2(
-				$elm$html$Html$section,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('projects__section')
-					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('projects__section-row container row')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('col')
-									]),
-								_List_fromArray(
-									[
+	var viewSection = function (project) {
+		return A2(
+			$elm$html$Html$section,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('projects__section')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('projects__section-row container row')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('col')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h2,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('projects__section-title')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(project.title)
+										])),
+									A2(
+									$author$project$UI$markdown,
+									{withHeaderLinks: false},
+									project.markdown),
+									A2(
+									$elm$html$Html$div,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('row')
+										]),
+									_Utils_ap(
 										A2(
-										$elm$html$Html$h2,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('projects__section-title')
-											]),
-										_List_fromArray(
-											[
-												$elm$html$Html$text(title)
-											])),
+											$elm$core$List$map,
+											function (link) {
+												return A2(
+													$elm$html$Html$a,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('button'),
+															$elm$html$Html$Attributes$href(link.route)
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text(link.name)
+														]));
+											},
+											project.internal),
 										A2(
-										$author$project$UI$markdown,
-										{withHeaderLinks: false},
-										markdown),
-										A2(
-										$elm$html$Html$div,
-										_List_fromArray(
-											[
-												$elm$html$Html$Attributes$class('row')
-											]),
-										_Utils_ap(
-											A2(
-												$elm$core$List$map,
-												function (_v0) {
-													var label = _v0.a;
-													var route = _v0.b;
-													return A2(
-														$elm$html$Html$a,
-														_List_fromArray(
-															[
-																$elm$html$Html$Attributes$class('button'),
-																$elm$html$Html$Attributes$href(
-																$author$project$Gen$Route$toHref(route))
-															]),
-														_List_fromArray(
-															[
-																$elm$html$Html$text(label)
-															]));
-												},
-												internal),
-											A2(
-												$elm$core$List$map,
-												function (_v1) {
-													var label = _v1.a;
-													var url = _v1.b;
-													return A2(
-														$elm$html$Html$a,
-														_List_fromArray(
-															[
-																$elm$html$Html$Attributes$class('button'),
-																$elm$html$Html$Attributes$href(url)
-															]),
-														_List_fromArray(
-															[
-																$elm$html$Html$text(label)
-															]));
-												},
-												external)))
-									])),
-								A2(
-								$elm$html$Html$img,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('projects__section-image'),
-										$elm$html$Html$Attributes$src('images/projects/' + (image + '.webp')),
-										$elm$html$Html$Attributes$alt(
-										A3($elm$core$String$replace, '_', ' ', image))
-									]),
-								_List_Nil)
-							]))
-					]));
-		});
+											$elm$core$List$map,
+											function (link) {
+												return A2(
+													$elm$html$Html$a,
+													_List_fromArray(
+														[
+															$elm$html$Html$Attributes$class('button'),
+															$elm$html$Html$Attributes$href(link.route)
+														]),
+													_List_fromArray(
+														[
+															$elm$html$Html$text(link.name)
+														]));
+											},
+											project.external)))
+								])),
+							A2(
+							$elm$html$Html$img,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('projects__section-image'),
+									$elm$html$Html$Attributes$src('images/projects/' + (project.image + '.webp')),
+									$elm$html$Html$Attributes$alt(
+									A3($elm$core$String$replace, '_', ' ', project.image))
+								]),
+							_List_Nil)
+						]))
+				]));
+	};
 	return A2(
 		$elm$html$Html$main_,
 		_List_fromArray(
 			[
 				$elm$html$Html$Attributes$class('col')
 			]),
-		A2($elm$core$List$indexedMap, viewSection, sections));
+		A2($elm$core$List$map, viewSection, sections));
 };
-var $author$project$ProjectData$projectData = _List_fromArray(
-	[
-		{
-		external: _List_fromArray(
-			[
-				_Utils_Tuple2('Read More', '/projects/mail_app'),
-				_Utils_Tuple2('GitHub Repo', 'https://github.com/TychoBrouwer/Mail_App')
-			]),
-		image: 'mail_app',
-		internal: _List_Nil,
-		markdown: '\r\nA mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.\r\n',
-		title: 'Mail Client App'
-	},
-		{
-		external: _List_fromArray(
-			[
-				_Utils_Tuple2('Read More', '/projects/food_alarm'),
-				_Utils_Tuple2('GitHub Repo', 'https://github.com/TychoBrouwer/Food_App_React_Native')
-			]),
-		image: 'food_alarm',
-		internal: _List_Nil,
-		markdown: '\r\nAn mobile app made for a school project using React Native and Expo Go. The app\'s goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.\r\n',
-		title: 'Food Alarm App'
-	},
-		{
-		external: _List_fromArray(
-			[
-				_Utils_Tuple2('Read More', '/projects/pokemon_like_game'),
-				_Utils_Tuple2('GitHub Repo', 'https://github.com/TychoBrouwer/Pokemon_Game_Electron')
-			]),
-		image: 'pokemon_like_game',
-		internal: _List_Nil,
-		markdown: '\r\nA Pokémon inspired game written using Electron, TypeScript, and SCSS, more specifically the Pokémon Ruby version. The game is drawn onto an HTML canvas using request animation frame to invoke the repaint. The game has basic fighting mechanics following the original from Pokémon Ruby.\r\n',
-		title: 'Pokémon Inspired Game'
-	},
-		{
-		external: _List_fromArray(
-			[
-				_Utils_Tuple2('Read More', '/projects/snake_game'),
-				_Utils_Tuple2('GitHub Repo', 'https://github.com/TychoBrouwer/Snake_Game_Electron')
-			]),
-		image: 'snake_game',
-		internal: _List_Nil,
-		markdown: '\r\nA snake game made using Electron, TypeScript, and SCSS. The game counts the current score and saves the high score. The player can also adjust the game speed and board size. \r\n',
-		title: 'Snake Game'
-	}
-	]);
-var $author$project$Pages$Projects$view = {
-	body: _List_fromArray(
-		[
-			$author$project$Pages$Projects$markdownSections($author$project$ProjectData$projectData)
-		]),
-	title: 'Projects | Tycho brouwer'
-};
-var $author$project$Pages$Projects$page = $author$project$UI$Layout$pageFullWidth(
-	{view: $author$project$Pages$Projects$view});
-var $author$project$Pages$Projects$Project_$LoadedInitialProject = function (a) {
-	return {$: 'LoadedInitialProject', a: a};
-};
-var $author$project$Api$Data$Loading = {$: 'Loading'};
-var $author$project$Api$Project$Project = F6(
-	function (image, name, title, markdown, internal, external) {
-		return {external: external, image: image, internal: internal, markdown: markdown, name: name, title: title};
+var $author$project$Pages$Projects$view = F2(
+	function (url, model) {
+		return {
+			body: _List_fromArray(
+				[
+					$author$project$UI$Layout$navbar(url),
+					$author$project$Pages$Projects$markdownSections(model.projectsData),
+					$author$project$UI$Layout$footer
+				]),
+			title: 'Projects | Tycho brouwer'
+		};
 	});
-var $author$project$Api$Project$Link = F2(
-	function (name, route) {
-		return {name: name, route: route};
-	});
-var $author$project$Api$Project$linkListDecoder = $elm$json$Json$Decode$list(
-	A3(
-		$elm$json$Json$Decode$map2,
-		$author$project$Api$Project$Link,
-		A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
-		A2($elm$json$Json$Decode$field, 'route', $elm$json$Json$Decode$string)));
-var $author$project$Utils$Json$record = $elm$json$Json$Decode$succeed;
-var $author$project$Utils$Json$apply = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
-var $author$project$Utils$Json$withField = F2(
-	function (str, decoder) {
-		return $author$project$Utils$Json$apply(
-			A2($elm$json$Json$Decode$field, str, decoder));
-	});
-var $author$project$Api$Project$decoder = A3(
-	$author$project$Utils$Json$withField,
-	'internal',
-	$author$project$Api$Project$linkListDecoder,
-	A3(
-		$author$project$Utils$Json$withField,
-		'external',
-		$author$project$Api$Project$linkListDecoder,
-		A3(
-			$author$project$Utils$Json$withField,
-			'markdown',
-			$elm$json$Json$Decode$string,
-			A3(
-				$author$project$Utils$Json$withField,
-				'title',
-				$elm$json$Json$Decode$string,
-				A3(
-					$author$project$Utils$Json$withField,
-					'name',
-					$elm$json$Json$Decode$string,
-					A3(
-						$author$project$Utils$Json$withField,
-						'image',
-						$elm$json$Json$Decode$string,
-						$author$project$Utils$Json$record($author$project$Api$Project$Project)))))));
-var $author$project$Api$Data$errorDecoder = A2(
-	$elm$json$Json$Decode$map,
-	$elm$core$List$concatMap(
-		function (_v0) {
-			var key = _v0.a;
-			var values = _v0.b;
-			return A2(
-				$elm$core$List$map,
-				function (value) {
-					return key + (' ' + value);
-				},
-				values);
-		}),
-	A2(
-		$elm$json$Json$Decode$field,
-		'errors',
-		$elm$json$Json$Decode$keyValuePairs(
-			$elm$json$Json$Decode$list($elm$json$Json$Decode$string))));
-var $elm$http$Http$BadStatus_ = F2(
-	function (a, b) {
-		return {$: 'BadStatus_', a: a, b: b};
-	});
-var $elm$http$Http$BadUrl_ = function (a) {
-	return {$: 'BadUrl_', a: a};
-};
-var $elm$http$Http$GoodStatus_ = F2(
-	function (a, b) {
-		return {$: 'GoodStatus_', a: a, b: b};
-	});
-var $elm$http$Http$NetworkError_ = {$: 'NetworkError_'};
-var $elm$http$Http$Receiving = function (a) {
-	return {$: 'Receiving', a: a};
-};
-var $elm$http$Http$Sending = function (a) {
-	return {$: 'Sending', a: a};
-};
-var $elm$http$Http$Timeout_ = {$: 'Timeout_'};
-var $elm$core$Maybe$isJust = function (maybe) {
-	if (maybe.$ === 'Just') {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
-var $elm$http$Http$expectStringResponse = F2(
-	function (toMsg, toResult) {
-		return A3(
-			_Http_expect,
-			'',
-			$elm$core$Basics$identity,
-			A2($elm$core$Basics$composeR, toResult, toMsg));
-	});
-var $author$project$Api$Data$Failure = function (a) {
-	return {$: 'Failure', a: a};
-};
-var $author$project$Api$Data$Success = function (a) {
-	return {$: 'Success', a: a};
-};
-var $author$project$Api$Data$fromResult = function (result) {
-	if (result.$ === 'Ok') {
-		var value = result.a;
-		return $author$project$Api$Data$Success(value);
-	} else {
-		var reasons = result.a;
-		return $author$project$Api$Data$Failure(reasons);
-	}
-};
-var $author$project$Api$Data$expectJson = F2(
-	function (toMsg, decoder) {
-		return A2(
-			$elm$http$Http$expectStringResponse,
-			A2($elm$core$Basics$composeR, $author$project$Api$Data$fromResult, toMsg),
-			function (response) {
-				switch (response.$) {
-					case 'BadUrl_':
-						return $elm$core$Result$Err(
-							_List_fromArray(
-								['Bad URL']));
-					case 'Timeout_':
-						return $elm$core$Result$Err(
-							_List_fromArray(
-								['Request timeout']));
-					case 'NetworkError_':
-						return $elm$core$Result$Err(
-							_List_fromArray(
-								['Connection issues']));
-					case 'BadStatus_':
-						var body = response.b;
-						var _v1 = A2($elm$json$Json$Decode$decodeString, $author$project$Api$Data$errorDecoder, body);
-						if (_v1.$ === 'Ok') {
-							var errors = _v1.a;
-							return $elm$core$Result$Err(errors);
-						} else {
-							return $elm$core$Result$Err(
-								_List_fromArray(
-									['Bad status code']));
-						}
-					default:
-						var body = response.b;
-						var _v2 = A2($elm$json$Json$Decode$decodeString, decoder, body);
-						if (_v2.$ === 'Ok') {
-							var value = _v2.a;
-							return $elm$core$Result$Ok(value);
-						} else {
-							var err = _v2.a;
-							return $elm$core$Result$Err(
-								_List_fromArray(
-									[
-										$elm$json$Json$Decode$errorToString(err)
-									]));
-						}
-				}
-			});
-	});
-var $elm$http$Http$emptyBody = _Http_emptyBody;
-var $elm$http$Http$Header = F2(
-	function (a, b) {
-		return {$: 'Header', a: a, b: b};
-	});
-var $elm$http$Http$header = $elm$http$Http$Header;
-var $elm$http$Http$Request = function (a) {
-	return {$: 'Request', a: a};
-};
-var $elm$http$Http$State = F2(
-	function (reqs, subs) {
-		return {reqs: reqs, subs: subs};
-	});
-var $elm$http$Http$init = $elm$core$Task$succeed(
-	A2($elm$http$Http$State, $elm$core$Dict$empty, _List_Nil));
-var $elm$core$Process$kill = _Scheduler_kill;
-var $elm$core$Process$spawn = _Scheduler_spawn;
-var $elm$http$Http$updateReqs = F3(
-	function (router, cmds, reqs) {
-		updateReqs:
-		while (true) {
-			if (!cmds.b) {
-				return $elm$core$Task$succeed(reqs);
-			} else {
-				var cmd = cmds.a;
-				var otherCmds = cmds.b;
-				if (cmd.$ === 'Cancel') {
-					var tracker = cmd.a;
-					var _v2 = A2($elm$core$Dict$get, tracker, reqs);
-					if (_v2.$ === 'Nothing') {
-						var $temp$router = router,
-							$temp$cmds = otherCmds,
-							$temp$reqs = reqs;
-						router = $temp$router;
-						cmds = $temp$cmds;
-						reqs = $temp$reqs;
-						continue updateReqs;
-					} else {
-						var pid = _v2.a;
-						return A2(
-							$elm$core$Task$andThen,
-							function (_v3) {
-								return A3(
-									$elm$http$Http$updateReqs,
-									router,
-									otherCmds,
-									A2($elm$core$Dict$remove, tracker, reqs));
-							},
-							$elm$core$Process$kill(pid));
-					}
-				} else {
-					var req = cmd.a;
-					return A2(
-						$elm$core$Task$andThen,
-						function (pid) {
-							var _v4 = req.tracker;
-							if (_v4.$ === 'Nothing') {
-								return A3($elm$http$Http$updateReqs, router, otherCmds, reqs);
-							} else {
-								var tracker = _v4.a;
-								return A3(
-									$elm$http$Http$updateReqs,
-									router,
-									otherCmds,
-									A3($elm$core$Dict$insert, tracker, pid, reqs));
-							}
-						},
-						$elm$core$Process$spawn(
-							A3(
-								_Http_toTask,
-								router,
-								$elm$core$Platform$sendToApp(router),
-								req)));
-				}
-			}
-		}
-	});
-var $elm$http$Http$onEffects = F4(
-	function (router, cmds, subs, state) {
-		return A2(
-			$elm$core$Task$andThen,
-			function (reqs) {
-				return $elm$core$Task$succeed(
-					A2($elm$http$Http$State, reqs, subs));
-			},
-			A3($elm$http$Http$updateReqs, router, cmds, state.reqs));
-	});
-var $elm$http$Http$maybeSend = F4(
-	function (router, desiredTracker, progress, _v0) {
-		var actualTracker = _v0.a;
-		var toMsg = _v0.b;
-		return _Utils_eq(desiredTracker, actualTracker) ? $elm$core$Maybe$Just(
-			A2(
-				$elm$core$Platform$sendToApp,
-				router,
-				toMsg(progress))) : $elm$core$Maybe$Nothing;
-	});
-var $elm$http$Http$onSelfMsg = F3(
-	function (router, _v0, state) {
-		var tracker = _v0.a;
-		var progress = _v0.b;
-		return A2(
-			$elm$core$Task$andThen,
-			function (_v1) {
-				return $elm$core$Task$succeed(state);
-			},
-			$elm$core$Task$sequence(
-				A2(
-					$elm$core$List$filterMap,
-					A3($elm$http$Http$maybeSend, router, tracker, progress),
-					state.subs)));
-	});
-var $elm$http$Http$Cancel = function (a) {
-	return {$: 'Cancel', a: a};
-};
-var $elm$http$Http$cmdMap = F2(
-	function (func, cmd) {
-		if (cmd.$ === 'Cancel') {
-			var tracker = cmd.a;
-			return $elm$http$Http$Cancel(tracker);
-		} else {
-			var r = cmd.a;
-			return $elm$http$Http$Request(
-				{
-					allowCookiesFromOtherDomains: r.allowCookiesFromOtherDomains,
-					body: r.body,
-					expect: A2(_Http_mapExpect, func, r.expect),
-					headers: r.headers,
-					method: r.method,
-					timeout: r.timeout,
-					tracker: r.tracker,
-					url: r.url
-				});
-		}
-	});
-var $elm$http$Http$MySub = F2(
-	function (a, b) {
-		return {$: 'MySub', a: a, b: b};
-	});
-var $elm$http$Http$subMap = F2(
-	function (func, _v0) {
-		var tracker = _v0.a;
-		var toMsg = _v0.b;
-		return A2(
-			$elm$http$Http$MySub,
-			tracker,
-			A2($elm$core$Basics$composeR, toMsg, func));
-	});
-_Platform_effectManagers['Http'] = _Platform_createManager($elm$http$Http$init, $elm$http$Http$onEffects, $elm$http$Http$onSelfMsg, $elm$http$Http$cmdMap, $elm$http$Http$subMap);
-var $elm$http$Http$command = _Platform_leaf('Http');
-var $elm$http$Http$subscription = _Platform_leaf('Http');
-var $elm$http$Http$request = function (r) {
-	return $elm$http$Http$command(
-		$elm$http$Http$Request(
-			{allowCookiesFromOtherDomains: false, body: r.body, expect: r.expect, headers: r.headers, method: r.method, timeout: r.timeout, tracker: r.tracker, url: r.url}));
-};
-var $author$project$Api$Token$request = F3(
-	function (method, body, options) {
-		return $elm$http$Http$request(
+var $author$project$Pages$Projects$page = F2(
+	function (shared, req) {
+		return $author$project$Page$element(
 			{
-				body: body,
-				expect: options.expect,
-				headers: _List_fromArray(
-					[
-						A2($elm$http$Http$header, 'Accept', ''),
-						A2($elm$http$Http$header, 'Content-Type', '')
-					]),
-				method: method,
-				timeout: $elm$core$Maybe$Just(1000 * 60),
-				tracker: $elm$core$Maybe$Nothing,
-				url: options.url
+				init: A2($author$project$Pages$Projects$init, shared, req),
+				subscriptions: $author$project$Pages$Projects$subscriptions,
+				update: $author$project$Pages$Projects$update(req),
+				view: $author$project$Pages$Projects$view(req.url)
 			});
 	});
-var $author$project$Api$Token$get = A2($author$project$Api$Token$request, 'GET', $elm$http$Http$emptyBody);
+var $author$project$Pages$Projects$Project_$LoadedProject = function (a) {
+	return {$: 'LoadedProject', a: a};
+};
+var $author$project$Api$Project$findProject = F2(
+	function (name, projects) {
+		return A2(
+			$elm$core$Maybe$withDefault,
+			{external: _List_Nil, image: '', internal: _List_Nil, markdown: '', name: '', title: ''},
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (project) {
+						return _Utils_eq(project.name, name);
+					},
+					projects)));
+	});
 var $author$project$Api$Project$get = function (options) {
 	return $author$project$Api$Token$get(
 		{
 			expect: A2(
 				$author$project$Api$Data$expectJson,
 				options.onResponse,
-				A2($elm$json$Json$Decode$field, 'project', $author$project$Api$Project$decoder)),
-			url: 'http://localhost:1234/api/projects/' + (options.projectName + '.json')
+				A2(
+					$elm$json$Json$Decode$map,
+					$author$project$Api$Project$findProject(options.projectName),
+					A2(
+						$elm$json$Json$Decode$field,
+						'projects',
+						$elm$json$Json$Decode$list($author$project$Api$Project$projectDecoder)))),
+			url: 'http://localhost:1234/api/projects.json'
 		});
 };
 var $author$project$Pages$Projects$Project_$init = F2(
@@ -21963,16 +21937,16 @@ var $author$project$Pages$Projects$Project_$init = F2(
 		return _Utils_Tuple2(
 			{project: $author$project$Api$Data$Loading, projectComponent: $elm$core$Maybe$Nothing, projectName: params.project},
 			$author$project$Api$Project$get(
-				{onResponse: $author$project$Pages$Projects$Project_$LoadedInitialProject, projectName: params.project}));
+				{onResponse: $author$project$Pages$Projects$Project_$LoadedProject, projectName: params.project}));
 	});
 var $author$project$Pages$Projects$Project_$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Pages$Projects$Project_$update = F3(
 	function (req, msg, model) {
-		var project = msg.a;
-		if (project.$ === 'Success') {
-			var a = project.a;
+		var projects = msg.a;
+		if (projects.$ === 'Success') {
+			var a = projects.a;
 			return _Utils_Tuple2(
 				_Utils_update(
 					model,
@@ -22462,4 +22436,4 @@ var $author$project$Main$view = function (model) {
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Main$ChangedUrl, onUrlRequest: $author$project$Main$ClickedLink, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
-_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Pages.Projects.Msg":{"args":[],"type":"UI.Layout.Msg"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.AboutMe.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedInitialProject":["Api.Data.Data Api.Project.Project"]}},"UI.Layout.Msg":{"args":[],"tags":{"OnQueryChange":["String.String"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.AboutMe.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Projects.Msg":{"args":[],"tags":{"LoadedProjects":["Api.Data.Data (List.List Api.Project.Project)"]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedProject":["Api.Data.Data Api.Project.Project"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));

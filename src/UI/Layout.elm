@@ -1,7 +1,6 @@
 module UI.Layout exposing
-    ( Model, init
-    , Msg, update
-    , footer, navbar, pageFullWidth
+    ( footer
+    , navbar
     )
 
 {-|
@@ -23,28 +22,6 @@ import Shared
 import UI
 import Url exposing (Url)
 import View exposing (View)
-
-
-type alias Model =
-    { query : String }
-
-
-init : ( Model, Cmd Msg )
-init =
-    ( { query = "" }
-    , Cmd.none
-    )
-
-
-type Msg
-    = OnQueryChange String
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        OnQueryChange query ->
-            ( { model | query = query }, Cmd.none )
 
 
 navbar : Url -> Html msg
@@ -115,30 +92,3 @@ footer =
                 ]
             ]
         ]
-
-
-
--- PAGE
-
-
-pageFullWidth : { view : View Msg } -> Shared.Model -> Request.With params -> Page.With Model Msg
-pageFullWidth options _ req =
-    Page.element
-        { init = init
-        , update = update
-        , subscriptions = subscriptions
-        , view =
-            \_ ->
-                { title = options.view.title
-                , body =
-                    [ navbar req.url
-                    , Html.div [ Attr.class "page" ] options.view.body
-                    , footer
-                    ]
-                }
-        }
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none

@@ -3,8 +3,7 @@ module Components.Project exposing (ProjectComponent, view)
 import Api.Data exposing (Data)
 import Api.Project exposing (Project)
 import Html exposing (..)
-import Html.Attributes exposing (attribute, class, placeholder, src, type_, value)
-import Html.Events as Events
+import Html.Attributes exposing (src)
 
 
 type alias ProjectComponent =

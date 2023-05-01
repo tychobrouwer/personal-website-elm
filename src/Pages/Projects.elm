@@ -1,69 +1,128 @@
 module Pages.Projects exposing (Model, Msg, page)
 
+import Api.Data exposing (Data)
+import Api.Project exposing (Project)
+import Api.Projects
+import Gen.Params.Projects exposing (Params)
 import Gen.Route exposing (Route)
 import Html
 import Html.Attributes as Attr
 import Page
+import Platform exposing (Task)
 import ProjectData exposing (projectData)
 import Request
 import Shared
 import UI exposing (Html)
-import UI.Layout
+import UI.Layout exposing (footer, navbar)
+import Url exposing (Url)
 import View exposing (View)
 
 
-page : Shared.Model -> Request.With params -> Page.With Model Msg
-page =
-    UI.Layout.pageFullWidth
-        { view = view
+page : Shared.Model -> Request.With Params -> Page.With Model Msg
+page shared req =
+    Page.element
+        { init = init shared req
+        , update = update req
+        , subscriptions = subscriptions
+        , view = view req.url
         }
 
 
+
+-- INIT
+
+
 type alias Model =
-    UI.Layout.Model
+    { project : Data (List Project)
+    , projectsData : List Project
+    }
 
 
-type alias Msg =
-    UI.Layout.Msg
+init : Shared.Model -> Request.With Params -> ( Model, Cmd Msg )
+init shared { params } =
+    ( { project = Api.Data.Loading, projectsData = [] }
+    , Api.Projects.get
+        { onResponse = LoadedProjects }
+    )
 
 
-view : View Msg
-view =
+type Msg
+    = LoadedProjects (Data (List Project))
+
+
+
+-- UPDATE
+
+
+update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
+update req msg model =
+    case msg of
+        LoadedProjects projects ->
+            case projects of
+                Api.Data.Success a ->
+                    ( { model
+                        | projectsData = a
+                      }
+                    , Cmd.none
+                    )
+
+                _ ->
+                    ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
+
+
+
+-- VIEW
+
+
+view : Url -> Model -> View Msg
+view url model =
     { title = "Projects | Tycho brouwer"
     , body =
-        [ markdownSections projectData ]
+        [ navbar url
+        , markdownSections model.projectsData
+        , footer
+        ]
     }
 
 
 markdownSections :
-    List
-        { image : String
-        , title : String
-        , markdown : String
-        , internal : List ( String, Route )
-        , external : List ( String, String )
-        }
+    List Project
     -> Html msg
 markdownSections sections =
     let
-        viewSection _ { image, title, markdown, internal, external } =
+        viewSection project =
             Html.section [ Attr.class "projects__section" ]
                 [ Html.div [ Attr.class "projects__section-row container row" ]
                     [ Html.div [ Attr.class "col" ]
-                        [ Html.h2 [ Attr.class "projects__section-title" ] [ Html.text title ]
-                        , UI.markdown { withHeaderLinks = False } markdown
+                        [ Html.h2 [ Attr.class "projects__section-title" ] [ Html.text project.title ]
+                        , UI.markdown { withHeaderLinks = False } project.markdown
                         , Html.div [ Attr.class "row" ]
                             (List.map
-                                (\( label, route ) -> Html.a [ Attr.class "button", Attr.href (Gen.Route.toHref route) ] [ Html.text label ])
-                                internal
+                                (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
+                                project.internal
                                 ++ List.map
-                                    (\( label, url ) -> Html.a [ Attr.class "button", Attr.href url ] [ Html.text label ])
-                                    external
+                                    (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
+                                    project.external
                             )
                         ]
-                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ image ++ ".webp"), Attr.alt (String.replace "_" " " image) ] []
+                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ project.image ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ] []
                     ]
                 ]
     in
     Html.main_ [ Attr.class "col" ]
-        (List.indexedMap viewSection sections)
+        (List.map viewSection sections)
+
+
+
+-- { image : String
+-- , name : String
+-- , title : String
+-- , markdown : String
+-- , internal : List { name : String, route : String }
+-- , external : List { name : String, route : String }
+-- }

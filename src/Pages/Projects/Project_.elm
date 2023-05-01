@@ -9,7 +9,6 @@ import Html.Attributes as Attr
 import Page
 import Request
 import Shared
-import UI exposing (Html)
 import UI.Layout exposing (footer, navbar)
 import Url exposing (Url)
 import View exposing (View)
@@ -41,7 +40,7 @@ init shared { params } =
     ( { projectName = params.project, projectComponent = Nothing, project = Api.Data.Loading }
     , Api.Project.get
         { projectName = params.project
-        , onResponse = LoadedInitialProject
+        , onResponse = LoadedProject
         }
     )
 
@@ -51,14 +50,14 @@ init shared { params } =
 
 
 type Msg
-    = LoadedInitialProject (Data Project)
+    = LoadedProject (Data Project)
 
 
 update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
 update req msg model =
     case msg of
-        LoadedInitialProject project ->
-            case project of
+        LoadedProject projects ->
+            case projects of
                 Api.Data.Success a ->
                     ( { model
                         | projectComponent =

@@ -1,6 +1,6 @@
 module Pages.AboutMe exposing (Model, Msg, page)
 
-import Gen.Params.Home_ exposing (Params)
+import Gen.Params.AboutMe exposing (Params)
 import Html
 import Html.Attributes as Attr
 import Page
