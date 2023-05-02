@@ -10,8 +10,9 @@ import Gen.Params.Home_ exposing (Params)
 import Html
 import Html.Attributes as Attr
 import Html.Events as Events
+import Json.Decode as Decode
 import Page
-import Ports exposing (scrollToElement)
+import Ports exposing (scroll, scrollToElement)
 import Request
 import Shared
 import UI
@@ -50,8 +51,9 @@ init _ =
 
 type Msg
     = LoadedProjects (Data (List Project))
-    | ScrollLeft
-    | ScrollRight
+    | ScrollElementLeft
+    | ScrollElementRight
+    | Scroll ScrollEvent
 
 
 
@@ -73,7 +75,7 @@ update _ msg model =
                 _ ->
                     ( model, Cmd.none )
 
-        ScrollRight ->
+        ScrollElementRight ->
             ( { model
                 | elementId = getNextIndex True model.elementId (List.length model.projectsData)
               }
@@ -84,7 +86,7 @@ update _ msg model =
                 )
             )
 
-        ScrollLeft ->
+        ScrollElementLeft ->
             ( { model
                 | elementId = getNextIndex False model.elementId (List.length model.projectsData)
               }
@@ -94,6 +96,28 @@ update _ msg model =
                     model.projectsData
                 )
             )
+
+        Scroll scrollData ->
+            ( model, scroll scrollData.deltaX )
+
+
+type alias ScrollEvent =
+    { deltaX : Float
+    , deltaY : Float
+    }
+
+
+scrollDecoder : Decode.Decoder Msg
+scrollDecoder =
+    Decode.succeed ScrollEvent
+        |> andMap (Decode.field "deltaY" Decode.float)
+        |> andMap (Decode.field "deltaX" Decode.float)
+        |> Decode.map Scroll
+
+
+andMap : Decode.Decoder a -> Decode.Decoder (a -> b) -> Decode.Decoder b
+andMap =
+    Decode.map2 (|>)
 
 
 getNextIndex : Bool -> Int -> Int -> Int
@@ -125,7 +149,7 @@ view url model =
     { title = "Tycho brouwer"
     , body =
         [ navbar url
-        , Html.div [ Attr.class "container home__page" ]
+        , Html.div [ Attr.id "home__page", Attr.class "container home__page" ]
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description =
@@ -139,10 +163,10 @@ view url model =
                 , Html.p [ Attr.class "p" ]
                     [ Html.text "interested in everything software and technology related" ]
                 ]
-            , Html.div [ Attr.class "carousel__container" ]
+            , Html.div [ Attr.class "carousel__container", Events.on "wheel" scrollDecoder ]
                 [ carousel model.projectsData
-                , Html.span [ Events.onClick ScrollLeft, Attr.class (UI.icons.left ++ " carousel__arrow left") ] []
-                , Html.span [ Events.onClick ScrollRight, Attr.class (UI.icons.right ++ " carousel__arrow right") ] []
+                , Html.span [ Events.onClick ScrollElementLeft, Attr.class (UI.icons.left ++ " carousel__arrow left") ] []
+                , Html.span [ Events.onClick ScrollElementRight, Attr.class (UI.icons.right ++ " carousel__arrow right") ] []
                 ]
             ]
         , footer
