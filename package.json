@@ -6,6 +6,8 @@
   "scripts": {
     "elm-dev": "copy src\\Env\\EnvDev.txt src\\Env.elm && npx elm-spa server",
     "elm-prod": "copy src\\Env\\EnvProd.txt src\\Env.elm && npx elm-spa build",
+    "elm-dev-linux": "cp src/Env/EnvDev.txt src/Env.elm && npx elm-spa server",
+    "elm-prod-linux": "cp src/Env/EnvProd.txt src/Env.elm && npx elm-spa build",
     "elm-format": "npx elm-format src --yes",
     "sass-dev": "sass --watch --update --style=expanded scss/style.scss:public/dist/style.css",
     "sass-prod": "sass --no-source-map --style=compressed scss/style.scss:public/dist/style.css",

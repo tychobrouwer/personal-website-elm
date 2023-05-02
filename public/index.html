@@ -17,21 +17,25 @@
 </head>
 
 <body>
+  <div id="elm"></div>
   <script type="text/javascript" src="dist/elm.js"></script>
   <script>
     const app = Elm.Main.init();
 
-    window.addEventListener("wheel", function (e) {
+
+    app.ports.scroll.subscribe(function (pixels) {
+      console.log(window.scrollTop + ' : ' + pixels);
+
       const item = document.getElementById("carousel");
-      if (item) {
-        item.scrollLeft += e.deltaY;
-      }
+      item.scrollLeft += pixels;
+      document.getElementById("home__page").scrollTop -= pixels;
     });
+
 
     app.ports.scrollToElement.subscribe(function (elementId) {
       const element = document.getElementById(elementId)?.scrollIntoView({
         behavior: "smooth",
-        block: "center",
+        block: "nearest",
         inline: "center",
       });
     });

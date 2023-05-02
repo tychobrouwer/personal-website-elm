@@ -12535,6 +12535,11 @@ var $author$project$Api$Project$getProjectName = F2(
 				idx,
 				$elm$core$Array$fromList(projects))).name;
 	});
+<<<<<<< HEAD
+=======
+var $elm$json$Json$Encode$float = _Json_wrap;
+var $author$project$Ports$scroll = _Platform_outgoingPort('scroll', $elm$json$Json$Encode$float);
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 var $author$project$Ports$scrollToElement = _Platform_outgoingPort('scrollToElement', $elm$json$Json$Encode$string);
 var $author$project$Pages$Home_$update = F3(
 	function (_v0, msg, model) {
@@ -12551,7 +12556,11 @@ var $author$project$Pages$Home_$update = F3(
 				} else {
 					return _Utils_Tuple2(model, $elm$core$Platform$Cmd$none);
 				}
+<<<<<<< HEAD
 			case 'ScrollRight':
+=======
+			case 'ScrollElementRight':
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
@@ -12571,6 +12580,7 @@ var $author$project$Pages$Home_$update = F3(
 								model.elementId,
 								$elm$core$List$length(model.projectsData)),
 							model.projectsData)));
+<<<<<<< HEAD
 			default:
 				return _Utils_Tuple2(
 					_Utils_update(
@@ -12595,6 +12605,37 @@ var $author$project$Pages$Home_$update = F3(
 	});
 var $author$project$Pages$Home_$ScrollLeft = {$: 'ScrollLeft'};
 var $author$project$Pages$Home_$ScrollRight = {$: 'ScrollRight'};
+=======
+			case 'ScrollElementLeft':
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							elementId: A3(
+								$author$project$Pages$Home_$getNextIndex,
+								false,
+								model.elementId,
+								$elm$core$List$length(model.projectsData))
+						}),
+					$author$project$Ports$scrollToElement(
+						A2(
+							$author$project$Api$Project$getProjectName,
+							A3(
+								$author$project$Pages$Home_$getNextIndex,
+								false,
+								model.elementId,
+								$elm$core$List$length(model.projectsData)),
+							model.projectsData)));
+			default:
+				var scrollData = msg.a;
+				return _Utils_Tuple2(
+					model,
+					$author$project$Ports$scroll(scrollData.deltaX));
+		}
+	});
+var $author$project$Pages$Home_$ScrollElementLeft = {$: 'ScrollElementLeft'};
+var $author$project$Pages$Home_$ScrollElementRight = {$: 'ScrollElementRight'};
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 var $elm$core$String$replace = F3(
 	function (before, after, string) {
 		return A2(
@@ -12709,6 +12750,27 @@ var $author$project$UI$hero = function (options) {
 					]))
 			]));
 };
+<<<<<<< HEAD
+=======
+var $author$project$Pages$Home_$Scroll = function (a) {
+	return {$: 'Scroll', a: a};
+};
+var $author$project$Pages$Home_$ScrollEvent = F2(
+	function (deltaX, deltaY) {
+		return {deltaX: deltaX, deltaY: deltaY};
+	});
+var $author$project$Pages$Home_$andMap = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
+var $author$project$Pages$Home_$scrollDecoder = A2(
+	$elm$json$Json$Decode$map,
+	$author$project$Pages$Home_$Scroll,
+	A2(
+		$author$project$Pages$Home_$andMap,
+		A2($elm$json$Json$Decode$field, 'deltaX', $elm$json$Json$Decode$float),
+		A2(
+			$author$project$Pages$Home_$andMap,
+			A2($elm$json$Json$Decode$field, 'deltaY', $elm$json$Json$Decode$float),
+			$elm$json$Json$Decode$succeed($author$project$Pages$Home_$ScrollEvent))));
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 var $author$project$Pages$Home_$view = F2(
 	function (url, model) {
 		return {
@@ -12719,6 +12781,10 @@ var $author$project$Pages$Home_$view = F2(
 					$elm$html$Html$div,
 					_List_fromArray(
 						[
+<<<<<<< HEAD
+=======
+							$elm$html$Html$Attributes$id('home__page'),
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 							$elm$html$Html$Attributes$class('container home__page')
 						]),
 					_List_fromArray(
@@ -12762,7 +12828,12 @@ var $author$project$Pages$Home_$view = F2(
 							$elm$html$Html$div,
 							_List_fromArray(
 								[
+<<<<<<< HEAD
 									$elm$html$Html$Attributes$class('carousel__container')
+=======
+									$elm$html$Html$Attributes$class('carousel__container'),
+									A2($elm$html$Html$Events$on, 'wheel', $author$project$Pages$Home_$scrollDecoder)
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 								]),
 							_List_fromArray(
 								[
@@ -12771,7 +12842,11 @@ var $author$project$Pages$Home_$view = F2(
 									$elm$html$Html$span,
 									_List_fromArray(
 										[
+<<<<<<< HEAD
 											$elm$html$Html$Events$onClick($author$project$Pages$Home_$ScrollLeft),
+=======
+											$elm$html$Html$Events$onClick($author$project$Pages$Home_$ScrollElementLeft),
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 											$elm$html$Html$Attributes$class($author$project$UI$icons.left + ' carousel__arrow left')
 										]),
 									_List_Nil),
@@ -12779,7 +12854,11 @@ var $author$project$Pages$Home_$view = F2(
 									$elm$html$Html$span,
 									_List_fromArray(
 										[
+<<<<<<< HEAD
 											$elm$html$Html$Events$onClick($author$project$Pages$Home_$ScrollRight),
+=======
+											$elm$html$Html$Events$onClick($author$project$Pages$Home_$ScrollElementRight),
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437
 											$elm$html$Html$Attributes$class($author$project$UI$icons.right + ' carousel__arrow right')
 										]),
 									_List_Nil)
@@ -22577,4 +22656,8 @@ var $author$project$Main$view = function (model) {
 };
 var $author$project$Main$main = $elm$browser$Browser$application(
 	{init: $author$project$Main$init, onUrlChange: $author$project$Main$ChangedUrl, onUrlRequest: $author$project$Main$ClickedLink, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
+<<<<<<< HEAD
 _Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, imageSecondary : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.AboutMe.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"LoadedProjects":["Api.Data.Data (List.List Api.Project.Project)"],"ScrollLeft":[],"ScrollRight":[]}},"Pages.Projects.Msg":{"args":[],"tags":{"LoadedProjects":["Api.Data.Data (List.List Api.Project.Project)"]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedProject":["Api.Data.Data Api.Project.Project"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));
+=======
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$value)({"versions":{"elm":"0.19.1"},"types":{"message":"Main.Msg","aliases":{"Gen.Pages.Msg":{"args":[],"type":"Gen.Msg.Msg"},"Url.Url":{"args":[],"type":"{ protocol : Url.Protocol, host : String.String, port_ : Maybe.Maybe Basics.Int, path : String.String, query : Maybe.Maybe String.String, fragment : Maybe.Maybe String.String }"},"Api.Project.Project":{"args":[],"type":"{ image : String.String, imageSecondary : String.String, name : String.String, title : String.String, markdown : String.String, internal : List.List { name : String.String, route : String.String }, external : List.List { name : String.String, route : String.String } }"},"Pages.Home_.ScrollEvent":{"args":[],"type":"{ deltaX : Basics.Float, deltaY : Basics.Float }"}},"unions":{"Main.Msg":{"args":[],"tags":{"ChangedUrl":["Url.Url"],"ClickedLink":["Browser.UrlRequest"],"Shared":["Shared.Msg"],"Page":["Gen.Pages.Msg"]}},"Basics.Int":{"args":[],"tags":{"Int":[]}},"Maybe.Maybe":{"args":["a"],"tags":{"Just":["a"],"Nothing":[]}},"Gen.Msg.Msg":{"args":[],"tags":{"AboutMe":["Pages.AboutMe.Msg"],"Home_":["Pages.Home_.Msg"],"Projects":["Pages.Projects.Msg"],"Projects__Project_":["Pages.Projects.Project_.Msg"]}},"Shared.Msg":{"args":[],"tags":{"NoOp":[]}},"Url.Protocol":{"args":[],"tags":{"Http":[],"Https":[]}},"String.String":{"args":[],"tags":{"String":[]}},"Browser.UrlRequest":{"args":[],"tags":{"Internal":["Url.Url"],"External":["String.String"]}},"Pages.AboutMe.Msg":{"args":[],"tags":{"NoOp":[]}},"Pages.Home_.Msg":{"args":[],"tags":{"LoadedProjects":["Api.Data.Data (List.List Api.Project.Project)"],"ScrollElementLeft":[],"ScrollElementRight":[],"Scroll":["Pages.Home_.ScrollEvent"]}},"Pages.Projects.Msg":{"args":[],"tags":{"LoadedProjects":["Api.Data.Data (List.List Api.Project.Project)"]}},"Pages.Projects.Project_.Msg":{"args":[],"tags":{"LoadedProject":["Api.Data.Data Api.Project.Project"]}},"Api.Data.Data":{"args":["value"],"tags":{"NotAsked":[],"Loading":[],"Failure":["List.List String.String"],"Success":["value"]}},"Basics.Float":{"args":[],"tags":{"Float":[]}},"List.List":{"args":["a"],"tags":{}}}}})}});}(this));
+>>>>>>> 972d0f094f2d00df9f0fe8efcd51adc9b3a44437

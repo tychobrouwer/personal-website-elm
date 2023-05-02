@@ -24,7 +24,8 @@
   }
 
   .button {
-    margin: 1em;
+    margin: 1em 0.5em 2em;
+    font-size: 1.2em;
   }
 
   .projects__section-image {
@@ -35,7 +36,7 @@
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 780px) {
   .projects__section {
     font-size: 1em;
 
@@ -46,7 +47,6 @@
         padding-bottom: 0.2em;
         font-size: 1.5em;
       }
-
     }
 
     .col {
@@ -68,6 +68,12 @@
     .projects__section-image {
       max-width: 400px;
       max-height: 500px;
+    }
+
+    .projects__section-row {
+      .button {
+        font-size: 1.5em;
+      }
     }
   }
 }
