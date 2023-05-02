@@ -210,6 +210,11 @@ a {
   max-width: 1920px;
 }
 
+@media screen and (max-height: 1080px) {
+  .footer__zone {
+    padding: 2em 0;
+  }
+}
 .header {
   width: 100%;
   margin: 0 auto;
@@ -240,6 +245,17 @@ a {
 @media screen and (max-width: 720px) {
   .header .header__logo {
     font-size: 1.25em;
+  }
+}
+@media screen and (max-height: 920px) {
+  .header {
+    height: calc(var(--height--header) - 10px);
+  }
+  .header .container {
+    margin-top: 5px;
+  }
+  body {
+    padding-top: calc(var(--height--header) - 10px);
   }
 }
 .markdown {
@@ -501,7 +517,7 @@ a {
   grid-column-end: 4;
 }
 .home__page .carousel__section {
-  margin: 4em 0.5em 2em 0;
+  margin: 4em 0.5em 0 0;
   display: flex;
   justify-content: center;
 }
@@ -527,12 +543,36 @@ a {
   margin: 1em;
 }
 .home__page .carousel__section .carousel__section-image {
-  height: 300px;
+  height: 400px;
   border-radius: 0.2em;
   margin: 0 auto;
   display: block;
 }
 
+@media screen and (max-height: 920px) {
+  .home__page .hero {
+    padding: 3em 0 2em;
+  }
+  .home__page .carousel__section .carousel__section-col .carousel__section-title {
+    font-size: 1em;
+  }
+  .home__page .carousel__section .carousel__section-image {
+    height: 200px;
+  }
+}
+@media screen and (max-height: 1080px) {
+  .home__page .hero__logo {
+    font-size: 1.5em;
+  }
+  .home__page .carousel__section {
+    margin: 2em 0.5em 0 0;
+  }
+}
+@media screen and (max-height: 1200px) {
+  .home__page .carousel__section .carousel__section-image {
+    height: 300px;
+  }
+}
 @media screen and (max-width: 520px) {
   .header .icon-nav {
     display: none;

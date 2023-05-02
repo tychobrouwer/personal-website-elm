@@ -24,11 +24,9 @@
 
 
     app.ports.scroll.subscribe(function (pixels) {
-      console.log(window.scrollTop + ' : ' + pixels);
-
       const item = document.getElementById("carousel");
       item.scrollLeft += pixels;
-      document.getElementById("home__page").scrollTop -= pixels;
+      window.screenTop -= pixels;
     });
 
 
