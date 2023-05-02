@@ -3,4 +3,4 @@ module Env exposing (..)
 
 domain : String
 domain =
-    "https://www.tbrouwer.com"
+    "http://localhost:1234"

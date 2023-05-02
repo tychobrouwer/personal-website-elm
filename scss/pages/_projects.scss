@@ -24,7 +24,7 @@
   }
 
   .button {
-    margin: 1em 0.5em 2em;
+    margin: 1em 0.5em;
     font-size: 1.2em;
   }
 
@@ -34,6 +34,24 @@
     margin-left: 1.5em;
     border-radius: 0.2em;
   }
+}
+
+@media screen and (max-width: 460px) {
+  .projects__section {
+    .projects__section-row {
+      .row {
+        display: block;
+      }
+
+      .button {
+        margin: 1em 0.5em 2em;
+        display: block;
+        margin: 1em auto;
+        width: fit-content;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 780px) {
