@@ -1,6 +1,7 @@
 module Components.Carousel exposing (carousel)
 
 import Api.Project exposing (Project)
+import Env exposing (domain)
 import Html exposing (Html)
 import Html.Attributes as Attr
 
@@ -12,13 +13,13 @@ carousel sections =
             Html.a
                 [ Attr.id project.name
                 , Attr.class "carousel__section"
-                , Attr.href ("/projects/" ++ project.name)
+                , Attr.href (domain ++ "/projects/" ++ project.name)
                 ]
                 [ Html.div [ Attr.class "carousel__section-col" ]
                     [ Html.h2 [ Attr.class "carousel__section-title" ] [ Html.text project.title ]
                     , Html.img
                         [ Attr.class "carousel__section-image"
-                        , Attr.src ("images/projects/" ++ project.image ++ ".webp")
+                        , Attr.src (domain ++ "/images/projects/" ++ project.image ++ ".webp")
                         , Attr.alt (String.replace "_" " " project.image)
                         ]
                         []

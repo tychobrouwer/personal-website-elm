@@ -37,7 +37,7 @@ type Msg
 
 
 init : Request -> Flags -> ( Model, Cmd Msg )
-init _ flags =
+init _ _ =
     ( {}
     , Cmd.none
     )
@@ -48,7 +48,7 @@ init _ flags =
 
 
 update : Request -> Msg -> Model -> ( Model, Cmd Msg )
-update request msg model =
+update _ msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
@@ -59,5 +59,5 @@ update request msg model =
 
 
 subscriptions : Request -> Model -> Sub Msg
-subscriptions request model =
+subscriptions _ _ =
     Sub.none

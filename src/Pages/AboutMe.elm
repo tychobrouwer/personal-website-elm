@@ -2,6 +2,7 @@ module Pages.AboutMe exposing (Model, Msg, page)
 
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
+import Env exposing (domain)
 import Gen.Params.AboutMe exposing (Params)
 import Html
 import Html.Attributes as Attr
@@ -66,7 +67,7 @@ view url _ =
         [ navbar url
         , Html.div [ Attr.class "container about__page" ]
             [ Html.div [ Attr.class "about__section about__details" ]
-                [ Html.img [ Attr.class "about__image", Attr.src "/images/tycho.webp", Attr.alt "Tycho Brouwer" ] []
+                [ Html.img [ Attr.class "about__image", Attr.src (domain ++ "/images/tycho.webp"), Attr.alt "Tycho Brouwer" ] []
                 , Html.div []
                     [ Html.div [ Attr.class "about-category" ]
                         [ Html.p [ Attr.class "category-title text-secondary" ] [ Html.text "Contact" ]

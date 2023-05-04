@@ -5,6 +5,7 @@ import Api.Project exposing (Project)
 import Api.Projects
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
+import Env exposing (domain)
 import Gen.Params.Projects exposing (Params)
 import Html
 import Html.Attributes as Attr
@@ -102,13 +103,10 @@ markdownSections sections =
                         , Html.div [ Attr.class "row" ]
                             (List.map
                                 (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
-                                project.internal
-                                ++ List.map
-                                    (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
-                                    project.external
+                                project.links
                             )
                         ]
-                    , Html.img [ Attr.class "projects__section-image", Attr.src ("images/projects/" ++ project.imageSecondary ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ] []
+                    , Html.img [ Attr.class "projects__section-image", Attr.src (domain ++ "/images/projects/" ++ project.imageSecondary ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ] []
                     ]
                 ]
     in
