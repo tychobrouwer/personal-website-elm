@@ -17,5 +17,5 @@ view options =
     Html.div []
         [ Html.h1 [ Attr.class "project__title" ] [ Html.text options.projectComponent.title ]
         , Html.p [] [ Html.text options.projectComponent.markdown ]
-        , Html.img [ Attr.src (domain ++ "/images/projects/" ++ options.projectComponent.image ++ ".webp") ] []
+        , Html.img [ Attr.src ("/images/projects/" ++ options.projectComponent.image ++ ".webp") ] []
         ]

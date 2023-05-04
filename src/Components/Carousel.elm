@@ -13,13 +13,13 @@ carousel sections =
             Html.a
                 [ Attr.id project.name
                 , Attr.class "carousel__section"
-                , Attr.href (domain ++ "/projects/" ++ project.name)
+                , Attr.href ("/projects/" ++ project.name)
                 ]
                 [ Html.div [ Attr.class "carousel__section-col" ]
                     [ Html.h2 [ Attr.class "carousel__section-title" ] [ Html.text project.title ]
                     , Html.img
                         [ Attr.class "carousel__section-image"
-                        , Attr.src (domain ++ "/images/projects/" ++ project.image ++ ".webp")
+                        , Attr.src ("/images/projects/" ++ project.image ++ ".webp")
                         , Attr.alt (String.replace "_" " " project.image)
                         ]
                         []
