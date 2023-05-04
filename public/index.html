@@ -22,13 +22,9 @@
   <script>
     const app = Elm.Main.init();
 
-
     app.ports.scroll.subscribe(function (pixels) {
-      const item = document.getElementById("carousel");
-      item.scrollLeft += pixels;
-      window.screenTop -= pixels;
+      const item = document.getElementById("carousel").scrollLeft += pixels;
     });
-
 
     app.ports.scrollToElement.subscribe(function (elementId) {
       const element = document.getElementById(elementId)?.scrollIntoView({

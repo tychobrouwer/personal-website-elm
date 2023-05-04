@@ -80,7 +80,7 @@ get :
     -> Cmd msg
 get options =
     Api.Token.get
-        { url = domain ++ "/api/projects.json"
+        { url = "/api/projects.json"
         , expect =
             Api.Data.expectJson options.onResponse
                 (Json.field "projects" (Json.list projectDecoder)

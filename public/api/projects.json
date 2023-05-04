@@ -1,15 +1,38 @@
 {
   "projects": [
     {
+      "image": "ac_controller",
+      "imageSecondary": "ac_controller_2",
+      "imageBanner": "ac_controller_2",
+      "imageLogo": "ac_controller_logo",
+      "name": "ac_controller",
+      "title": "Universal AC Controller",
+      "tags": [
+        "finished"
+      ],
+      "markdown": "This is a project for the USE course Detailing, Realization and RPC test - group 17. The project aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. This is achieved by forwarding the request from the remote device to a local device, which uses an IR transmitter to control the AC unit. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/ac_controller"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/TychoBrouwer/ac-controller-api-socket-python"
+        }
+      ]
+    },
+    {
       "image": "food_alarm",
       "imageSecondary": "food_alarm_2",
       "imageBanner": "food_alarm_2",
+      "imageLogo": "food_alarm_logo",
       "name": "food_alarm",
       "title": "Food Alarm App",
       "tags": [
         "finished"
       ],
-      "markdown": "An mobile app made for a school project using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.",
+      "markdown": "An mobile app made for the course Engineering Design - group 172 using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.",
       "links": [
         {
           "name": "Read More",
@@ -17,7 +40,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https: //github.com/TychoBrouwer/Food_App_React_Native"
+          "route": "https://github.com/TychoBrouwer/Food_App_React_Native"
         }
       ]
     },
@@ -25,6 +48,7 @@
       "image": "mail_app",
       "imageSecondary": "mail_app",
       "imageBanner": "mail_app",
+      "imageLogo": "",
       "name": "mail_app",
       "title": "Mail Client App",
       "tags": [
@@ -38,7 +62,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https: //github.com/TychoBrouwer/Mail_App"
+          "route": "https://github.com/TychoBrouwer/Mail_App"
         }
       ]
     },
@@ -46,6 +70,7 @@
       "image": "pokemon_like_game",
       "imageSecondary": "pokemon_like_game_2",
       "imageBanner": "pokemon_like_game_2",
+      "imageLogo": "",
       "name": "pokemon_like_game",
       "title": "Pokémon Inspired Game",
       "tags": [
@@ -67,6 +92,7 @@
       "image": "snake_game",
       "imageSecondary": "snake_game",
       "imageBanner": "snake_game",
+      "imageLogo": "",
       "name": "snake_game",
       "title": "Snake Game",
       "tags": [
