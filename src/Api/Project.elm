@@ -28,7 +28,6 @@ type alias Project =
     , imageBanner : String
     , name : String
     , title : String
-    , tags : List String
     , markdown : String
     , links : List { name : String, route : String }
     }
@@ -41,7 +40,6 @@ emptyProject =
     , imageBanner = ""
     , name = ""
     , title = ""
-    , tags = []
     , markdown = ""
     , links = []
     }
@@ -59,7 +57,6 @@ projectDecoder =
         |> withField "imageBanner" Json.string
         |> withField "name" Json.string
         |> withField "title" Json.string
-        |> withField "tags" (Json.list Json.string)
         |> withField "markdown" Json.string
         |> withField "links" linkListDecoder
 
