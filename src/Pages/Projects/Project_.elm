@@ -88,13 +88,11 @@ view url model =
         case model.projectComponent of
             Just projectComponent ->
                 [ navbar url
-                , Html.div [ Attr.id "project__page", Attr.class "container project__page" ]
-                    [ Components.Project.view
-                        { title = projectComponent.title
-                        , projectComponent = projectComponent
-                        , project = model.project
-                        }
-                    ]
+                , Components.Project.view
+                    { title = projectComponent.title
+                    , projectComponent = projectComponent
+                    , project = model.project
+                    }
                 , footer
                 ]
 

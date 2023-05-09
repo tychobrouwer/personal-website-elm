@@ -4,7 +4,7 @@ module UI exposing
     , pad, padX, padY, align
     , link
     , logo, icons, iconLink
-    , gutter, hero, pageTitle
+    , gutter, hero, htmlIf, pageTitle
     )
 
 {-|
@@ -375,3 +375,12 @@ iconLink : { text : String, icon : String, url : String } -> Html msg
 iconLink options =
     Html.a [ Attr.href options.url, Attr.class "link__icon-container", Attr.target "_blank", Attr.attribute "aria-label" options.text ]
         [ Html.span [ Attr.class (String.toLower options.text ++ " link-hover link__icon " ++ options.icon) ] [] ]
+
+
+htmlIf : Html msg -> Bool -> Html msg
+htmlIf el cond =
+    if cond then
+        el
+
+    else
+        Html.text ""

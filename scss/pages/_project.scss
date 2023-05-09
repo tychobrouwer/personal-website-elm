@@ -1,6 +1,130 @@
 .project__page {
-  .project__title {
-    font-size: 4em;
-    margin: 0.5em 0;
+  .project__header {
+    margin-top: 5em;
+
+    .project__section-left {
+      margin: 1.5em 0 0;
+    }
+
+    .project__title {
+      display: flex;
+
+      .project__logo {
+        width: 4em;
+        height: 4em;
+        margin: auto 2em auto 0;
+      }
+
+      .project__name {
+        font-size: 3em;
+        margin: auto 0;
+      }
+    }
+  }
+
+  .project__section {
+    display: flex;
+    margin-bottom: 1em;
+
+    .project__section-image {
+      width: 40%;
+      max-height: 400px;
+    }
+
+    .project__section-text {
+      margin-top: 1em;
+      margin-right: 4em;
+      font-size: 1.1em;
+      line-height: 1.4;
+    }
+  }
+}
+
+@media screen and (max-height: 920px) {
+  .project__page {
+    .project__header {
+      .project__title {
+        .project__logo {
+          width: 2.5em;
+          height: 2.5em;
+          margin-right: 1em;
+        }
+
+        .project__name {
+          font-size: 2.2em;
+        }
+      }
+
+    }
+
+    .project__section {
+      .project__section-image {
+        width: 30%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .project__page {
+    .project__header {
+      .project__title {
+        .project__logo {
+          width: 2.5em;
+          height: 2.5em;
+          margin-right: 1em;
+        }
+
+        .project__name {
+          font-size: 2.2em;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 860px) {
+  .project__page {
+    .project__header {
+      display: block;
+
+      .project__title {
+        justify-content: center;
+      }
+    }
+
+    .project__section {
+      .project__section-image {
+        width: 70%;
+        margin: 2em 15%;
+      }
+
+      .project__section-text {
+        margin: 1em 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .project__page {
+    .project__section {
+      .project__section-image {
+        width: 90%;
+        margin: 2em 5%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .project__page {
+    .project__header {
+      .project__title {
+        .project__name {
+          font-size: 2em;
+        }
+      }
+    }
   }
 }

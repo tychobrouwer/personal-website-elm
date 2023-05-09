@@ -99,7 +99,7 @@ markdownSections sections =
                 [ Html.div [ Attr.class "projects__section-row container row" ]
                     [ Html.div [ Attr.class "col" ]
                         [ Html.h2 [ Attr.class "projects__title" ] [ Html.text project.title ]
-                        , UI.markdown { withHeaderLinks = False } project.markdown
+                        , UI.markdown { withHeaderLinks = False } project.description
                         , Html.div [ Attr.class "row row-buttons" ]
                             (List.map
                                 (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])

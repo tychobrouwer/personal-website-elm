@@ -3,14 +3,14 @@
     {
       "image": "mail_app",
       "imageSecondary": "mail_app",
-      "imageBanner": "mail_app",
       "imageLogo": "",
       "name": "mail_app",
       "title": "Mail Client App",
       "tags": [
         "current"
       ],
-      "markdown": "A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.",
+      "description": "A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.",
+      "sections": [],
       "links": [
         {
           "name": "Read More",
@@ -25,11 +25,11 @@
     {
       "image": "ac_controller",
       "imageSecondary": "ac_controller",
-      "imageBanner": "ac_controller_2",
-      "imageLogo": "ac_controller_logo",
+      "imageLogo": "",
       "name": "ac_controller",
       "title": "Universal AC Controller",
-      "markdown": "This is a project for the USE course Detailing, Realization and RPC Testing. The project aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. This is achieved by forwarding the request from the remote device to a local device, which uses an IR transmitter to control the AC unit. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
+      "description": "This is a project for the USE course Detailing, Realization and RPC Testing. The project aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. This is achieved by forwarding the request from the remote device to a local device, which uses an IR transmitter to control the AC unit. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
+      "sections": [],
       "links": [
         {
           "name": "Read More",
@@ -44,11 +44,16 @@
     {
       "image": "food_alarm",
       "imageSecondary": "food_alarm_2",
-      "imageBanner": "food_alarm_2",
       "imageLogo": "food_alarm_logo",
       "name": "food_alarm",
       "title": "Food Alarm App",
-      "markdown": "An mobile app made for the course Engineering Design, using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.",
+      "description": "An mobile app made for the course Engineering Design, using React Native and Expo Go. The app's goal is to decrease food waste, it attempts to achieve this by allowing the user to track the food which is in the users house. It also provides a grocery store list and recipe database linked to the food stored in the inventory.",
+      "sections": [
+        {
+          "text": "The mobile app is written in React Native using Expo Go. React Native is an open-source framework for JavaScript. It combines React, with app development for iOS and Android. Expo is an open-source platform for making mobile apps and it removes the necessity for an iOS and Android developer account for testing the app. Expo achieves this by hosting the app on the Expo Go mobile app. The back-end server for the app, which will be used as an authorization and database server, is made using Express.js.",
+          "image": ""
+        }
+      ],
       "links": [
         {
           "name": "Read More",
@@ -63,11 +68,11 @@
     {
       "image": "pokemon_like_game",
       "imageSecondary": "pokemon_like_game_2",
-      "imageBanner": "pokemon_like_game_2",
       "imageLogo": "",
       "name": "pokemon_like_game",
       "title": "Pokémon Inspired Game",
-      "markdown": "A Pokémon inspired game written using Electron, TypeScript, and SCSS, more specifically the Pokémon Ruby version. The game is drawn onto an HTML canvas using request animation frame to invoke the repaint. The game has basic fighting mechanics following the original from Pokémon Ruby.",
+      "description": "A Pokémon inspired game written using Electron, TypeScript, and SCSS, more specifically the Pokémon Ruby version. The game is drawn onto an HTML canvas using request animation frame to invoke the repaint. The game has basic fighting mechanics following the original from Pokémon Ruby.",
+      "sections": [],
       "links": [
         {
           "name": "Read More",
@@ -82,11 +87,11 @@
     {
       "image": "snake_game",
       "imageSecondary": "snake_game",
-      "imageBanner": "snake_game",
       "imageLogo": "",
       "name": "snake_game",
       "title": "Snake Game",
-      "markdown": "A snake game made using Electron, TypeScript, and SCSS. The game counts the current score and saves the high score. The player can also adjust the game speed and board size. ",
+      "description": "A snake game made using Electron, TypeScript, and SCSS. The game counts the current score and saves the high score. The player can also adjust the game speed and board size. ",
+      "sections": [],
       "links": [
         {
           "name": "Read More",

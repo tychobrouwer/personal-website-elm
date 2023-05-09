@@ -88,16 +88,6 @@
 
 }
 
-@media screen and (max-height: 1200px) {
-  .home__page {
-    .carousel__section {
-      .carousel__section-image {
-        height: 300px;
-      }
-    }
-  }
-}
-
 @media screen and (max-height: 1400px) {
   .home__page {
     .hero__logo {
@@ -120,6 +110,17 @@
     }
   }
 }
+
+@media screen and (max-height: 1200px) {
+  .home__page {
+    .carousel__section {
+      .carousel__section-image {
+        height: 300px;
+      }
+    }
+  }
+}
+
 
 @media screen and (max-height: 920px) {
   .home__page {
@@ -201,6 +202,8 @@
 
     .carousel__section {
       .carousel__section-col {
+        margin-bottom: 1em;
+
         .carousel__section-title {
           padding-bottom: 1em;
           font-size: 1em;

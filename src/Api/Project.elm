@@ -1,7 +1,7 @@
 module Api.Project exposing
     ( Project
     , get
-    , getProjectName, projectDecoder
+    , Section, getProjectName, projectDecoder
     )
 
 {-|
@@ -25,10 +25,11 @@ import Utils.Json exposing (withField)
 type alias Project =
     { image : String
     , imageSecondary : String
-    , imageBanner : String
+    , imageLogo : String
     , name : String
     , title : String
-    , markdown : String
+    , description : String
+    , sections : List { text : String, image : String }
     , links : List { name : String, route : String }
     }
 
@@ -37,10 +38,11 @@ emptyProject : Project
 emptyProject =
     { image = ""
     , imageSecondary = ""
-    , imageBanner = ""
+    , imageLogo = ""
     , name = ""
     , title = ""
-    , markdown = ""
+    , description = ""
+    , sections = []
     , links = []
     }
 
@@ -49,15 +51,20 @@ type alias Link =
     { name : String, route : String }
 
 
+type alias Section =
+    { text : String, image : String }
+
+
 projectDecoder : Json.Decoder Project
 projectDecoder =
     Utils.Json.record Project
         |> withField "image" Json.string
         |> withField "imageSecondary" Json.string
-        |> withField "imageBanner" Json.string
+        |> withField "imageLogo" Json.string
         |> withField "name" Json.string
         |> withField "title" Json.string
-        |> withField "markdown" Json.string
+        |> withField "description" Json.string
+        |> withField "sections" sectionListDecoder
         |> withField "links" linkListDecoder
 
 
@@ -67,6 +74,15 @@ linkListDecoder =
         (Json.map2 Link
             (Json.field "name" Json.string)
             (Json.field "route" Json.string)
+        )
+
+
+sectionListDecoder : Json.Decoder (List Section)
+sectionListDecoder =
+    Json.list
+        (Json.map2 Section
+            (Json.field "text" Json.string)
+            (Json.field "image" Json.string)
         )
 
 
