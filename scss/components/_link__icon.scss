@@ -1,33 +1,29 @@
 .link__icon-container {
-  height: fit-content;
   margin: auto 0.5em;
-  line-height: normal;
+  height: 30px;
 
-  &:hover {
-    color: var(--color--grey-200);
+  &:hover .mastodon {
+    color: var(--color--mastodon);
+  }
+
+  &:hover .reddit {
+    color: var(--color--reddit);
+  }
+
+  &:hover .github {
+    color: var(--color--github);
+  }
+
+  &:hover .email {
+    color: var(--color--email);
+  }
+
+  &:hover .linkedin {
+    color: var(--color--linkedin);
   }
 
   .link__icon {
-    font-size: 1.4em;
+    height: 30px;
 
-    &.mastodon:hover {
-      color: var(--color--mastodon);
-    }
-
-    &.reddit:hover {
-      color: var(--color--reddit);
-    }
-
-    &.github:hover {
-      color: var(--color--github);
-    }
-
-    &.email:hover {
-      color: var(--color--email);
-    }
-
-    &.linkedin:hover {
-      color: var(--color--linkedin);
-    }
   }
 }
