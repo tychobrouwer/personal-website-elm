@@ -165,8 +165,8 @@ view url model =
                 ]
             , Html.div [ Attr.class "carousel__container", Events.on "wheel" scrollDecoder ]
                 [ carousel model.projectsData
-                , Html.span [ Events.onClick ScrollElementLeft, Attr.class (UI.icons.left ++ " carousel__arrow left") ] []
-                , Html.span [ Events.onClick ScrollElementRight, Attr.class (UI.icons.right ++ " carousel__arrow right") ] []
+                , Html.div [ Events.onClick ScrollElementLeft, Attr.class "carousel_arrow left" ] [ UI.icons.left ]
+                , Html.div [ Events.onClick ScrollElementRight, Attr.class "carousel_arrow right" ] [ UI.icons.right ]
                 ]
             ]
         , footer

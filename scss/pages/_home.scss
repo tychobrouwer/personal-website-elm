@@ -19,14 +19,21 @@
     display: grid;
     padding-top: 3em;
 
-    .carousel__arrow {
+    .carousel_arrow {
       align-self: center;
       grid-row: 1;
       font-size: 3em;
       cursor: pointer;
+      height: 70px;
 
-      &:hover {
-        color: var(--color--accent);
+      svg {
+        height: 70px;
+        fill: var(--color--grey-200);
+        transition: fill 200ms ease-in-out;
+
+        &:hover {
+          fill: var(--color--accent);
+        }
       }
 
       &.left {
@@ -36,8 +43,8 @@
       &.right {
         grid-column: 3;
       }
-
     }
+
 
     #carousel {
       grid-row: 1;

@@ -36,6 +36,7 @@
 
 a:hover {
   color: var(--color--accent);
+  transition: color 200ms ease-in-out;
 }
 
 body {
@@ -155,24 +156,31 @@ a {
 .link__icon-container {
   margin: auto 0.5em;
   height: 30px;
+  transform-origin: center center;
+  transition: transform 200ms ease-in-out;
+}
+.link__icon-container:hover {
+  transform: translateY(-0.1em);
 }
 .link__icon-container:hover .mastodon {
-  color: var(--color--mastodon);
+  fill: var(--color--mastodon);
 }
 .link__icon-container:hover .reddit {
-  color: var(--color--reddit);
+  fill: var(--color--reddit);
 }
 .link__icon-container:hover .github {
-  color: var(--color--github);
+  fill: var(--color--github);
 }
 .link__icon-container:hover .email {
-  color: var(--color--email);
+  fill: var(--color--email);
 }
 .link__icon-container:hover .linkedin {
-  color: var(--color--linkedin);
+  fill: var(--color--linkedin);
 }
-.link__icon-container .link__icon {
+.link__icon-container svg {
   height: 30px;
+  fill: var(--color--grey-200);
+  transition: fill 200ms ease-in-out;
 }
 
 .link-hover {
@@ -494,19 +502,25 @@ a {
   display: grid;
   padding-top: 3em;
 }
-.home__page .carousel__container .carousel__arrow {
+.home__page .carousel__container .carousel_arrow {
   align-self: center;
   grid-row: 1;
   font-size: 3em;
   cursor: pointer;
+  height: 70px;
 }
-.home__page .carousel__container .carousel__arrow:hover {
-  color: var(--color--accent);
+.home__page .carousel__container .carousel_arrow svg {
+  height: 70px;
+  fill: var(--color--grey-200);
+  transition: fill 200ms ease-in-out;
 }
-.home__page .carousel__container .carousel__arrow.left {
+.home__page .carousel__container .carousel_arrow svg:hover {
+  fill: var(--color--accent);
+}
+.home__page .carousel__container .carousel_arrow.left {
   grid-column: 1;
 }
-.home__page .carousel__container .carousel__arrow.right {
+.home__page .carousel__container .carousel_arrow.right {
   grid-column: 3;
 }
 .home__page .carousel__container #carousel {

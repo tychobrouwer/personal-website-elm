@@ -2,28 +2,36 @@
   margin: auto 0.5em;
   height: 30px;
 
+  transform-origin: center center;
+  transition: transform 200ms ease-in-out;
+
+  &:hover {
+    transform: translateY(-0.1em);
+  }
+
   &:hover .mastodon {
-    color: var(--color--mastodon);
+    fill: var(--color--mastodon);
   }
 
   &:hover .reddit {
-    color: var(--color--reddit);
+    fill: var(--color--reddit);
   }
 
   &:hover .github {
-    color: var(--color--github);
+    fill: var(--color--github);
   }
 
   &:hover .email {
-    color: var(--color--email);
+    fill: var(--color--email);
   }
 
   &:hover .linkedin {
-    color: var(--color--linkedin);
+    fill: var(--color--linkedin);
   }
 
-  .link__icon {
+  svg {
     height: 30px;
-
+    fill: var(--color--grey-200);
+    transition: fill 200ms ease-in-out;
   }
 }

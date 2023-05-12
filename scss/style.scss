@@ -41,7 +41,8 @@
 }
 
 a:hover {
-  color: var(--color--accent)
+  color: var(--color--accent);
+  transition: color 200ms ease-in-out;
 }
 
 body {
