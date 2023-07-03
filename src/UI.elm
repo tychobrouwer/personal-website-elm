@@ -347,7 +347,7 @@ pageTitle options =
 
 logo : Html msg
 logo =
-    Html.div [ Attr.class "link-hover logo__text" ] [ Html.text "Tycho" ]
+    Html.div [ Attr.class "logo__text" ] [ Html.text "Tycho" ]
 
 
 

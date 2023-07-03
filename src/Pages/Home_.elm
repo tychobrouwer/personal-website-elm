@@ -149,7 +149,7 @@ view url model =
     { title = "Tycho brouwer"
     , body =
         [ navbar url
-        , Html.div [ Attr.id "home__page", Attr.class "container home__page" ]
+        , Html.div [ Attr.id "home__introduction", Attr.class "container" ]
             [ UI.hero
                 { title = "Tycho Brouwer"
                 , description =
@@ -159,15 +159,47 @@ view url model =
                 }
             , Html.div [ Attr.class "introduction" ]
                 [ Html.p [ Attr.class "p" ]
-                    [ Html.text "A mechanical engineering student at the Eindhoven University of Technology," ]
+                    [ Html.text "I am a mechanical engineering student at the Eindhoven University of Technology," ]
                 , Html.p [ Attr.class "p" ]
                     [ Html.text "interested in everything software and technology related" ]
                 ]
-            , Html.div [ Attr.class "carousel__container", Events.on "wheel" scrollDecoder ]
-                [ carousel model.projectsData
-                , Html.div [ Events.onClick ScrollElementLeft, Attr.class "carousel_arrow left" ] [ UI.icons.left ]
-                , Html.div [ Events.onClick ScrollElementRight, Attr.class "carousel_arrow right" ] [ UI.icons.right ]
+            ]
+        , Html.div [ Attr.class "divider" ]
+            [ Html.div [ Attr.class "divider__line" ] []
+            , Html.div [ Attr.class "divider__arrow" ] []
+            ]
+        , Html.div [ Attr.id "home__about_me", Attr.class "container" ]
+            [ Html.div
+                [ Attr.class "row section__title" ]
+                [ Html.h2 [] [ Html.text "More about" ]
+                , Html.h2 [ Attr.class "text-accent" ] [ Html.text "me" ]
                 ]
+            , Html.div [ Attr.class "row" ]
+                [ Html.div [ Attr.id "home__about_me__text" ]
+                    [ Html.p []
+                        [ Html.text "I'm currently a third year mechanical engineering student at the Eindhoven University of Technology and I am interested in everything science, software, and technology."
+                        ]
+                    , Html.p []
+                        [ Html.text "My journey into technology begun when my grandfather dug up one of his first personal computers, a TRS-80 Color Computer, on which I wrote my first code in BASIC."
+                        ]
+                    , Html.p []
+                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Technology" ]
+                        , Html.text "I was hooked on technology from that moment on. I started playing around with a Raspberry Pi, programming simple LEDs, displays, and small motors. A few years later I got my first real computer of my own running an Althon X4 860. This computer to this day is still used as a home server running self-hosted services such as Jellyfin, Traefik, Pi-Hole, and WireGuard."
+                        ]
+                    , Html.p []
+                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Programming" ]
+                        , Html.text "Since my first taste with programming, I been learning and playing around with a wide range of programming languages. Starting with C++ on various microcontrollers and web development using HTML, JavaScript, and CSS. I moved to Python, PHP, SQL, TypeScript, and more recently Dart and Elm."
+                        ]
+                    , Html.p []
+                        [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Education" ]
+                        , Html.text "I'm currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
+                        ]
+                    ]
+                ]
+            ]
+        , Html.div [ Attr.class "divider" ]
+            [ Html.div [ Attr.class "divider__line" ] []
+            , Html.div [ Attr.class "divider__arrow" ] []
             ]
         , footer
         ]

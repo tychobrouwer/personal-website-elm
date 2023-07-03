@@ -35,23 +35,25 @@ navbar url =
     Html.header [ Attr.class "header" ]
         [ Html.div [ Attr.class "container row spread" ]
             [ Html.div [ Attr.class "row fill-width" ]
-                [ Html.a
+                [ Html.div
                     [ Attr.class "header__logo"
-                    , Attr.classList
-                        [ ( "text-accent"
-                          , if url.path == "/" then
-                                True
 
-                            else
-                                False
-                          )
-                        ]
-                    , Attr.href "/"
+                    -- , Attr.classList
+                    --     [ ( "text-accent"
+                    --       , if url.path == "/" then
+                    --             True
+                    --         else
+                    --             False
+                    --       )
+                    --     ]
+                    -- , Attr.href "/"
                     ]
                     [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
-                    [ navLink { text = "Projects", route = Route.Projects }
-                    , navLink { text = "About Me", route = Route.AboutMe }
+                    [ navLink { text = "Home", route = Route.Home_ }
+                    , navLink { text = "Projects", route = Route.Projects }
+
+                    -- , navLink { text = "About Me", route = Route.AboutMe }
                     ]
                 ]
             , Html.nav [ Attr.class "row icon-nav" ]

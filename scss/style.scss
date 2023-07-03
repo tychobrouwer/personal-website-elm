@@ -7,18 +7,18 @@
   --weight--semibold: 600;
   --weight--bold: 800;
 
-  --color--white: #ffffff;
-  --color--grey-100: #f0f0f0;
+  // --color--white: #ffffff;
+  // --color--grey-100: #f0f0f0;
   --color--grey-200: #cccccc;
-  --color--grey-300: #aaaaaa;
+  // --color--grey-300: #aaaaaa;
   --color--grey-500: #696969;
+  --color--grey-600: #757575;
   --color--grey-700: #1c1c1c;
   --color--grey-800: #111111;
-  --color--green: #407742;
-  --color--green-dark: #264727;
-  --color--green-light: #d7ead8;
 
-  --color--accent: #DB4105;
+  --color--background: #222831;
+  --color--main: #333840;
+  --color--accent: #008080;
 
   --color--github: #4078c0;
   --color--reddit: #ff4500;
@@ -48,7 +48,7 @@ a:hover {
 body {
   max-width: 1800px;
   margin: auto;
-  background: var(--color--grey-700);
+  background: var(--color--background);
   color: var(--color--grey-200);
   font-family: var(--font--body);
   font-weight: var(--weight--light);
@@ -68,6 +68,7 @@ body {
 @import "components/_button";
 @import "components/_link__icon";
 @import "components/_link";
+@import "components/_divider";
 @import "layout/_footer";
 @import "layout/_header";
 @import "layout/_markdown";
