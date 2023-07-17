@@ -36,32 +36,17 @@ navbar url =
         [ Html.div [ Attr.class "container row spread" ]
             [ Html.div [ Attr.class "row fill-width" ]
                 [ Html.div
-                    [ Attr.class "header__logo"
-
-                    -- , Attr.classList
-                    --     [ ( "text-accent"
-                    --       , if url.path == "/" then
-                    --             True
-                    --         else
-                    --             False
-                    --       )
-                    --     ]
-                    -- , Attr.href "/"
-                    ]
+                    [ Attr.class "header__logo" ]
                     [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
                     [ navLink { text = "Home", route = Route.Home_ }
                     , navLink { text = "Projects", route = Route.Projects }
-
-                    -- , navLink { text = "About Me", route = Route.AboutMe }
                     ]
                 ]
             , Html.nav [ Attr.class "row icon-nav" ]
                 [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
                 , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
                 , UI.iconLink { text = "Linkedin", icon = UI.icons.linkedin, url = "https://www.linkedin.com/in/tycho-brouwer-6306ba274/" }
-
-                -- , UI.iconLink { text = "Mastodon", icon = UI.icons.mastodon, url = "https://hackaday.social/@tycho" }
                 ]
             ]
         ]

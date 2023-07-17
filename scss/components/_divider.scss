@@ -9,7 +9,7 @@
     margin-top: 30px - 1px;
   }
 
-  .divider__arrow {
+  .divider__box {
     height: 60px;
     width: 60px;
     margin: 0 auto;
@@ -18,5 +18,12 @@
     border-radius: 3px;
     position: absolute;
     left: calc(50% - 30px);
+
+    .divider__arrow {
+      height: 74%;
+      width: 74%;
+      margin: 13%;
+      fill: var(--color--accent);
+    }
   }
 }

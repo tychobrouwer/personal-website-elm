@@ -92,14 +92,14 @@ view url model =
 markdownSections :
     List Project
     -> Html msg
-markdownSections sections =
+markdownSections projects =
     let
-        viewSection project =
+        projectSection project =
             Html.section [ Attr.class "projects__section" ]
                 [ Html.div [ Attr.class "projects__section-row container row" ]
                     [ Html.div [ Attr.class "col" ]
                         [ Html.h2 [ Attr.class "projects__title" ] [ Html.text project.title ]
-                        , UI.markdown { withHeaderLinks = False } project.description
+                        , Html.p [ Attr.class "projects__section-text" ] [ Html.text project.description ]
                         , Html.div [ Attr.class "row row-buttons" ]
                             (List.map
                                 (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
@@ -111,4 +111,4 @@ markdownSections sections =
                 ]
     in
     Html.main_ [ Attr.class "col" ]
-        (List.map viewSection sections)
+        (List.map projectSection projects)

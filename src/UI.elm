@@ -1,10 +1,9 @@
 module UI exposing
-    ( Html, none, row, col
-    , h1, h2, h3, h4, h5, h6, markdown
-    , pad, padX, padY, align
+    ( Html, none
+    , h1, h2, h3, h4, h5, h6
     , link
     , logo, icons, iconLink
-    , gutter, hero, htmlIf, pageTitle
+    , hero, htmlIf, pageTitle
     )
 
 {-|
@@ -102,219 +101,6 @@ h6 str =
 
 
 
--- paragraphs : List String -> Html msg
--- paragraphs strs =
---     strs
---         |> List.map (Html.text >> List.singleton >> Html.p [ Attr.class "p" ])
---         |> Html.div [ Attr.class "col gap-md" ]
-
-
-gutter : Html msg
-gutter =
-    Html.div [ Attr.style "height" "25vh" ] []
-
-
-markdown : { withHeaderLinks : Bool } -> String -> Html msg
-markdown options str =
-    let
-        default =
-            Markdown.Renderer.defaultHtmlRenderer
-
-        renderer =
-            { default
-                | heading =
-                    \props ->
-                        let
-                            id : String
-                            id =
-                                Utils.String.toId props.rawText
-
-                            content : List (Html msg)
-                            content =
-                                contentWith ("#" ++ id)
-
-                            contentWith : String -> List (Html msg)
-                            contentWith url =
-                                if options.withHeaderLinks then
-                                    [ Html.a [ Attr.class "markdown__link", Attr.href url ] props.children ]
-
-                                else
-                                    props.children
-                        in
-                        case props.level of
-                            Markdown.Block.H1 ->
-                                Html.h1 [ Attr.id id, Attr.class "h1" ] (contentWith "")
-
-                            Markdown.Block.H2 ->
-                                Html.h2 [ Attr.id id, Attr.class "h2" ] content
-
-                            Markdown.Block.H3 ->
-                                Html.h3 [ Attr.id id, Attr.class "h3" ] content
-
-                            Markdown.Block.H4 ->
-                                Html.h4 [ Attr.id id, Attr.class "h4" ] content
-
-                            Markdown.Block.H5 ->
-                                Html.h5 [ Attr.id id, Attr.class "h5" ] content
-
-                            Markdown.Block.H6 ->
-                                Html.h6 [ Attr.class "h6" ] content
-                , paragraph = Html.p [ Attr.class "p" ]
-                , table = \children -> Html.div [ Attr.class "table" ] [ Html.table [] children ]
-                , link = link_
-                , codeBlock =
-                    \{ body, language } ->
-                        let
-                            supported =
-                                [ "html", "css", "js", "elm" ]
-
-                            simplePre =
-                                Html.pre [ Attr.class ("language-" ++ (language |> Maybe.withDefault "none")) ]
-                                    [ Html.code [ Attr.class ("language-" ++ (language |> Maybe.withDefault "none")) ]
-                                        [ Html.text body ]
-                                    ]
-                        in
-                        case language of
-                            Just lang ->
-                                if List.member lang supported then
-                                    Html.Keyed.node "div"
-                                        []
-                                        [ ( body
-                                          , Html.node "prism-js"
-                                                [ Attr.property "body" (Json.string body)
-                                                , Attr.property "language" (Json.string lang)
-                                                ]
-                                                []
-                                          )
-                                        ]
-
-                                else
-                                    simplePre
-
-                            Nothing ->
-                                simplePre
-            }
-    in
-    Markdown.Parser.parse str
-        |> Result.mapError (\_ -> "Failed to parse.")
-        |> Result.andThen (Markdown.Renderer.render renderer)
-        |> Result.withDefault []
-        |> Html.div [ Attr.class "markdown" ]
-
-
-
--- LAYOUT
-
-
-row :
-    { xs : List (Attribute msg) -> List (Html msg) -> Html msg
-    , sm : List (Attribute msg) -> List (Html msg) -> Html msg
-    , md : List (Attribute msg) -> List (Html msg) -> Html msg
-    , lg : List (Attribute msg) -> List (Html msg) -> Html msg
-    , xl : List (Attribute msg) -> List (Html msg) -> Html msg
-    }
-row =
-    { xs = \attrs -> Html.div (Attr.class "row gap-xs" :: attrs)
-    , sm = \attrs -> Html.div (Attr.class "row gap-sm" :: attrs)
-    , md = \attrs -> Html.div (Attr.class "row gap-md" :: attrs)
-    , lg = \attrs -> Html.div (Attr.class "row gap-lg" :: attrs)
-    , xl = \attrs -> Html.div (Attr.class "row gap-xl" :: attrs)
-    }
-
-
-col :
-    { xs : List (Attribute msg) -> List (Html msg) -> Html msg
-    , sm : List (Attribute msg) -> List (Html msg) -> Html msg
-    , md : List (Attribute msg) -> List (Html msg) -> Html msg
-    , lg : List (Attribute msg) -> List (Html msg) -> Html msg
-    , xl : List (Attribute msg) -> List (Html msg) -> Html msg
-    }
-col =
-    { xs = \attrs -> Html.div (Attr.class "col gap-xs" :: attrs)
-    , sm = \attrs -> Html.div (Attr.class "col gap-sm" :: attrs)
-    , md = \attrs -> Html.div (Attr.class "col gap-md" :: attrs)
-    , lg = \attrs -> Html.div (Attr.class "col gap-lg" :: attrs)
-    , xl = \attrs -> Html.div (Attr.class "col gap-xl" :: attrs)
-    }
-
-
-
--- ATTRS
-
-
-type alias Attribute msg =
-    Html.Attribute msg
-
-
-pad :
-    { xs : Attribute msg
-    , sm : Attribute msg
-    , md : Attribute msg
-    , lg : Attribute msg
-    , xl : Attribute msg
-    }
-pad =
-    { xs = Attr.class "pad-xs"
-    , sm = Attr.class "pad-sm"
-    , md = Attr.class "pad-md"
-    , lg = Attr.class "pad-lg"
-    , xl = Attr.class "pad-xl"
-    }
-
-
-padX :
-    { xs : Attribute msg
-    , sm : Attribute msg
-    , md : Attribute msg
-    , lg : Attribute msg
-    , xl : Attribute msg
-    }
-padX =
-    { xs = Attr.class "pad-x-xs"
-    , sm = Attr.class "pad-x-sm"
-    , md = Attr.class "pad-x-md"
-    , lg = Attr.class "pad-x-lg"
-    , xl = Attr.class "pad-x-xl"
-    }
-
-
-padY :
-    { xs : Attribute msg
-    , sm : Attribute msg
-    , md : Attribute msg
-    , lg : Attribute msg
-    , xl : Attribute msg
-    }
-padY =
-    { xs = Attr.class "pad-y-xs"
-    , sm = Attr.class "pad-y-sm"
-    , md = Attr.class "pad-y-md"
-    , lg = Attr.class "pad-y-lg"
-    , xl = Attr.class "pad-y-xl"
-    }
-
-
-align :
-    { center : Attribute msg
-    , top : Attribute msg
-    , left : Attribute msg
-    , right : Attribute msg
-    , bottom : Attribute msg
-    , centerX : Attribute msg
-    , centerY : Attribute msg
-    }
-align =
-    { center = Attr.class "align-center"
-    , top = Attr.class "align-top"
-    , left = Attr.class "align-left"
-    , right = Attr.class "align-right"
-    , bottom = Attr.class "align-bottom"
-    , centerX = Attr.class "align-center-x"
-    , centerY = Attr.class "align-center-y"
-    }
-
-
-
 -- HERO
 
 
@@ -361,6 +147,7 @@ icons :
     , linkedin : Svg msg
     , left : Svg msg
     , right : Svg msg
+    , down : Svg msg
     }
 icons =
     { github =
@@ -384,6 +171,8 @@ icons =
     , right =
         svg [ SvgAttr.viewBox "0 0 320 512", SvgAttr.class "right" ]
             [ path [ SvgAttr.d "M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" ] [] ]
+    , down =
+        svg [ SvgAttr.viewBox "0 0 512 512", SvgAttr.class "right" ] [ path [ SvgAttr.d "M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" ] [] ]
     }
 
 

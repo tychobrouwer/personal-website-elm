@@ -1,6 +1,33 @@
 {
   "projects": [
     {
+      "image": "esp32_remote_car",
+      "imageSecondary": "esp32_remote_car",
+      "imageLogo": "",
+      "name": "esp32_remote_car",
+      "title": "ESP32 Remote Car",
+      "tags": [
+        "current"
+      ],
+      "description": "This project is about learning to work with microcontrollers, electrical components, and writing the code for them. The robot is controlled by an ESP32 microcontroller, and uses two MX1508 DC-motor drivers to drive the four 5V cheap motors. The speed of the wheels is tracked using four light slot sensors. The robot can be controlled using a webserver hosted on the ESP's IP-address. The webinterface communicates back to the microcontroller using a websocket connection.",
+      "sections": [
+        {
+          "text": "",
+          "image": "esp32_remote_car_2"
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/esp32_remote_car"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/TychoBrouwer/esp32-remote-car"
+        }
+      ]
+    },
+    {
       "image": "mail_app",
       "imageSecondary": "mail_app",
       "imageLogo": "",
@@ -18,7 +45,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/Mail_App"
+          "route": "https://github.com/TychoBrouwer/mail_app_flutter"
         }
       ]
     },
@@ -61,7 +88,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/Food_App_React_Native"
+          "route": "https://github.com/TychoBrouwer/food-app-react-native"
         }
       ]
     },
@@ -80,7 +107,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/Pokemon_Game_Electron"
+          "route": "https://github.com/TychoBrouwer/pokemon-game-electron"
         }
       ]
     },
@@ -99,7 +126,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/Snake_Game_Electron"
+          "route": "https://github.com/TychoBrouwer/snake_game_electron"
         }
       ]
     }

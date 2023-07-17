@@ -7,11 +7,22 @@
   box-sizing: border-box;
 }
 
+::-moz-selection {
+  color: var(--color--grey-200);
+  background: var(--color--accent);
+}
+
+::selection {
+  color: var(--color--grey-200);
+  background: var(--color--accent);
+}
+
 a {
   text-decoration: none;
 }
 
-img {
+img,
+.no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

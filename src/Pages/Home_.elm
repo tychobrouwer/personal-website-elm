@@ -3,19 +3,16 @@ module Pages.Home_ exposing (Model, Msg, page)
 import Api.Data exposing (Data)
 import Api.Project exposing (Project, getProjectName)
 import Api.Projects
-import Components.Carousel exposing (carousel)
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
+import Env exposing (domain)
 import Gen.Params.Home_ exposing (Params)
 import Html
 import Html.Attributes as Attr
-import Html.Events as Events
-import Json.Decode as Decode
 import Page
-import Ports exposing (scroll, scrollToElement)
 import Request
 import Shared
-import UI
+import UI exposing (Html)
 import Url exposing (Url)
 import View exposing (View)
 
@@ -37,13 +34,12 @@ page shared req =
 type alias Model =
     { project : Data (List Project)
     , projectsData : List Project
-    , elementId : Int
     }
 
 
 init : Shared.Model -> ( Model, Cmd Msg )
 init _ =
-    ( { project = Api.Data.Loading, projectsData = [], elementId = 0 }
+    ( { project = Api.Data.Loading, projectsData = [] }
     , Api.Projects.get
         { onResponse = LoadedProjects }
     )
@@ -51,9 +47,6 @@ init _ =
 
 type Msg
     = LoadedProjects (Data (List Project))
-    | ScrollElementLeft
-    | ScrollElementRight
-    | Scroll ScrollEvent
 
 
 
@@ -74,65 +67,6 @@ update _ msg model =
 
                 _ ->
                     ( model, Cmd.none )
-
-        ScrollElementRight ->
-            ( { model
-                | elementId = getNextIndex True model.elementId (List.length model.projectsData)
-              }
-            , scrollToElement
-                (getProjectName
-                    (getNextIndex True model.elementId (List.length model.projectsData))
-                    model.projectsData
-                )
-            )
-
-        ScrollElementLeft ->
-            ( { model
-                | elementId = getNextIndex False model.elementId (List.length model.projectsData)
-              }
-            , scrollToElement
-                (getProjectName
-                    (getNextIndex False model.elementId (List.length model.projectsData))
-                    model.projectsData
-                )
-            )
-
-        Scroll scrollData ->
-            ( model, scroll scrollData.deltaX )
-
-
-type alias ScrollEvent =
-    { deltaX : Float
-    , deltaY : Float
-    }
-
-
-scrollDecoder : Decode.Decoder Msg
-scrollDecoder =
-    Decode.succeed ScrollEvent
-        |> andMap (Decode.field "deltaY" Decode.float)
-        |> andMap (Decode.field "deltaX" Decode.float)
-        |> Decode.map Scroll
-
-
-andMap : Decode.Decoder a -> Decode.Decoder (a -> b) -> Decode.Decoder b
-andMap =
-    Decode.map2 (|>)
-
-
-getNextIndex : Bool -> Int -> Int -> Int
-getNextIndex up index length =
-    if up && index == length - 1 then
-        0
-
-    else if not up && index == 0 then
-        length - 1
-
-    else if up then
-        index + 1
-
-    else
-        index - 1
 
 
 subscriptions : Model -> Sub Msg
@@ -161,17 +95,19 @@ view url model =
                 [ Html.p [ Attr.class "p" ]
                     [ Html.text "I am a mechanical engineering student at the Eindhoven University of Technology," ]
                 , Html.p [ Attr.class "p" ]
-                    [ Html.text "interested in everything software and technology related" ]
+                    [ Html.text "interested in everything software and technology related." ]
                 ]
             ]
         , Html.div [ Attr.class "divider" ]
             [ Html.div [ Attr.class "divider__line" ] []
-            , Html.div [ Attr.class "divider__arrow" ] []
+            , Html.div [ Attr.class "divider__box" ]
+                [ Html.div [ Attr.class "divider__arrow" ] [ UI.icons.down ]
+                ]
             ]
         , Html.div [ Attr.id "home__about_me", Attr.class "container" ]
             [ Html.div
                 [ Attr.class "row section__title" ]
-                [ Html.h2 [] [ Html.text "More about" ]
+                [ Html.h2 [] [ Html.text "About" ]
                 , Html.h2 [ Attr.class "text-accent" ] [ Html.text "me" ]
                 ]
             , Html.div [ Attr.class "row" ]
@@ -195,12 +131,64 @@ view url model =
                         , Html.text "I'm currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
                         ]
                     ]
+                , Html.div [ Attr.id "home__about_me__image" ]
+                    [ Html.img [ Attr.src (domain ++ "/images/tu_eindhoven_logo.svg"), Attr.alt "TU Eindhoven" ] []
+                    , Html.div [ Attr.class "row" ]
+                        [ Html.p []
+                            [ Html.span [] [ Html.text "University of Technology" ]
+                            , Html.span [ Attr.class "text-accent" ] [ Html.text "Eindhoven" ]
+                            ]
+                        ]
+                    , Html.div [ Attr.class "row" ]
+                        [ Html.p []
+                            [ Html.span [] [ Html.text "Bachelor" ]
+                            , Html.span [ Attr.class "text-accent" ] [ Html.text "Mechanical Engineering" ]
+                            , Html.span [] [ Html.text "2021 - now" ]
+                            ]
+                        ]
+                    ]
                 ]
             ]
         , Html.div [ Attr.class "divider" ]
             [ Html.div [ Attr.class "divider__line" ] []
-            , Html.div [ Attr.class "divider__arrow" ] []
+            , Html.div [ Attr.class "divider__box" ]
+                [ Html.div [ Attr.class "divider__arrow" ] [ UI.icons.down ]
+                ]
+            ]
+        , Html.div [ Attr.id "home__project_preview", Attr.class "container" ]
+            [ Html.div
+                [ Attr.class "row section__title" ]
+                [ Html.h2 [] [ Html.text "Recent" ]
+                , Html.h2 [ Attr.class "text-accent" ] [ Html.text "projects" ]
+                ]
+            , projectPreviews model.projectsData
             ]
         , footer
         ]
+    }
+
+
+projectPreviews :
+    List Project
+    -> Html msg
+projectPreviews projects =
+    let
+        projectPreview project =
+            Html.a [ Attr.class "projects__preview", Attr.href (Maybe.withDefault emptyRoute (List.head project.links)).route ]
+                [ Html.img
+                    [ Attr.class "projects__preview_image", Attr.src (domain ++ "/images/projects/" ++ project.image ++ ".webp"), Attr.alt (String.replace "_" " " project.image) ]
+                    []
+                ]
+    in
+    Html.div [ Attr.class "projects__preview_container" ]
+        (List.map projectPreview (projects |> List.take 3))
+
+
+emptyRoute :
+    { name : String
+    , route : String
+    }
+emptyRoute =
+    { name = "home"
+    , route = ""
     }

@@ -1,7 +1,7 @@
 module Components.Project exposing (view)
 
 import Api.Data exposing (Data)
-import Api.Project exposing (Project, Section)
+import Api.Project exposing (Link, Project, Section)
 import Env exposing (domain)
 import Html exposing (Html)
 import Html.Attributes as Attr
@@ -27,8 +27,22 @@ view options =
                 ]
             , Html.img [ Attr.class "project__section-image", Attr.src (domain ++ "/images/projects/" ++ options.projectComponent.image ++ ".webp") ] []
             ]
+        , Html.div [ Attr.class "row row-buttons" ]
+            (List.map
+                (\link -> Html.a [ Attr.class "button", Attr.href link.route ] [ Html.text link.name ])
+                (List.filter isReadMore options.projectComponent.links)
+            )
         , projectSections options.projectComponent.sections
         ]
+
+
+isReadMore : Link -> Bool
+isReadMore n =
+    if n.name == "Read More" then
+        False
+
+    else
+        True
 
 
 projectSections : List Section -> Html msg
