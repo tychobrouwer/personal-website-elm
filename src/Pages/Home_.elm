@@ -110,7 +110,7 @@ view url model =
                 [ Html.h2 [] [ Html.text "About" ]
                 , Html.h2 [ Attr.class "text-accent" ] [ Html.text "me" ]
                 ]
-            , Html.div [ Attr.class "row" ]
+            , Html.div [ Attr.id "home__about_me__content", Attr.class "row" ]
                 [ Html.div [ Attr.id "home__about_me__text" ]
                     [ Html.p []
                         [ Html.text "I'm currently a third year mechanical engineering student at the Eindhoven University of Technology and I am interested in everything science, software, and technology."

@@ -90,3 +90,41 @@
     margin-right: .4em;
   }
 }
+
+@media screen and (max-width: 620px) {
+  #home__introduction {
+    h1 {
+      font-size: 2em;
+    }
+
+    h2 {
+      font-size: 1em;
+    }
+  }
+
+  #home__about_me {
+    #home__about_me__content.row {
+      display: block;
+    }
+
+    #home__about_me__text {
+      width: 100%;
+    }
+
+    #home__about_me__image {
+      width: 100%;
+      padding-top: 2em;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #home__project_preview {
+    .projects__preview_container {
+      .projects__preview {
+        width: 400px;
+        height: 333px;
+      }
+    }
+  }
+}
