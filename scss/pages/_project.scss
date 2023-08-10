@@ -2,7 +2,7 @@
   .row-buttons {
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-bottom: 1em;
+    padding: 1em 0;
 
     .button {
       padding: 1em 2em;
@@ -12,8 +12,8 @@
   .project__header {
     margin-top: 5em;
 
-    .project__section-left {
-      margin: 1.5em 0 0;
+    .project__section-text {
+      margin-top: 1em;
     }
 
     .project__title {
@@ -37,15 +37,22 @@
     margin-bottom: 1em;
 
     .project__section-image {
+      margin: 1.5em 0 0;
       width: 40%;
       max-height: 400px;
       height: fit-content;
       border-radius: 0.3em;
     }
 
+    .project__section-left {
+      margin: 1.5em 4em 0 0;
+
+      &.project__section-image {
+        margin-top: 0;
+      }
+    }
+
     .project__section-text {
-      margin-top: 1em;
-      margin-right: 4em;
       font-size: 1.1em;
       line-height: 1.4;
     }
@@ -66,7 +73,6 @@
           font-size: 2.2em;
         }
       }
-
     }
 
     .project__section {
@@ -106,9 +112,23 @@
     }
 
     .project__section {
+      margin-bottom: 0;
+
+      &:nth-child(even) {
+        flex-direction: column-reverse;
+      }
+
+      &:nth-child(odd) {
+        display: block;
+      }
+
       .project__section-image {
         width: 70%;
         margin: 2em 15%;
+      }
+
+      .project__section-left.project__section-image {
+        margin-top: 1.5em;
       }
 
       .project__section-text {

@@ -51,18 +51,17 @@ projectSections sections =
         (List.indexedMap
             (\idx section ->
                 Html.div [ Attr.class "project__section" ]
-                    (if modBy 2 idx == 0 then
-                        [ Html.div [ Attr.class "project__section-left" ]
-                            [ Html.p [ Attr.class "project__section-text" ] [ Html.text section.text ] ]
-                        , Html.div [ Attr.class "project__section-right" ]
-                            [ projectImage section.image "project__section-image" ]
+                    (if section.image == "" then
+                        [ Html.p [ Attr.class "project__section-text" ] [ Html.text section.text ] ]
+
+                     else if modBy 2 idx == 0 then
+                        [ Html.p [ Attr.class "project__section-left project__section-text" ] [ Html.text section.text ]
+                        , projectImage section.image "project__section-image"
                         ]
 
                      else
-                        [ Html.div [ Attr.class "project__section-left" ]
-                            [ projectImage section.image "project__section-image" ]
-                        , Html.div [ Attr.class "project__section-right" ]
-                            [ Html.p [ Attr.class "project__section-text" ] [ Html.text section.text ] ]
+                        [ projectImage section.image "project__section-left project__section-image"
+                        , Html.p [ Attr.class "project__section-text" ] [ Html.text section.text ]
                         ]
                     )
             )

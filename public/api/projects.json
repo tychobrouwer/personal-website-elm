@@ -12,8 +12,12 @@
       "description": "This project is about learning to work with microcontrollers, electrical components, and writing the code for them. The robot is controlled by an ESP32 microcontroller, and uses two MX1508 DC-motor drivers to drive the four 5V cheap motors. The speed of the wheels is tracked using four light slot sensors. The robot can be controlled using a webserver hosted on the ESP's IP-address. The webinterface communicates back to the microcontroller using a websocket connection.",
       "sections": [
         {
-          "text": "",
-          "image": "esp32_remote_car_2"
+          "text": "The car has four 3-6 volt DC motors with a peak current draw of about 200mA. A 100nF capacitor is soldered to the terminals of each motor to reduce the noise they produce. The motors are controlled using two MX1508 DC-motor drivers. The drivers are controlled using PWM signals from the ESP32, these are generated using the LEDC library.",
+          "image": "esp32_remote_car_4"
+        },
+        {
+          "text": "The speed of the motors is tracked using four light slot sensors. The ESP32 detects the slot sensors passing to calculate the speed of the motor using interrupts on the pins to which the sensors are connected.",
+          "image": "esp32_remote_car_6"
         }
       ],
       "links": [

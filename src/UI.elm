@@ -25,9 +25,6 @@ import Html
 import Html.Attributes as Attr
 import Html.Keyed
 import Json.Encode as Json
-import Markdown.Block
-import Markdown.Parser
-import Markdown.Renderer
 import Svg exposing (Svg, path, svg)
 import Svg.Attributes as SvgAttr
 import Utils.String

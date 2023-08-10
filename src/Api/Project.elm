@@ -1,18 +1,11 @@
 module Api.Project exposing
-    ( Project
+    ( Link
+    , Project
+    , Section
     , get
-    , Link, Section, getProjectName, projectDecoder
+    , getProjectName
+    , projectDecoder
     )
-
-{-|
-
-@docs Project, decoder
-@docs Listing, updateArticle
-@docs list, feed
-@docs get, create, update, delete
-@docs favorite, unfavorite
-
--}
 
 import Api.Data exposing (Data)
 import Api.Token

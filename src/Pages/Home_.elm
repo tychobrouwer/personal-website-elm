@@ -164,6 +164,8 @@ view url model =
             , projectPreviews model.projectsData
             ]
         , footer
+
+        -- , Html.link [ Attr.rel "stylesheet", Attr.href (domain ++ "/css/home.css") ] []
         ]
     }
 
