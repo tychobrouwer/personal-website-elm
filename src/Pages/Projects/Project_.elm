@@ -88,6 +88,11 @@ view url model =
         case model.projectComponent of
             Just projectComponent ->
                 [ navbar url
+                , Html.div [ Attr.class "container project__back" ]
+                    [ Html.a
+                        [ Attr.class "button project__back-button", Attr.href "/projects" ]
+                        [ Html.text "Back" ]
+                    ]
                 , Components.Project.view
                     { title = projectComponent.title
                     , projectComponent = projectComponent

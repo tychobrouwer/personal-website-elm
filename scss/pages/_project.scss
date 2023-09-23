@@ -1,3 +1,12 @@
+.project__back {
+  padding-top: 5em;
+  height: auto;
+
+  .project__back-button {
+    width: fit-content;
+  }
+}
+
 .project__page {
   .row-buttons {
     flex-wrap: wrap;
@@ -9,8 +18,30 @@
     }
   }
 
+  .project__section {
+    display: flex;
+    margin-bottom: 1em;
+
+    .project__section-text {
+      font-size: 1.1em;
+      line-height: 1.4;
+      margin: auto 0;
+    }
+
+    .project__section-image {
+      width: 40%;
+      max-height: 400px;
+      height: fit-content;
+      border-radius: 0.3em;
+    }
+
+    .project__section-left {
+      margin-right: 4em;
+    }
+  }
+
   .project__header {
-    margin-top: 5em;
+    margin-top: 2em;
 
     .project__section-text {
       margin-top: 1em;
@@ -29,32 +60,6 @@
         font-size: 3em;
         margin: auto 0;
       }
-    }
-  }
-
-  .project__section {
-    display: flex;
-    margin-bottom: 1em;
-
-    .project__section-image {
-      margin: 1.5em 0 0;
-      width: 40%;
-      max-height: 400px;
-      height: fit-content;
-      border-radius: 0.3em;
-    }
-
-    .project__section-left {
-      margin: 1.5em 4em 0 0;
-
-      &.project__section-image {
-        margin-top: 0;
-      }
-    }
-
-    .project__section-text {
-      font-size: 1.1em;
-      line-height: 1.4;
     }
   }
 }
@@ -125,6 +130,7 @@
       .project__section-image {
         width: 70%;
         margin: 2em 15%;
+        object-fit: contain;
       }
 
       .project__section-left.project__section-image {

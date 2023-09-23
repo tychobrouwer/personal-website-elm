@@ -59,8 +59,17 @@
       "imageLogo": "",
       "name": "ac_controller",
       "title": "Universal AC Controller",
-      "description": "This is a project for the USE course Detailing, Realization and RPC Testing. The project aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. This is achieved by forwarding the request from the remote device to a local device, which uses an IR transmitter to control the AC unit. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
-      "sections": [],
+      "description": "This is a course Detailing, Realization and RPC Testing and part of the USE (User, Society, and Enterprise) learning trajectory of my study. It aims to let students experience that the design of a product needs constant interaction with the proposed use. This means going through an product design cycle with real customer/user involvement. And learning how to define and study a potential market, how to involve user demands into a technical design and how to evaluate the design in a user context.",
+      "sections": [
+        {
+          "text": "During the project a concept design was first made after which a more complete prototype was manufactured. The product aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
+          "image": "ac_controller_3"
+        },
+        {
+          "text": "Tge device is controlled by an ESP32 microcontroller is powered either from a USB power supply or a 5V battery. It has an IR transmitter and receiver to control the AC unit by imitating the original remote. It is connected to the internet using WiFi and communicates with the server using a websocket connection. Communication between the webapp and the server is done using a REST API.",
+          "image": "ac_controller_2"
+        }
+      ],
       "links": [
         {
           "name": "Read More",
