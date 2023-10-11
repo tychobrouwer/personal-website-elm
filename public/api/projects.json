@@ -49,7 +49,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/mail_app_flutter"
+          "route": "https://github.com/TychoBrouwer/mail-app-flutter"
         }
       ]
     },
@@ -139,7 +139,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/snake_game_electron"
+          "route": "https://github.com/TychoBrouwer/snake-game-electron"
         }
       ]
     }
