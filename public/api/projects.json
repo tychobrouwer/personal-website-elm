@@ -1,6 +1,37 @@
 {
   "projects": [
     {
+      "image": "",
+      "imageSecondary": "",
+      "imageLogo": "",
+      "name": "home_server",
+      "title": "Home Server",
+      "tags": [
+        "current"
+      ],
+      "description": "Since 2020 I am using an old desktop computer as a home server running Proxmox VE, which is a Debian based virtualization platform. The server is used to host a variety of services like Pi-Hole, Wireguard, SAMBA, Passbolt, Authelia, and various media services. It is all managed by a collection of Ansible scripts which allow for easy deployment and maintenance of the server.",
+      "sections": [
+        {
+          "text": "This project is highly inspired by the homelab community on Youtube and Reddit, watching videos from Jeff Geerling, ServeTheHome, and Level1Techs. It started on basic hardware running Pi-Hole and Wireguard instances together with a SAMBA file server to sync files across my devices. The server has since been upgraded to a more powerful hardware and now runs a variety of services.",
+          "image": ""
+        },
+        {
+          "text": "The project has taught me a lot about Linux, Ansible, networking, and server management. It introduced me to the Linux platform and made me confortable using the command line which I now use daily. For the future I plan to expand the server with more services and learn more about networking by adding opnsense to the list of running services.",
+          "image": ""
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/home_server"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/TychoBrouwer/ansible"
+        }
+      ]
+    },
+    {
       "image": "esp32_remote_car",
       "imageSecondary": "esp32_remote_car",
       "imageLogo": "",
