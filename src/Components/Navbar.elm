@@ -36,7 +36,7 @@ navbar url =
         [ Html.div [ Attr.class "container row spread" ]
             [ Html.div [ Attr.class "row fill-width" ]
                 [ Html.div
-                    [ Attr.class "header__logo" ]
+                    [ Attr.href "/", Attr.class "header__logo" ]
                     [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
                     [ navLink { text = "Home", route = Route.Home_ }
@@ -44,7 +44,7 @@ navbar url =
                     ]
                 ]
             , Html.nav [ Attr.class "row icon-nav" ]
-                [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer?tab=repositories" }
+                [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer" }
                 , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
                 , UI.iconLink { text = "Linkedin", icon = UI.icons.linkedin, url = "https://www.linkedin.com/in/tycho-brouwer-6306ba274/" }
                 ]

@@ -12184,6 +12184,7 @@ var $author$project$Components$Navbar$navbar = function (url) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
+										$elm$html$Html$Attributes$href('/'),
 										$elm$html$Html$Attributes$class('header__logo')
 									]),
 								_List_fromArray(
@@ -12211,7 +12212,7 @@ var $author$project$Components$Navbar$navbar = function (url) {
 						_List_fromArray(
 							[
 								$author$project$UI$iconLink(
-								{icon: $author$project$UI$icons.github, text: 'GitHub', url: 'https://github.com/TychoBrouwer?tab=repositories'}),
+								{icon: $author$project$UI$icons.github, text: 'GitHub', url: 'https://github.com/TychoBrouwer'}),
 								$author$project$UI$iconLink(
 								{icon: $author$project$UI$icons.email, text: 'Email', url: 'mailto:tycho.tbrouwer@gmail.com'}),
 								$author$project$UI$iconLink(
@@ -12597,7 +12598,7 @@ var $author$project$Pages$Home_$view = F2(
 														[
 															$elm$html$Html$text('Education')
 														])),
-													$elm$html$Html$text('I\'m currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning.')
+													$elm$html$Html$text('I\'m currently in my third year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning.')
 												]))
 										])),
 									A2(

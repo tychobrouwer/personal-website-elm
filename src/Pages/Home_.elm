@@ -1,7 +1,7 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
 import Api.Data exposing (Data)
-import Api.Project exposing (Project, getProjectName)
+import Api.Project exposing (Project)
 import Api.Projects
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
@@ -128,7 +128,7 @@ view url model =
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-secondary" ] [ Html.text "Education" ]
-                        , Html.text "I'm currently in my second year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
+                        , Html.text "I'm currently in my third year of my bachelor degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
                         ]
                     ]
                 , Html.div [ Attr.id "home__about_me__image" ]
@@ -148,6 +148,10 @@ view url model =
                         ]
                     ]
                 ]
+            -- , Html.div [ Attr.id "home__about_me_links", Attr.class "row row-buttons" ]
+            --     [ 
+            --         Html.a [ Attr.class "button", Attr.href "https://github.com/TychoBrouwer" ] [ Html.text "GitHub" ]
+            --     ]
             ]
         , Html.div [ Attr.class "divider" ]
             [ Html.div [ Attr.class "divider__line" ] []

@@ -20,14 +20,10 @@ module UI exposing
 -- import Url exposing (Url)
 -- import View exposing (View)
 
-import Env exposing (domain)
 import Html
 import Html.Attributes as Attr
-import Html.Keyed
-import Json.Encode as Json
 import Svg exposing (Svg, path, svg)
 import Svg.Attributes as SvgAttr
-import Utils.String
 
 
 type alias Html msg =

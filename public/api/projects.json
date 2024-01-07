@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "image": "",
-      "imageSecondary": "",
+      "image": "home_server",
+      "imageSecondary": "home_server",
       "imageLogo": "",
       "name": "home_server",
       "title": "Home Server",

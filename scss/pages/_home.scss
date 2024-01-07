@@ -48,6 +48,16 @@
       margin-right: .4em;
     }
   }
+
+  #home__about_me_links.row-buttons {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 1em 0;
+
+    .button {
+      padding: 1em 2em;
+    }
+  }
 }
 
 #home__project_preview {
