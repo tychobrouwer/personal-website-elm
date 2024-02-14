@@ -13,7 +13,7 @@
       "sections": [
         {
           "text": "This project is highly inspired by the homelab community on Youtube and Reddit, watching videos from Jeff Geerling, ServeTheHome, and Level1Techs. It started on basic hardware running Pi-Hole and Wireguard instances together with a SAMBA file server to sync files across my devices. The server has since been upgraded to a more powerful hardware and now runs a variety of services.",
-          "image": ""
+          "image": "home_server_2"
         },
         {
           "text": "The project has taught me a lot about Linux, Ansible, networking, and server management. It introduced me to the Linux platform and made me confortable using the command line which I now use daily. For the future I plan to expand the server with more services and learn more about networking by adding opnsense to the list of running services.",
@@ -27,7 +27,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/ansible"
+          "route": "https://github.com/TychoBrouwer/ansible-playbooks"
         }
       ]
     },

@@ -22,16 +22,16 @@
 #home__about_me {
   padding: 4em 0;
 
-  .text-secondary {
-    padding-right: 15px;
-  }
-
   p {
     padding-bottom: .5em;
   }
 
   #home__about_me__text {
     width: 60%;
+
+    span {
+      padding-right: 15px;
+    }
   }
 
   #home__about_me__image {
@@ -40,7 +40,7 @@
     margin: auto 0;
 
     img {
-      padding-bottom: 2em;
+      padding: 2em 0;
       max-width: 400px;
     }
 
@@ -72,8 +72,8 @@
 
     .projects__preview {
       background-color: var(--color--grey-800);
-      width: 300px;
-      height: 250px;
+      width: 250px;
+      height: 200px;
       border-radius: 0.3em;
       overflow: hidden;
       display: flex;
@@ -132,8 +132,8 @@
   #home__project_preview {
     .projects__preview_container {
       .projects__preview {
-        width: 400px;
-        height: 333px;
+        width: 300px;
+        height: 250px;
       }
     }
   }

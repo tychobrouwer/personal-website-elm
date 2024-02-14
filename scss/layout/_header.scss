@@ -55,9 +55,17 @@
 }
 
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 680px) {
   .header {
     .icon-nav {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    .header__logo {
       display: none;
     }
   }
