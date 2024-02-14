@@ -11,7 +11,7 @@
     "elm-format": "npx elm-format src --yes",
     "sass-dev": "sass --watch --update --style=expanded scss/style.scss:public/dist/style.css",
     "sass-prod": "sass --no-source-map --style=compressed scss/style.scss:public/dist/style.css",
-    "publish": "ssh root@192.168.1.106 \"cd /var/www/html/personal-website-elm && git pull origin main && systemctl restart lighttpd\"",
+    "publish": "ssh root@192.168.1.106 \"cd /var/www/html/portfolio && git pull origin main && systemctl restart lighttpd\"",
     "push-prod": "npm run elm-prod && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish"
   },
   "repository": {
