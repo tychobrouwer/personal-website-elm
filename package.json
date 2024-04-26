@@ -4,10 +4,10 @@
   "description": ">built with [elm-spa](https://elm-spa.dev)",
   "main": "index.js",
   "scripts": {
-    "elm-dev": "copy src\\Env\\EnvDev.txt src\\Env.elm && npx elm-spa server",
-    "elm-prod": "copy src\\Env\\EnvProd.txt src\\Env.elm && npx elm-spa build",
-    "elm-dev-linux": "cp src/Env/EnvDev.txt src/Env.elm && npx elm-spa server",
-    "elm-prod-linux": "cp src/Env/EnvProd.txt src/Env.elm && npx elm-spa build",
+    "elm-dev": "copy src\\Env\\EnvDev.txt src\\Env.elm && npx elm-live ./src/Main.elm --hot --dir=public -- --output=public/dist/elm.js",
+    "elm-prod": "copy src\\Env\\EnvProd.txt src\\Env.elm && elm make src/Main.elm --output=public/dist/elm.js",
+    "elm-dev-linux": "cp src/Env/EnvDev.txt src/Env.elm && npx elm-live ./src/Main.elm --hot --dir=public -- --output=public/dist/elm.js",
+    "elm-prod-linux": "cp src/Env/EnvProd.txt src/Env.elm && npx elm make src/Main.elm --output=public/dist/elm.js",
     "elm-format": "npx elm-format src --yes",
     "sass-dev": "sass --watch --update --style=expanded scss/style.scss:public/dist/style.css",
     "sass-prod": "sass --no-source-map --style=compressed scss/style.scss:public/dist/style.css",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "elm": "^0.19.1-5",
     "elm-format": "^0.8.5",
+    "elm-live": "^4.0.2",
     "elm-spa": "^6.0.4",
     "elm-test": "^0.19.1-revision12",
     "sass": "^1.58.3"

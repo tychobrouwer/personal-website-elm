@@ -52,11 +52,7 @@ body {
   color: var(--color--grey-200);
   font-family: var(--font--body);
   font-weight: var(--weight--light);
-  overflow-y: scroll;
   padding-top: var(--height--header);
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     display: none;
@@ -71,7 +67,6 @@ body {
 @import "components/_divider";
 @import "layout/_footer";
 @import "layout/_header";
-@import "layout/_markdown";
 @import "pages/_about__me";
 @import "pages/_home";
 @import "pages/_projects";

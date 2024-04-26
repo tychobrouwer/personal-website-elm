@@ -1,60 +1,42 @@
-module Pages.Home_ exposing (Model, Msg, page)
+module Page.Home exposing (Model, Msg, init, update, view)
 
 import Api.Data exposing (Data)
 import Api.Project exposing (Project)
 import Api.Projects
+import Browser.Navigation as Nav
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
 import Env exposing (domain)
-import Gen.Params.Home_ exposing (Params)
-import Html
+import Error exposing (buildErrorMessage)
+import Html exposing (Html)
 import Html.Attributes as Attr
-import Page
-import Request
-import Shared
-import UI exposing (Html)
-import Url exposing (Url)
-import View exposing (View)
-
-
-page : Shared.Model -> Request.With Params -> Page.With Model Msg
-page shared req =
-    Page.element
-        { init = init shared
-        , update = update req
-        , subscriptions = subscriptions
-        , view = view req.url
-        }
-
-
-
--- INIT
+import Html.Events exposing (onClick)
+import Http
+import Json.Decode as Decode
+import UI
 
 
 type alias Model =
     { project : Data (List Project)
     , projectsData : List Project
+    , navKey : Nav.Key
     }
-
-
-init : Shared.Model -> ( Model, Cmd Msg )
-init _ =
-    ( { project = Api.Data.Loading, projectsData = [] }
-    , Api.Projects.get
-        { onResponse = LoadedProjects }
-    )
 
 
 type Msg
     = LoadedProjects (Data (List Project))
 
 
+init : Nav.Key -> ( Model, Cmd Msg )
+init navKey =
+    ( { project = Api.Data.Loading, projectsData = [], navKey = navKey }
+    , Api.Projects.get
+        { onResponse = LoadedProjects }
+    )
 
--- UPDATE
 
-
-update : Request.With Params -> Msg -> Model -> ( Model, Cmd Msg )
-update _ msg model =
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
     case msg of
         LoadedProjects projects ->
             case projects of
@@ -69,20 +51,14 @@ update _ msg model =
                     ( model, Cmd.none )
 
 
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    Sub.none
+
+-- VIEWS
 
 
-
--- VIEW
-
-
-view : Url -> Model -> View Msg
-view url model =
-    { title = "Tycho brouwer"
-    , body =
-        [ navbar url
+view : Model -> Html Msg
+view model =
+    Html.div []
+        [ navbar "/"
         , Html.div [ Attr.id "home__introduction", Attr.class "container" ]
             [ UI.hero
                 { title = "Tycho Brouwer"
@@ -175,10 +151,7 @@ view url model =
             , projectPreviews model.projectsData
             ]
         , footer
-
-        -- , Html.link [ Attr.rel "stylesheet", Attr.href (domain ++ "/css/home.css") ] []
         ]
-    }
 
 
 projectPreviews :
@@ -205,6 +178,3 @@ emptyRoute =
     { name = "home"
     , route = ""
     }
-
-
-

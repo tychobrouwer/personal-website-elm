@@ -4,6 +4,33 @@
       "image": "home_server",
       "imageSecondary": "home_server",
       "imageLogo": "",
+      "name": "weclean_app",
+      "title": "WeClean Kotlin App",
+      "tags": [
+        "current"
+      ],
+      "description": "This app was developed for the course 4IS70 DBL App Development. The goal of the course was to develop an app for Android using Java or Kotlin. The app should incorporate a few requirements, the app should have multiple user roles, should use one or multiple hardware features of the device, shoould have an elaborate user interface, and connect to a server.",
+      "sections": [
+        {
+          "text": "The WeClean app aims to address the issue of common littering locations and to promote sustainability by mapping littering locations and helping to predict trash build-ups. The user groups involved are residents or people passing by, who can take a photo with location, tags, and description of a littering location, which are uploaded to a server and processed. City councils, government, or volunteer organisations will be able to use the app to identify “hotspots” and resolve issues in specific locations.",
+          "image": ""
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/weclean_app"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/tychobrouwer/2IS70-DBL-App-Development"
+        }
+      ]
+    },
+    {
+      "image": "home_server",
+      "imageSecondary": "home_server",
+      "imageLogo": "",
       "name": "home_server",
       "title": "Home Server",
       "tags": [
@@ -27,7 +54,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/ansible-playbooks"
+          "route": "https://github.com/tychobrouwer/ansible-playbooks"
         }
       ]
     },
@@ -58,7 +85,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/esp32-remote-car"
+          "route": "https://github.com/tychobrouwer/esp32-remote-car"
         }
       ]
     },
@@ -80,7 +107,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/mail-app-flutter"
+          "route": "https://github.com/tychobrouwer/mail-app-flutter"
         }
       ]
     },
@@ -108,7 +135,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/ac-controller-api-socket-python"
+          "route": "https://github.com/tychobrouwer/ac-controller-api-socket-python"
         }
       ]
     },
@@ -132,7 +159,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/food-app-react-native"
+          "route": "https://github.com/tychobrouwer/food-app-react-native"
         }
       ]
     },
@@ -151,7 +178,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/pokemon-game-electron"
+          "route": "https://github.com/tychobrouwer/pokemon-game-electron"
         }
       ]
     },
@@ -170,7 +197,7 @@
         },
         {
           "name": "GitHub Repo",
-          "route": "https://github.com/TychoBrouwer/snake-game-electron"
+          "route": "https://github.com/tychobrouwer/snake-game-electron"
         }
       ]
     }

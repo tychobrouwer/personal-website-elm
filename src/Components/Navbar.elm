@@ -1,32 +1,26 @@
 module Components.Navbar exposing (navbar)
 
-import Gen.Route as Route exposing (Route)
+import Browser.Navigation as Nav
 import Html exposing (Html)
 import Html.Attributes as Attr
 import UI
-import Url exposing (Url)
 
 
-navbar : Url -> Html msg
-navbar url =
+navbar : String -> Html msg
+navbar active =
     let
-        navLink : { text : String, route : Route } -> Html msg
+        navLink : { text : String, route : String } -> Html msg
         navLink options =
             let
                 href : String
-                href =
-                    Route.toHref options.route
+                href = options.route
             in
             Html.a
                 [ Attr.class "bold link-hover"
                 , Attr.href href
                 , Attr.classList
                     [ ( "text-accent"
-                      , if href == "/" then
-                            href == url.path
-
-                        else
-                            String.startsWith href url.path
+                      , href == active
                       )
                     ]
                 ]
@@ -39,8 +33,8 @@ navbar url =
                     [ Attr.href "/", Attr.class "header__logo" ]
                     [ UI.logo ]
                 , Html.nav [ Attr.class "row almost-width space" ]
-                    [ navLink { text = "Home", route = Route.Home_ }
-                    , navLink { text = "Projects", route = Route.Projects }
+                    [ navLink { text = "Home", route = "/" }
+                    , navLink { text = "Projects", route = "/projects" }
                     ]
                 ]
             , Html.nav [ Attr.class "row icon-nav" ]
