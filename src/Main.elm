@@ -45,7 +45,7 @@ type Msg
 
 
 init : () -> Url -> Nav.Key -> ( Model, Cmd Msg )
-init flags url navKey =
+init _ url navKey =
     let
         model =
             { route = Route.parseUrl url

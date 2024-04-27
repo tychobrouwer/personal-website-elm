@@ -7,12 +7,8 @@ import Browser.Navigation as Nav
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
 import Env exposing (domain)
-import Error exposing (buildErrorMessage)
 import Html exposing (Html)
 import Html.Attributes as Attr
-import Html.Events exposing (onClick)
-import Http
-import Json.Decode as Decode
 import UI
 
 

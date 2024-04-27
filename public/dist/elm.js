@@ -6710,7 +6710,7 @@ var $author$project$Route$parseUrl = function (url) {
 	}
 };
 var $author$project$Main$init = F3(
-	function (flags, url, navKey) {
+	function (_v0, url, navKey) {
 		var model = {
 			navKey: navKey,
 			page: $author$project$Main$NotFoundPage,

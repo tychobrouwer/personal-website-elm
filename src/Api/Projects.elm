@@ -7,15 +7,6 @@ import Env exposing (domain)
 import Json.Decode as Json
 
 
-{-|
-
-@docs Project, decoder
-@docs Listing, updateArticle
-@docs list, feed
-@docs get, create, update, delete
-@docs favorite, unfavorite
-
--}
 get :
     { onResponse : Data (List Project) -> msg
     }

@@ -6,12 +6,8 @@ import Browser.Navigation as Nav
 import Components.Footer exposing (footer)
 import Components.Navbar exposing (navbar)
 import Components.Project exposing (..)
-import Error exposing (buildErrorMessage)
 import Html exposing (Html)
 import Html.Attributes as Attr
-import Html.Events exposing (onClick)
-import Http
-import Json.Decode as Decode
 
 
 type alias Model =

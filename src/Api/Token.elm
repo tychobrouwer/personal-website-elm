@@ -4,13 +4,6 @@ module Api.Token exposing
     , get
     )
 
-{-|
-
-@docs Token
-@docs decoder, encode
-@docs get, put, post, delete
-
--}
 
 import Http
 import Json.Decode as Json
