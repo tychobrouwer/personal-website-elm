@@ -1,6 +1,5 @@
 module Components.Navbar exposing (navbar)
 
-import Browser.Navigation as Nav
 import Html exposing (Html)
 import Html.Attributes as Attr
 import UI

@@ -5382,7 +5382,7 @@ var $author$project$Page$Home$LoadedProjects = function (a) {
 	return {$: 'LoadedProjects', a: a};
 };
 var $author$project$Api$Data$Loading = {$: 'Loading'};
-var $author$project$Env$domain = 'http://localhost:8000';
+var $author$project$Env$domain = 'https://www.tbrouwer.com';
 var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
