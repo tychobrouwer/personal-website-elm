@@ -6246,16 +6246,21 @@ var $author$project$Api$Project$linkListDecoder = $elm$json$Json$Decode$list(
 		A2($elm$json$Json$Decode$field, 'name', $elm$json$Json$Decode$string),
 		A2($elm$json$Json$Decode$field, 'route', $elm$json$Json$Decode$string)));
 var $author$project$Utils$Json$record = $elm$json$Json$Decode$succeed;
-var $author$project$Api$Project$Section = F2(
-	function (text, image) {
-		return {image: image, text: text};
+var $author$project$Api$Project$Section = F3(
+	function (text, image, images) {
+		return {image: image, images: images, text: text};
 	});
+var $elm$json$Json$Decode$map3 = _Json_map3;
 var $author$project$Api$Project$sectionListDecoder = $elm$json$Json$Decode$list(
-	A3(
-		$elm$json$Json$Decode$map2,
+	A4(
+		$elm$json$Json$Decode$map3,
 		$author$project$Api$Project$Section,
 		A2($elm$json$Json$Decode$field, 'text', $elm$json$Json$Decode$string),
-		A2($elm$json$Json$Decode$field, 'image', $elm$json$Json$Decode$string)));
+		A2($elm$json$Json$Decode$field, 'image', $elm$json$Json$Decode$string),
+		A2(
+			$elm$json$Json$Decode$field,
+			'images',
+			$elm$json$Json$Decode$list($elm$json$Json$Decode$string))));
 var $author$project$Utils$Json$apply = $elm$json$Json$Decode$map2($elm$core$Basics$apR);
 var $author$project$Utils$Json$withField = F2(
 	function (str, decoder) {
@@ -7950,7 +7955,21 @@ var $author$project$Components$Project$projectSections = function (sections) {
 							[
 								$elm$html$Html$Attributes$class('project__section')
 							]),
-						(section.image === '') ? _List_fromArray(
+						((section.text === '') && (section.image === '')) ? _List_fromArray(
+							[
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('project__section-images')
+									]),
+								A2(
+									$elm$core$List$map,
+									function (item) {
+										return A2($author$project$Components$Project$projectImage, item, 'project__section-image');
+									},
+									section.images))
+							]) : ((section.image === '') ? _List_fromArray(
 							[
 								A2(
 								$elm$html$Html$p,
@@ -7988,7 +8007,7 @@ var $author$project$Components$Project$projectSections = function (sections) {
 									[
 										$elm$html$Html$text(section.text)
 									]))
-							])));
+							]))));
 				}),
 			sections));
 };

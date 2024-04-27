@@ -573,6 +573,18 @@ a {
   display: flex;
   margin-bottom: 2em;
 }
+.project__page .project__section .project__section-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.project__page .project__section .project__section-images .project__section-image {
+  width: 33%;
+  min-width: 150px;
+  max-width: 250px;
+  max-height: none;
+  margin: 10px;
+}
 .project__page .project__section .project__section-text {
   font-size: 1.2em;
   line-height: 1.4em;
@@ -670,6 +682,11 @@ a {
   }
   .project__page p {
     font-size: 1.2em;
+  }
+}
+@media screen and (max-width: 420px) {
+  .project__page .project__section .project__section-images .project__section-image {
+    width: 100%;
   }
 }
 .container {

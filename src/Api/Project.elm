@@ -15,6 +15,14 @@ import Json.Decode as Json
 import Utils.Json exposing (withField)
 
 
+type alias Link =
+    { name : String, route : String }
+
+
+type alias Section =
+    { text : String, image : String, images : List String }
+
+
 type alias Project =
     { image : String
     , imageSecondary : String
@@ -22,7 +30,7 @@ type alias Project =
     , name : String
     , title : String
     , description : String
-    , sections : List { text : String, image : String }
+    , sections : List Section
     , links : List { name : String, route : String }
     }
 
@@ -38,14 +46,6 @@ emptyProject =
     , sections = []
     , links = []
     }
-
-
-type alias Link =
-    { name : String, route : String }
-
-
-type alias Section =
-    { text : String, image : String }
 
 
 projectDecoder : Json.Decoder Project
@@ -73,9 +73,10 @@ linkListDecoder =
 sectionListDecoder : Json.Decoder (List Section)
 sectionListDecoder =
     Json.list
-        (Json.map2 Section
+        (Json.map3 Section
             (Json.field "text" Json.string)
             (Json.field "image" Json.string)
+            (Json.field "images" (Json.list Json.string))
         )
 
 

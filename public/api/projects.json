@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "image": "home_server",
-      "imageSecondary": "home_server",
+      "image": "weclean_app",
+      "imageSecondary": "weclean_app",
       "imageLogo": "",
       "name": "weclean_app",
       "title": "WeClean Kotlin App",
@@ -13,7 +13,21 @@
       "sections": [
         {
           "text": "The WeClean app aims to address the issue of common littering locations and to promote sustainability by mapping littering locations and helping to predict trash build-ups. The user groups involved are residents or people passing by, who can take a photo with location, tags, and description of a littering location, which are uploaded to a server and processed. City councils, government, or volunteer organisations will be able to use the app to identify “hotspots” and resolve issues in specific locations.",
-          "image": ""
+          "image": "",
+          "images": []
+        },
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "weclean_app_1",
+            "weclean_app_2",
+            "weclean_app_3",
+            "weclean_app_4",
+            "weclean_app_5",
+            "weclean_app_6",
+            "weclean_app_7"
+          ]
         }
       ],
       "links": [
@@ -40,11 +54,13 @@
       "sections": [
         {
           "text": "This project is highly inspired by the homelab community on Youtube and Reddit, watching videos from Jeff Geerling, ServeTheHome, and Level1Techs. It started on basic hardware running Pi-Hole and Wireguard instances together with a SAMBA file server to sync files across my devices. The server has since been upgraded to a more powerful hardware and now runs a variety of services.",
-          "image": "home_server_2"
+          "image": "home_server_2",
+          "images": []
         },
         {
           "text": "The project has taught me a lot about Linux, Ansible, networking, and server management. It introduced me to the Linux platform and made me confortable using the command line which I now use daily. For the future I plan to expand the server with more services and learn more about networking by adding opnsense to the list of running services.",
-          "image": ""
+          "image": "",
+          "images": []
         }
       ],
       "links": [
@@ -71,11 +87,13 @@
       "sections": [
         {
           "text": "The car has four 3-6 volt DC motors with a peak current draw of about 200mA. A 100nF capacitor is soldered to the terminals of each motor to reduce the noise they produce. The motors are controlled using two MX1508 DC-motor drivers. The drivers are controlled using PWM signals from the ESP32, these are generated using the LEDC library.",
-          "image": "esp32_remote_car_4"
+          "image": "esp32_remote_car_4",
+          "images": []
         },
         {
           "text": "The speed of the motors is tracked using four light slot sensors. The ESP32 detects the slot sensors passing to calculate the speed of the motor using interrupts on the pins to which the sensors are connected.",
-          "image": "esp32_remote_car_6"
+          "image": "esp32_remote_car_6",
+          "images": []
         }
       ],
       "links": [
@@ -121,11 +139,13 @@
       "sections": [
         {
           "text": "During the project a concept design was first made after which a more complete prototype was manufactured. The product aims to allow an IR controlled air conditioner to become a smart air conditioner. The user can control their AC unit remotely using an app. The server can also relay weather information to the local device for smart temperature control by the air conditioner.",
-          "image": "ac_controller_3"
+          "image": "ac_controller_3",
+          "images": []
         },
         {
           "text": "Tge device is controlled by an ESP32 microcontroller is powered either from a USB power supply or a 5V battery. It has an IR transmitter and receiver to control the AC unit by imitating the original remote. It is connected to the internet using WiFi and communicates with the server using a websocket connection. Communication between the webapp and the server is done using a REST API.",
-          "image": "ac_controller_2"
+          "image": "ac_controller_2",
+          "images": []
         }
       ],
       "links": [
@@ -149,7 +169,8 @@
       "sections": [
         {
           "text": "The mobile app is written in React Native using Expo Go. React Native is an open-source framework for JavaScript. It combines React, with app development for iOS and Android. Expo is an open-source platform for making mobile apps and it removes the necessity for an iOS and Android developer account for testing the app. Expo achieves this by hosting the app on the Expo Go mobile app. The back-end server for the app, which will be used as an authorization and database server, is made using Express.js.",
-          "image": ""
+          "image": "",
+          "images": []
         }
       ],
       "links": [

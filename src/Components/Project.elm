@@ -6,6 +6,7 @@ import Env exposing (domain)
 import Html exposing (Html)
 import Html.Attributes as Attr
 import UI exposing (htmlIf)
+import Html exposing (section)
 
 
 view :
@@ -51,7 +52,17 @@ projectSections sections =
         (List.indexedMap
             (\idx section ->
                 Html.div [ Attr.class "project__section" ]
-                    (if section.image == "" then
+                    (if section.text == "" && section.image == "" then
+                        [ Html.div [ Attr.class "project__section-images" ]
+                            (List.map
+                                (\item ->
+                                    projectImage item "project__section-image"
+                                )
+                                section.images
+                            )
+                        ]
+                        
+                     else if section.image == "" then
                         [ Html.p [ Attr.class "project__section-text" ] [ Html.text section.text ] ]
 
                      else if modBy 2 idx == 0 then
