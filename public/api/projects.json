@@ -59,7 +59,7 @@
         },
         {
           "text": "The project has taught me a lot about Linux, Ansible, networking, and server management. It introduced me to the Linux platform and made me confortable using the command line which I now use daily. For the future I plan to expand the server with more services and learn more about networking by adding opnsense to the list of running services.",
-          "image": "",
+          "image": "home_server_3",
           "images": []
         }
       ],
@@ -69,8 +69,12 @@
           "route": "/projects/home_server"
         },
         {
-          "name": "GitHub Repo",
+          "name": "GitHub Playbooks Repo",
           "route": "https://github.com/tychobrouwer/ansible-playbooks"
+        },
+        {
+          "name": "Github Roles Repos",
+          "route": "https://github.com/tychobrouwer?tab=repositories&q=ansible-"
         }
       ]
     },
@@ -93,6 +97,11 @@
         {
           "text": "The speed of the motors is tracked using four light slot sensors. The ESP32 detects the slot sensors passing to calculate the speed of the motor using interrupts on the pins to which the sensors are connected.",
           "image": "esp32_remote_car_6",
+          "images": []
+        },
+        {
+          "text": "The motors used are pretty cheap and have very varying speeds at the same PWM signal. To calibrate the motors, the motors have all been tested at different PWM signals to find the speed at a given PWM signal. The maximum speed achieved with the wheels of the ground was about 0.5 m/s, with a minimum duty cycle of about 15 percent. From this, motor specific multipliers and a quadratic function was derived to calculate the speed of the wheels at a specified PWM signal. This function can be used to create a simple feedforward controller for the car.",
+          "image": "esp32_remote_car_7",
           "images": []
         }
       ],
