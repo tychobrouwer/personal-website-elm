@@ -32,6 +32,7 @@ type alias Project =
     , description : String
     , sections : List Section
     , links : List { name : String, route : String }
+    , tags : List String
     }
 
 
@@ -45,6 +46,7 @@ emptyProject =
     , description = ""
     , sections = []
     , links = []
+    , tags = []
     }
 
 
@@ -59,6 +61,7 @@ projectDecoder =
         |> withField "description" Json.string
         |> withField "sections" sectionListDecoder
         |> withField "links" linkListDecoder
+        |> withField "tags" (Json.list Json.string)
 
 
 linkListDecoder : Json.Decoder (List Link)

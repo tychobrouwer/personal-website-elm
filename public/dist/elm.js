@@ -5382,7 +5382,7 @@ var $author$project$Page$Home$LoadedProjects = function (a) {
 	return {$: 'LoadedProjects', a: a};
 };
 var $author$project$Api$Data$Loading = {$: 'Loading'};
-var $author$project$Env$domain = 'https://www.tbrouwer.com';
+var $author$project$Env$domain = 'http://localhost:8000';
 var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
@@ -6231,9 +6231,9 @@ var $author$project$Api$Token$request = F3(
 			});
 	});
 var $author$project$Api$Token$get = A2($author$project$Api$Token$request, 'GET', $elm$http$Http$emptyBody);
-var $author$project$Api$Project$Project = F8(
-	function (image, imageSecondary, imageLogo, name, title, description, sections, links) {
-		return {description: description, image: image, imageLogo: imageLogo, imageSecondary: imageSecondary, links: links, name: name, sections: sections, title: title};
+var $author$project$Api$Project$Project = F9(
+	function (image, imageSecondary, imageLogo, name, title, description, sections, links, tags) {
+		return {description: description, image: image, imageLogo: imageLogo, imageSecondary: imageSecondary, links: links, name: name, sections: sections, tags: tags, title: title};
 	});
 var $author$project$Api$Project$Link = F2(
 	function (name, route) {
@@ -6269,37 +6269,41 @@ var $author$project$Utils$Json$withField = F2(
 	});
 var $author$project$Api$Project$projectDecoder = A3(
 	$author$project$Utils$Json$withField,
-	'links',
-	$author$project$Api$Project$linkListDecoder,
+	'tags',
+	$elm$json$Json$Decode$list($elm$json$Json$Decode$string),
 	A3(
 		$author$project$Utils$Json$withField,
-		'sections',
-		$author$project$Api$Project$sectionListDecoder,
+		'links',
+		$author$project$Api$Project$linkListDecoder,
 		A3(
 			$author$project$Utils$Json$withField,
-			'description',
-			$elm$json$Json$Decode$string,
+			'sections',
+			$author$project$Api$Project$sectionListDecoder,
 			A3(
 				$author$project$Utils$Json$withField,
-				'title',
+				'description',
 				$elm$json$Json$Decode$string,
 				A3(
 					$author$project$Utils$Json$withField,
-					'name',
+					'title',
 					$elm$json$Json$Decode$string,
 					A3(
 						$author$project$Utils$Json$withField,
-						'imageLogo',
+						'name',
 						$elm$json$Json$Decode$string,
 						A3(
 							$author$project$Utils$Json$withField,
-							'imageSecondary',
+							'imageLogo',
 							$elm$json$Json$Decode$string,
 							A3(
 								$author$project$Utils$Json$withField,
-								'image',
+								'imageSecondary',
 								$elm$json$Json$Decode$string,
-								$author$project$Utils$Json$record($author$project$Api$Project$Project)))))))));
+								A3(
+									$author$project$Utils$Json$withField,
+									'image',
+									$elm$json$Json$Decode$string,
+									$author$project$Utils$Json$record($author$project$Api$Project$Project))))))))));
 var $author$project$Api$Projects$get = function (options) {
 	return $author$project$Api$Token$get(
 		{
@@ -6322,7 +6326,7 @@ var $author$project$Page$Home$init = function (navKey) {
 var $author$project$Page$Project$LoadedProject = function (a) {
 	return {$: 'LoadedProject', a: a};
 };
-var $author$project$Api$Project$emptyProject = {description: '', image: '', imageLogo: '', imageSecondary: '', links: _List_Nil, name: '', sections: _List_Nil, title: ''};
+var $author$project$Api$Project$emptyProject = {description: '', image: '', imageLogo: '', imageSecondary: '', links: _List_Nil, name: '', sections: _List_Nil, tags: _List_Nil, title: ''};
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -8148,6 +8152,36 @@ var $author$project$Page$Project$view = function (model) {
 	}
 };
 var $elm$html$Html$main_ = _VirtualDom_node('main');
+var $elm$core$List$any = F2(
+	function (isOkay, list) {
+		any:
+		while (true) {
+			if (!list.b) {
+				return false;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (isOkay(x)) {
+					return true;
+				} else {
+					var $temp$isOkay = isOkay,
+						$temp$list = xs;
+					isOkay = $temp$isOkay;
+					list = $temp$list;
+					continue any;
+				}
+			}
+		}
+	});
+var $elm$core$List$member = F2(
+	function (x, xs) {
+		return A2(
+			$elm$core$List$any,
+			function (a) {
+				return _Utils_eq(a, x);
+			},
+			xs);
+	});
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $author$project$Page$Projects$markdownSections = function (projects) {
 	var projectSection = function (project) {
@@ -8237,7 +8271,15 @@ var $author$project$Page$Projects$markdownSections = function (projects) {
 			[
 				$elm$html$Html$Attributes$class('col')
 			]),
-		A2($elm$core$List$map, projectSection, projects));
+		A2(
+			$elm$core$List$map,
+			projectSection,
+			A2(
+				$elm$core$List$filter,
+				function (project) {
+					return !A2($elm$core$List$member, 'old', project.tags);
+				},
+				projects)));
 };
 var $author$project$Page$Projects$view = function (model) {
 	return A2(

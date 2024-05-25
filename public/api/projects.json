@@ -86,14 +86,19 @@
       "description": "This project is about learning to work with microcontrollers, electrical components, and writing the code for them. The robot is controlled by an ESP32 microcontroller, and uses two MX1508 DC-motor drivers to drive the four 5V cheap motors. The speed of the wheels is tracked using four light slot sensors. The robot can be controlled using a webserver hosted on the ESP's IP-address. The webinterface communicates back to the microcontroller using a websocket connection.",
       "sections": [
         {
-          "text": "The car has four 3-6 volt DC motors with a peak current draw of about 200mA. A 100nF capacitor is soldered to the terminals of each motor to reduce the noise they produce. The motors are controlled using two MX1508 DC-motor drivers. The drivers are controlled using PWM signals from the ESP32, these are generated using the LEDC library.",
+          "text": "The car has four 3-6 volt DC motors with a peak current draw of about 200mA. A 100nF capacitor is soldered to the terminals of each motor to reduce the noise they produce. The motors are controlled using two MX1508 DC-motor drivers. The drivers are controlled using PWM signals from the ESP32, these are generated using the MCPWM peripheral API of the esp32.",
           "image": "esp32_remote_car_4",
           "images": []
         },
         {
-          "text": "The speed of the motors is tracked using four light slot sensors. The ESP32 detects the slot sensors passing to calculate the speed of the motor using interrupts on the pins to which the sensors are connected.",
+          "text": "The speed of the motors is tracked using four light slot sensors. The ESP32 detects the slot sensors passing to calculate the speed of the motor using the PCNT peripheral API of the esp32.",
           "image": "esp32_remote_car_6",
           "images": []
+        },
+        {
+          "text": "I observed that one motor underperformed severly. This caused the robot to not drive straight. To compensate for this a correction factor was added to the pwm speed send to the motors based on the speed of the worst performing motor. A curve was fitted to the speed of the motors to predict the speed of the motors at different pwm values. It can also be observed that the motors have a clear minimum pwm value at which they start to move, this value mainly depended on the pwm frequency used.",
+          "image": "esp32_remote_car_7",
+          "images": []	
         }
       ],
       "links": [
@@ -148,6 +153,7 @@
           "images": []
         }
       ],
+      "tags": [],
       "links": [
         {
           "name": "Read More",
@@ -173,6 +179,7 @@
           "images": []
         }
       ],
+      "tags": [],
       "links": [
         {
           "name": "Read More",
@@ -192,6 +199,9 @@
       "title": "Pokémon Inspired Game",
       "description": "A Pokémon inspired game written using Electron, TypeScript, and SCSS, more specifically the Pokémon Ruby version. The game is drawn onto an HTML canvas using request animation frame to invoke the repaint. The game has basic fighting mechanics following the original from Pokémon Ruby.",
       "sections": [],
+      "tags": [
+        "old"
+      ],
       "links": [
         {
           "name": "Read More",
@@ -211,6 +221,9 @@
       "title": "Snake Game",
       "description": "A snake game made using Electron, TypeScript, and SCSS. The game counts the current score and saves the high score. The player can also adjust the game speed and board size. ",
       "sections": [],
+      "tags": [
+        "old"
+      ],
       "links": [
         {
           "name": "Read More",

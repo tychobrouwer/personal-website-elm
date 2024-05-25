@@ -1,19 +1,22 @@
 # My personal website
 
->built with [elm-spa](https://elm-spa.dev)
-
 This project is a website to showcase my finished and ongoing, mainly programming, projects. But it is also a way for to get more proficient at programming and learning Elm.
+
+It is build using Elm and Sass.
 
 ## running locally
 
 ```bash
-elm-spa server  # starts this app at http:/localhost:1234
+npm install # installs all dependencies
+npm run sass-dev # starts the sass compiler in watch mode
+npm run elm-dev # starts the elm compiler in watch mode
 ```
 
 ### other commands
 
 ```bash
-elm-spa add    # add a new page to the application
-elm-spa build  # production build
-elm-spa watch  # runs build as you code (without the server)
+npm run sass-prod # compiles the sass files for production
+npm run sass-prod-linux # compiles the sass files for production on linux
+npm run elm-prod # compiles the elm files for production
+npm run elm-prod-linux # compiles the elm files for production on linux
 ```

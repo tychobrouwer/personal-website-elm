@@ -81,4 +81,4 @@ markdownSections projects =
                 ]
     in
     Html.main_ [ Attr.class "col" ]
-        (List.map projectSection projects)
+        (List.map projectSection (List.filter (\project -> List.member "old" project.tags == False) projects))
