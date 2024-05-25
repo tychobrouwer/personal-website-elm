@@ -59,7 +59,7 @@
         },
         {
           "text": "The project has taught me a lot about Linux, Ansible, networking, and server management. It introduced me to the Linux platform and made me confortable using the command line which I now use daily. For the future I plan to expand the server with more services and learn more about networking by adding opnsense to the list of running services.",
-          "image": "",
+          "image": "home_server_3",
           "images": []
         }
       ],
@@ -69,8 +69,12 @@
           "route": "/projects/home_server"
         },
         {
-          "name": "GitHub Repo",
+          "name": "GitHub Playbooks Repo",
           "route": "https://github.com/tychobrouwer/ansible-playbooks"
+        },
+        {
+          "name": "Github Roles Repos",
+          "route": "https://github.com/tychobrouwer?tab=repositories&q=ansible-"
         }
       ]
     },
