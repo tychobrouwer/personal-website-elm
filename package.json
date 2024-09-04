@@ -11,8 +11,9 @@
     "elm-format": "npx elm-format src --yes",
     "sass-dev": "sass --watch --update --style=expanded scss/style.scss:public/dist/style.css",
     "sass-prod": "sass --no-source-map --style=compressed scss/style.scss:public/dist/style.css",
+    "uglify": "npx uglifyjs public/dist/elm.js --compress --mangle --output public/dist/elm.js",
     "publish": "ssh root@192.168.1.105 \"cd /var/www/html/portfolio && git pull origin main && systemctl restart lighttpd\"",
-    "push-prod": "npm run elm-prod && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish"
+    "push-prod": "npm run elm-prod && npm run uglify && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,11 @@
   "license": "ISC",
   "devDependencies": {
     "elm": "^0.19.1-5",
-    "elm-format": "^0.8.5",
+    "elm-format": "^0.8.7",
     "elm-live": "^4.0.2",
-    "elm-spa": "^6.0.4",
+    "elm-spa": "^6.0.6",
     "elm-test": "^0.19.1-revision12",
-    "sass": "^1.58.3"
+    "sass": "^1.78.0",
+    "uglify-js": "3.19.3"
   }
 }

@@ -1,6 +1,60 @@
 {
   "projects": [
     {
+      "image": "mail_app_1",
+      "imageSecondary": "mail_app_1",
+      "imageLogo": "",
+      "name": "mail_app",
+      "title": "Mail Client App",
+      "tags": [
+        "current"
+      ],
+      "description": "A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers.",
+      "sections": [
+        {
+          "text": "The backend is written in Rust and exposes various url endpoints to communicate with the frontend. It stores a local cache of the emails in a sqlite database. It uses the imap crate to connect to the email servers and update the local database. The frontend is written in Flutter and uses the \"flutter_widget_from_html_core\" package to convert the HTML emails to Flutter widgets.",
+          "image": "",
+          "images": []
+        },
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "mail_app_2"
+          ]
+        },
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "mail_app_3"
+          ]
+        },
+        {
+          "text": "It is the goal to create a client which can be easily customized by the user via a configuration file or via the settings menu. All colors should be customizable and derived from a few base colors. Icon sizes and pannel padding should also be customizable.",
+          "image": "",
+          "images": []
+        },
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "mail_app_4"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/mail_app"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/tychobrouwer/mail-app-flutter"
+        }
+      ]
+    },
+    {
       "image": "weclean_app",
       "imageSecondary": "weclean_app",
       "imageLogo": "",
@@ -102,7 +156,7 @@
         {
           "text": "I observed that one motor underperformed severly. This caused the robot to not drive straight. To compensate for this a correction factor was added to the pwm speed send to the motors based on the speed of the worst performing motor. A curve was fitted to the speed of the motors to predict the speed of the motors at different pwm values. It can also be observed that the motors have a clear minimum pwm value at which they start to move, this value mainly depended on the pwm frequency used.",
           "image": "esp32_remote_car_7",
-          "images": []	
+          "images": []
         }
       ],
       "links": [
@@ -113,28 +167,6 @@
         {
           "name": "GitHub Repo",
           "route": "https://github.com/tychobrouwer/esp32-remote-car"
-        }
-      ]
-    },
-    {
-      "image": "mail_app",
-      "imageSecondary": "mail_app",
-      "imageLogo": "",
-      "name": "mail_app",
-      "title": "Mail Client App",
-      "tags": [
-        "current"
-      ],
-      "description": "A mail client for desktop made using flutter. The goal of this project is to make a client which simply does your mail, with the ability to customize the client by disabling features you do not need. In the current state the client can read rendered HTML emails from one or multiple IMAP servers. The app is not tested for platforms other than Windows at the moment.",
-      "sections": [],
-      "links": [
-        {
-          "name": "Read More",
-          "route": "/projects/mail_app"
-        },
-        {
-          "name": "GitHub Repo",
-          "route": "https://github.com/tychobrouwer/mail-app-flutter"
         }
       ]
     },
