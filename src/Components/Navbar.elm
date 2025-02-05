@@ -37,7 +37,7 @@ navbar active =
                     ]
                 ]
             , Html.nav [ Attr.class "row icon-nav" ]
-                [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/TychoBrouwer" }
+                [ UI.iconLink { text = "GitHub", icon = UI.icons.github, url = "https://github.com/tychobrouwer" }
                 , UI.iconLink { text = "Email", icon = UI.icons.email, url = "mailto:tycho.tbrouwer@gmail.com" }
                 , UI.iconLink { text = "Linkedin", icon = UI.icons.linkedin, url = "https://www.linkedin.com/in/tycho-brouwer-6306ba274/" }
                 ]

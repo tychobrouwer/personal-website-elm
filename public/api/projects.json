@@ -1,6 +1,53 @@
 {
   "projects": [
     {
+      "image": "bep",
+      "imageSecondary": "bep",
+      "imageLogo": "",
+      "name": "bep",
+      "title": "Bachlor End Project - Soccer Robot Reinforcement Learning Ball Interception",
+      "tags": [
+        "current"
+      ],
+      "description": "Robot soccer presents unique challenges for adaptive behavior in dynamic environments, with Tech United developing innovative robots called TURTLEs to address these complexities. This study explores the use of reinforcement learning (RL) as an alternative to traditional methods, aiming to enhance ball interception efficiency by enabling robots to learn optimal strategies through interaction and training. The project focuses on developing a simulation environment in Unreal Engine 5.5 to train RL agents for ball interception tasks.",
+      "sections": [
+        {
+          "text": "Reinforcement learning (RL) is a powerful machine learning technique where an agent learns to make optimal decisions by interacting with its environment, receiving feedback through rewards, and improving over time through trial and error. In Unreal Engine 5.5, RL can be done using the Learning Agents plugin, which enables training of AI agents. The plugin provides a bridge between the Unreal Engine and Python, allowing for the use of popular RL libraries like TensorFlow and PyTorch.",
+          "image": "bep_1",
+          "images": []
+        },
+        {
+          "text": "The analysis highlights that reinforcement learning successfully generates ball interception trajectories, achieving high accuracy across diverse conditions, as demonstrated by Policy 4's strong performance. However, challenges remain in scenarios with high ball velocities, indicating limitations in policy adaptability under dynamic and complex conditions. These findings suggest that further refinement of reward functions and training processes could enhance the effectiveness and robustness of reinforcement learning-based interception systems.",
+          "image": "bep_2",
+          "images": []
+        },
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "bep_3",
+            "bep_4",
+            "bep_5",
+            "bep_6"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/bep"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/tychobrouwer/soccer-robot-rl-ball-interception"
+        },
+        {
+          "name": "Final Report",
+          "route": "https://github.com/tychobrouwer/soccer-robot-rl-ball-interception/blob/main/1753320-ball-interception-ue-soccer-robots-corrected.pdf"
+        }
+      ]
+    },
+    {
       "image": "mail_app_1",
       "imageSecondary": "mail_app_1",
       "imageLogo": "",

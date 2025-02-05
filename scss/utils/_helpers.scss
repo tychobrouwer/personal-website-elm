@@ -1,6 +1,6 @@
 .container {
-  width: 70%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -56,6 +56,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .container {
+    width: 80%;
+  }
+
   .almost-width {
     width: 70%;
     margin: 0 15%;
