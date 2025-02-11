@@ -100,7 +100,7 @@ view model =
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-accent" ] [ Html.text "Education" ]
-                        , Html.text "I'm currently in my first year of my master degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
+                        , Html.text "I have finished my BSc in Mechanical Engineering and am currently working on my MSc in Mechanical Engineering. During my studies I have been able to work on a wide range of projects, from reinforcement learning for trajectory planning to system identification dynamical, controller design, and performance analysis for a robot arm."
                         ]
                     , Html.p []
                         [ Html.span [ Attr.class "text-accent" ] [ Html.text "Student Board" ]
