@@ -85,7 +85,7 @@ view model =
             , Html.div [ Attr.id "home__about_me__content", Attr.class "row" ]
                 [ Html.div [ Attr.id "home__about_me__text" ]
                     [ Html.p []
-                        [ Html.text "I'm currently a third year mechanical engineering student at the Eindhoven University of Technology and I am interested in everything science, software, and technology."
+                        [ Html.text "I am interested in everything science, software, and technology."
                         ]
                     , Html.p []
                         [ Html.text "My journey into technology begun when my grandfather dug up one of his first personal computers, a TRS-80 Color Computer, on which I wrote my first code in BASIC."
