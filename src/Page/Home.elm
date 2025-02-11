@@ -102,6 +102,10 @@ view model =
                         [ Html.span [ Attr.class "text-accent" ] [ Html.text "Education" ]
                         , Html.text "I'm currently in my first year of my master degree in mechanical engineering at the Eindhoven University of Technology. Aside from the engineering disciplines the study puts a heavy focus on project and challenge based learning."
                         ]
+                    , Html.p []
+                        [ Html.span [ Attr.class "text-accent" ] [ Html.text "Student Board" ]
+                        , Html.text "At the start of the 2023/2024 academic year I started playing badminin at the student association E.S.B.V. Panache. During the year, I decided I wanted to contribute back to the association and joined the board at the start of the 2024/2025 year as the secretary. As one of the most international student associations of the university, I have been able to improve my communication skills and interact with a wide range of people. As part of the board I helped organise the annual tournament, members weekend, and various fun activities for the members."
+                        ]
                     ]
                 , Html.div [ Attr.id "home__about_me__image" ]
                     [ Html.div [ Attr.class "row" ]
