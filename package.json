@@ -13,7 +13,8 @@
     "sass-prod": "sass --no-source-map --style=compressed scss/style.scss:public/dist/style.css",
     "uglify": "npx uglifyjs public/dist/elm.js --compress --mangle --output public/dist/elm.js",
     "publish": "ssh root@10.12.12.105 \"cd /var/www/html/portfolio && git pull origin main && systemctl restart lighttpd\"",
-    "push-prod": "npm run elm-prod && npm run uglify && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish"
+    "push-prod": "npm run elm-prod && npm run uglify && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish",
+    "push-prod-linux": "npm run elm-prod-linux && npm run uglify && npm run sass-prod && git add . && git commit -m \"publish\" && git push origin main && npm run publish"
   },
   "repository": {
     "type": "git",
