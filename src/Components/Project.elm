@@ -26,7 +26,11 @@ view options =
                     ]
                 , Html.p [ Attr.class "project__section-text" ] [ Html.text options.projectComponent.description ]
                 ]
-            , Html.img [ Attr.class "project__section-image", Attr.src (domain ++ "/images/projects/" ++ options.projectComponent.image ++ ".webp") ] []
+            , if options.projectComponent.image /= "" then
+                Html.img [ Attr.class "project__section-image", Attr.src (domain ++ "/images/projects/" ++ options.projectComponent.image ++ ".webp") ] []
+              else
+                Html.text ""
+                
             ]
         , Html.div [ Attr.class "row row-buttons" ]
             (List.map

@@ -1,6 +1,34 @@
 {
   "projects": [
     {
+      "image": "",
+      "imageSecondary": "dashboard",
+      "imageLogo": "",
+      "name": "dashboard",
+      "title": "Home Lab Dashboard",
+      "tags": [],
+      "description": "Homelab Dashboard is a customizable web-based dashboard designed for managing and monitoring your homelab services. It provides a clean and organized interface to access various services, with support for status icons and custom icons (SVGs, dashboard icons from Homarr Labs, URLs, and Font Awesome icons). The dashboard is highly configurable, allowing you to tailor it to your specific needs.",
+      "sections": [
+        {
+          "text": "",
+          "image": "",
+          "images": [
+            "dashboard"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "name": "Read More",
+          "route": "/projects/dashboard"
+        },
+        {
+          "name": "GitHub Repo",
+          "route": "https://github.com/tychobrouwer/simple-dashboard-go"
+        }
+      ]
+    },
+    {
       "image": "bep",
       "imageSecondary": "bep",
       "imageLogo": "",
