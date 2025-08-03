@@ -1,19 +1,24 @@
 {
   "projects": [
     {
-      "image": "",
-      "imageSecondary": "dashboard",
+      "image": "dashboard_1",
+      "imageSecondary": "dashboard_1",
       "imageLogo": "",
       "name": "dashboard",
       "title": "Home Lab Dashboard",
       "tags": [],
-      "description": "Homelab Dashboard is a customizable web-based dashboard designed for managing and monitoring your homelab services. It provides a clean and organized interface to access various services, with support for status icons and custom icons (SVGs, dashboard icons from Homarr Labs, URLs, and Font Awesome icons). The dashboard is highly configurable, allowing you to tailor it to your specific needs.",
+      "description": "Homelab Dashboard is a customizable web-based dashboard designed for managing and monitoring your homelab services. It provides a clean and organized interface to access various services, with support for status icons and custom icons (SVGs, dashboard icons from Homarr Labs, URLs, and Font Awesome icons). The dashboard is highly configurable, allowing you to customise it to your specific needs.",
       "sections": [
+        {
+          "text": "THe dashbopard is configurable using a JSON file, which allows you to define the links, color scheme, and layout of the dashboard. For the links you can specify the name, route, icon, and whether to display a service status icon for each link. The links can be seperated into sections, which can be used to create a more organized layout with their own title.",
+          "image": "dashboard_2",
+          "images": []
+        },
         {
           "text": "",
           "image": "",
           "images": [
-            "dashboard"
+            "dashboard_1"
           ]
         }
       ],
@@ -246,8 +251,8 @@
       ]
     },
     {
-      "image": "ac_controller",
-      "imageSecondary": "ac_controller",
+      "image": "ac_controller_1",
+      "imageSecondary": "ac_controller_1",
       "imageLogo": "",
       "name": "ac_controller",
       "title": "Universal AC Controller",

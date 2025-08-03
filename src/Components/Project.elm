@@ -87,7 +87,8 @@ projectSections sections =
 projectImage : String -> String -> Html msg
 projectImage image classes =
     htmlIf
-        (Html.img
+        (
+            Html.img
             [ Attr.class classes
             , Attr.src (domain ++ "/images/projects/" ++ image ++ ".webp")
             ]

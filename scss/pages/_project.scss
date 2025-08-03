@@ -33,7 +33,6 @@
         min-width: 150px;
         max-width: 250px;
         max-height: none;
-        margin: 10px;
       }
     }
 
@@ -44,7 +43,7 @@
     }
 
     .project__section-image {
-      width: 45%;
+      max-width: 45%;
       max-height: 500px;
       height: fit-content;
       border-radius: 0.2em;
@@ -85,6 +84,16 @@
   }
 }
 
+@media screen and (min-width: 1200px) {
+  .project__page {
+    .project__section {
+      .project__section-text {
+        font-size: 1.3em;
+      }
+    }
+  }
+}
+
 @media screen and (max-height: 920px) {
   .project__page {
     .project__header {
@@ -103,7 +112,7 @@
 
     .project__section {
       .project__section-image {
-        width: 40%;
+        max-width: 40%;
       }
 
       .project__section-image:only-child {
@@ -154,10 +163,16 @@
       }
 
       .project__section-image {
-        width: 70%;
+        max-height: none;
+        max-width: 70%;
         margin: 2em 15%;
         object-fit: contain;
       }
+
+          .project__section-left {
+      margin-right: 0;
+    }
+
 
       .project__section-image:only-child {
         max-width: 100%;
@@ -179,7 +194,8 @@
   .project__page {
     .project__section {
       .project__section-image {
-        width: 90%;
+        max-width: 90%;
+        max-height: none;
         margin: 2em 5%;
       }
     }
@@ -207,6 +223,7 @@
     .project__section {
       .project__section-images {
         .project__section-image {
+          max-height: none;
           width: 100%;
         }
       }
